@@ -27,4 +27,41 @@ MonoBehaviour:
       <Damage>k__BackingField: 1
       <KillEfficienty>k__BackingField: 1
       <Range>k__BackingField: 10
-  Enemies: []
+  TowerUpgrades: []
+  Enemies:
+  - <Name>k__BackingField: BasicEnemy
+    <Id>k__BackingField: 0
+    <Difficulty>k__BackingField: 0
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 89c920fe34eb4ff48ac945e6e8bae5c6, type: 3}
+    <Stats>k__BackingField:
+      <Health>k__BackingField: 1
+      <Speed>k__BackingField: 2
+      <Damage>k__BackingField: 0
+      <Gold>k__BackingField: 1
+  - <Name>k__BackingField: BasicEnemy
+    <Id>k__BackingField: 1
+    <Difficulty>k__BackingField: 1
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 4a70cb1802ff0f34d93b08d8295efab8, type: 3}
+    <Stats>k__BackingField:
+      <Health>k__BackingField: 1
+      <Speed>k__BackingField: 2
+      <Damage>k__BackingField: 0
+      <Gold>k__BackingField: 1
+  - <Name>k__BackingField: BasicEnemy
+    <Id>k__BackingField: 2
+    <Difficulty>k__BackingField: 2
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 0115900abe05a574fae808262fd37757, type: 3}
+    <Stats>k__BackingField:
+      <Health>k__BackingField: 1
+      <Speed>k__BackingField: 2
+      <Damage>k__BackingField: 0
+      <Gold>k__BackingField: 1
+  - <Name>k__BackingField: BasicEnemy
+    <Id>k__BackingField: 3
+    <Difficulty>k__BackingField: 3
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 555a95b3e7e321a4b8731f0b33d4e2c7, type: 3}
+    <Stats>k__BackingField:
+      <Health>k__BackingField: 1
+      <Speed>k__BackingField: 2
+      <Damage>k__BackingField: 0
+      <Gold>k__BackingField: 1

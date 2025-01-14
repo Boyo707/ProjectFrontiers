@@ -4,12 +4,13 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ObjectDatabase", menuName = "MyAssets/ObjectDatabase")]
 public class ObjectDatabase : ScriptableObject {
-    public List<Towers> Towers;
-    public List<Enemies> Enemies;
+    public List<Tower> Towers;
+    public List<TowerUpgrades> TowerUpgrades;
+    public List<Enemy> Enemies;
 }
 
 [Serializable]
-public class Towers {
+public class Tower {
     [field: SerializeField]
     public string Name { get; private set; }
     [field: SerializeField]
@@ -45,11 +46,26 @@ public class TowerStats {
 }
 
 [Serializable]
-public class Enemies {
+public class TowerUpgrades {
     [field: SerializeField]
     public string Name { get; private set; }
     [field: SerializeField]
     public int Id { get; private set; }
+    [field: SerializeField]
+    public int TowerToUpgrade { get; private set; }
+    [field: SerializeField]
+    public int TowerUpgrade { get; private set; }
+}
+
+
+[Serializable]
+public class Enemy {
+    [field: SerializeField]
+    public string Name { get; private set; }
+    [field: SerializeField]
+    public int Id { get; private set; }
+    [field: SerializeField]
+    public int Difficulty { get; private set; }
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
     [field: SerializeField]

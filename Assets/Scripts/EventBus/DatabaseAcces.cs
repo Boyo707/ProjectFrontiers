@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DatabaseAcces : MonoBehaviour {
@@ -12,18 +14,22 @@ public class DatabaseAcces : MonoBehaviour {
         }
         instance = this;
     }
-    /*
-    private void Awake() {
-        EventBus<RequestDataEvent<Enemies>>.OnEvent += GetEnemyObject;
-    }*/
-    public Enemies GetEnemyObject(int enemyid) {
-        // probably do some fucking validation
+
+    public Enemy GetEnemyById(int enemyid) {
         return database.Enemies[enemyid];
     }
-    /*
-    public void GetEnemyObject(RequestDataEvent<Enemies> e)
-    {
-        // probably do some fucking validation
-        e.Callback(database.Enemies[e.id]);
-    }*/
+    public Enemy GetEnemyByDifficulty(int difficulty) {
+        Enemy[] enemies = new Enemy[0];
+
+        foreach (Enemy enemy in database.Enemies) {
+            if (enemy.Difficulty == difficulty) {
+                enemies.Append(enemy);
+            }
+        }
+
+        //add randomiser to wich enemy it return on that difficulty
+
+        return enemies[0];
+    }
+
 }

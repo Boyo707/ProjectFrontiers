@@ -21,6 +21,27 @@ public class EnemySpawnedEvent : Event {
 }
 #endregion
 
+public class EnemyKilledEvent : Event {
+    public EnemyKilledEvent(object source) : base(source) {
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class RequestDataEvent<T> : Event where T : class {
     public Action<T> Callback;
     public int id;
