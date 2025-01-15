@@ -27,7 +27,6 @@ public class PreviewSystem : MonoBehaviour
     {
         previewObject = Instantiate(prefab);
         PreparePreview(previewObject);
-        //PrepareCursor(size);
         cellIndicator.SetActive(true);
     }
     private void PreparePreview(GameObject previewObject)

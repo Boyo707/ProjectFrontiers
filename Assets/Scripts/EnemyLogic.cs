@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class EnemyLogic : MonoBehaviour {
     public float speed = 10f;
 
     private Transform target;
@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour {
         currentHealth -= damage;
 
         if (currentHealth < 0) {
+            EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this));
             BuildManager.instance.AddCurrency(amount * currencyEfficienty);
             Destroy(gameObject); 
         }

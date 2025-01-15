@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour {
 
-    private Enemy target = null;
+    private EnemyLogic target = null;
     private Transform targetLocation = null;
 
     [SerializeField] private ObjectDatabase database;
@@ -100,7 +100,7 @@ public class Turret : MonoBehaviour {
             }
             else {
                 targetLocation = newTarget.transform;
-                target = newTarget.GetComponent<Enemy>();
+                target = newTarget.GetComponent<EnemyLogic>();
             }
         }
     }
