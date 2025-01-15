@@ -9,7 +9,7 @@ public class Event {
     }
 }
 
-#region 
+#region enemy events
 /// <summary>
 /// Event triggered when enemy is spawned, takes in spawned enemy as parameter
 /// </summary>
@@ -19,14 +19,34 @@ public class EnemySpawnedEvent : Event {
         this.enemyId = enemyId;
     }
 }
-#endregion
 
 public class EnemyKilledEvent : Event {
     public EnemyKilledEvent(object source) : base(source) {
     }
 }
 
+#endregion
 
+#region turret events
+
+
+#endregion
+
+#region difficulty events
+public class IncreaseDifficultyEvent : Event {
+    public float Difficulty;
+    public IncreaseDifficultyEvent(object source, float Difficulty) : base(source) {
+        this.Difficulty = Difficulty;
+    }
+}
+
+public class DecreaseDifficultyEvent : Event {
+    public float Difficulty;
+    public DecreaseDifficultyEvent(object source, float Difficulty) : base(source) {
+        this.Difficulty = Difficulty;
+    }
+}
+#endregion
 
 
 

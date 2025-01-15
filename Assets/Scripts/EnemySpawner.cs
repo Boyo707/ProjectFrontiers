@@ -5,13 +5,11 @@ using UnityEngine.UIElements;
 
 public class EnemySpawner : MonoBehaviour {
     public float spawnRadius = 5f;
-    public int spawnRate = 10;
+    public AnimationCurve spawnRate;
     private float spawnTimer = 0;
 
     [SerializeField]
     private int currentEnemiesAlive = 0;
-    [SerializeField]
-    private int minEnemiesAlive = 10;
 
     [SerializeField]
     private float gameTime = 0f;
@@ -23,34 +21,19 @@ public class EnemySpawner : MonoBehaviour {
     private void Update() {
         gameTime += Time.deltaTime;
 
-        if (spawnTimer <= 0 || currentEnemiesAlive < minEnemiesAlive) {
-            int enemyId = GetEnemyIdBasedOnTimeOrWave(gameTime);
+        if (spawnTimer <= 0) {
+            int enemyId = GetEnemyIdBasedOnTime();
 
             InstantiateEnemy(enemyId);
-            //EventBus<RequestDataEvent<Enemy>>.Publish(new RequestDataEvent<Enemy>(this, InstantiateEnemy, enemyId));
-            spawnTimer = 1f / spawnRate;
+            spawnTimer = 1f / spawnRate.Evaluate(gameTime);
         }
         else {
             spawnTimer -= Time.deltaTime;
         }
     }
 
-    private int GetEnemyIdBasedOnTimeOrWave(float gameTime) {
-        if (gameTime < 30f) {
-            return 0;
-        }
-        else if (gameTime < 60f) {
-            minEnemiesAlive = 20;
-            return 1;
-        }
-        else if (gameTime < 120f) {
-            minEnemiesAlive = 30;
-            return 2;
-        }
-        else {
-            minEnemiesAlive = 50;
-            return 3;
-        }
+    private int GetEnemyIdBasedOnTime() {
+        return 0;
     }
 
     private void OnDestroy() {
@@ -62,8 +45,8 @@ public class EnemySpawner : MonoBehaviour {
 
         float x = Mathf.Cos(angle) * spawnRadius;
         float y = Mathf.Sin(angle) * spawnRadius;
-
-        Vector3 position = new Vector3(x, 0f, y);
+        
+        Vector3 position = new(x, 0f, y);
 
         Instantiate(DatabaseAcces.instance.GetEnemyById(enemyId).Prefab, position, Quaternion.identity);
         currentEnemiesAlive++;

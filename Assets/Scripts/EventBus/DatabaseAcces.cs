@@ -18,6 +18,7 @@ public class DatabaseAcces : MonoBehaviour {
     public Enemy GetEnemyById(int enemyid) {
         return database.Enemies[enemyid];
     }
+
     public Enemy GetEnemyByDifficulty(int difficulty) {
         Enemy[] enemies = new Enemy[0];
 
@@ -31,5 +32,4 @@ public class DatabaseAcces : MonoBehaviour {
 
         return enemies[0];
     }
-
 }

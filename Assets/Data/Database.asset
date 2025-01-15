@@ -27,11 +27,15 @@ MonoBehaviour:
       <Damage>k__BackingField: 1
       <KillEfficienty>k__BackingField: 1
       <Range>k__BackingField: 10
-  TowerUpgrades: []
+  TowerUpgrades:
+  - <Name>k__BackingField: x
+    <Id>k__BackingField: 0
+    <TowerToUpgrade>k__BackingField: 1
+    <TowerUpgrade>k__BackingField: 2
   Enemies:
   - <Name>k__BackingField: BasicEnemy
     <Id>k__BackingField: 0
-    <Difficulty>k__BackingField: 0
+    <Difficulty>k__BackingField: 1
     <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 89c920fe34eb4ff48ac945e6e8bae5c6, type: 3}
     <Stats>k__BackingField:
       <Health>k__BackingField: 1
@@ -49,7 +53,7 @@ MonoBehaviour:
       <Gold>k__BackingField: 1
   - <Name>k__BackingField: BasicEnemy
     <Id>k__BackingField: 2
-    <Difficulty>k__BackingField: 2
+    <Difficulty>k__BackingField: 3
     <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 0115900abe05a574fae808262fd37757, type: 3}
     <Stats>k__BackingField:
       <Health>k__BackingField: 1
