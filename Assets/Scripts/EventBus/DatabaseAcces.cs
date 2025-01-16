@@ -15,15 +15,15 @@ public class DatabaseAcces : MonoBehaviour {
         instance = this;
     }
 
-    public Enemy GetEnemyById(int enemyid) {
+    public Enemy GetEnemy(int enemyid) {
         return database.Enemies[enemyid];
     }
 
     public Tower GetTowerById(int TowerId) {
         return database.Towers[TowerId];
     }
-    public Tower GetWaveById(int TowerId) {
-        return database.Towers[TowerId];
+    public Wave GetWave(int wave) {
+        return database.Waves[wave];
     }
 
     public Enemy GetEnemyByDifficulty(int difficulty) {

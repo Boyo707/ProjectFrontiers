@@ -21,10 +21,10 @@ MonoBehaviour:
     <Cost>k__BackingField: 100
     <Stats>k__BackingField:
       <Health>k__BackingField: 0
-      <FireRate>k__BackingField: 2
-      <Damage>k__BackingField: 1
-      <Range>k__BackingField: 10
-      <KillEfficienty>k__BackingField: 1
+      <FireRate>k__BackingField: 0
+      <Damage>k__BackingField: 0
+      <Range>k__BackingField: 0
+      <KillEfficienty>k__BackingField: 0
   - <Name>k__BackingField: Basic Tower 2
     <Id>k__BackingField: 1
     <Size>k__BackingField: {x: 2, y: 2}
@@ -33,10 +33,10 @@ MonoBehaviour:
     <Cost>k__BackingField: 100
     <Stats>k__BackingField:
       <Health>k__BackingField: 0
-      <FireRate>k__BackingField: 2
-      <Damage>k__BackingField: 1
-      <Range>k__BackingField: 10
-      <KillEfficienty>k__BackingField: 1
+      <FireRate>k__BackingField: 0
+      <Damage>k__BackingField: 0
+      <Range>k__BackingField: 0
+      <KillEfficienty>k__BackingField: 0
   TowerUpgrades:
   - <Id>k__BackingField: 0
     <SelectedTower>k__BackingField: 0
@@ -84,13 +84,16 @@ MonoBehaviour:
       <Speed>k__BackingField: 2
       <Damage>k__BackingField: 0
       <Gold>k__BackingField: 1
-  Rounds:
+  Waves:
   - <Id>k__BackingField: 0
     <SpawnRate>k__BackingField: 0.5
     <EnemiesToSpawn>k__BackingField:
-    - {x: 0, y: 20}
+    - id: 0
+      amount: 20
   - <Id>k__BackingField: 1
-    <SpawnRate>k__BackingField: 0.5
+    <SpawnRate>k__BackingField: 1
     <EnemiesToSpawn>k__BackingField:
-    - {x: 0, y: 20}
-    - {x: 1, y: 20}
+    - id: 0
+      amount: 20
+    - id: 1
+      amount: 40

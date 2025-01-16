@@ -8,7 +8,7 @@ public class ObjectDatabase : ScriptableObject {
     public List<Tower> Towers;
     public List<TowerUpgrades> TowerUpgrades;
     public List<Enemy> Enemies;
-    public List<Rounds> Rounds;
+    public List<Wave> Waves;
 }
 
 [Serializable]
@@ -30,19 +30,22 @@ public class Tower {
 }
 
 [Serializable]
-public class TowerStats {
-    [field: SerializeField]
-    public int Health { get; private set; }
-    [field: SerializeField]
-    public int FireRate { get; private set; }
-    [field: SerializeField]
-    public int Damage { get; private set; }
-    [field: SerializeField]
-    public int Range { get; private set; }
-    [field: SerializeField]
-    public int KillEfficienty { get; private set; }
+public struct TowerStats {
+    public int Health;
+    public float FireRate;
+    public float Damage;
+    public float Range;
+    public float KillEfficienty;
 }
 
+[Serializable]
+public struct TowerUpgrade {
+    public int Health;
+    public int FireRate;
+    public int Damage;
+    public int Range;
+    public int KillEfficienty;
+}
 
 [Serializable]
 public class TowerUpgrades {
@@ -53,7 +56,7 @@ public class TowerUpgrades {
     [field: SerializeField]
     public int TowerUpgrade { get; private set; }
     [field: SerializeField]
-    public TowerStats StatsNeeded { get; private set; }
+    public TowerUpgrade StatsNeeded { get; private set; }
 }
 
 
@@ -84,12 +87,17 @@ public class EnemyStats {
 }
 
 [Serializable]
-public class Rounds {
+public class Wave {
     [field: SerializeField]
     public int Id { get; private set; }
     [field: SerializeField]
     public float SpawnRate { get; private set; }
     [field: SerializeField]
-    [Header("X: enemyId, Y: amount you want to spawn")]
-    public List<Vector2Int> EnemiesToSpawn { get; private set; }
+    public List<EnemyEntry> EnemiesToSpawn { get; private set; }
+}
+
+[Serializable]
+public struct EnemyEntry {
+    public int id;
+    public int amount;
 }
