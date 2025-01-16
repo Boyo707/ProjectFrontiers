@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ObjectDatabase", menuName = "MyAssets/ObjectDatabase")]
@@ -7,6 +8,7 @@ public class ObjectDatabase : ScriptableObject {
     public List<Tower> Towers;
     public List<TowerUpgrades> TowerUpgrades;
     public List<Enemy> Enemies;
+    public List<Rounds> Rounds;
 }
 
 [Serializable]
@@ -30,31 +32,28 @@ public class Tower {
 [Serializable]
 public class TowerStats {
     [field: SerializeField]
-    public int MaxHealth { get; private set; }
-    [field: SerializeField]
-    public int BonusHealth { get; private set; }
+    public int Health { get; private set; }
     [field: SerializeField]
     public int FireRate { get; private set; }
     [field: SerializeField]
-    public int TurnSpeed { get; private set; }
-    [field: SerializeField]
     public int Damage { get; private set; }
     [field: SerializeField]
-    public int KillEfficienty { get; private set; }
-    [field: SerializeField]
     public int Range { get; private set; }
+    [field: SerializeField]
+    public int KillEfficienty { get; private set; }
 }
+
 
 [Serializable]
 public class TowerUpgrades {
     [field: SerializeField]
-    public string Name { get; private set; }
-    [field: SerializeField]
     public int Id { get; private set; }
     [field: SerializeField]
-    public int TowerToUpgrade { get; private set; }
+    public int SelectedTower { get; private set; }
     [field: SerializeField]
     public int TowerUpgrade { get; private set; }
+    [field: SerializeField]
+    public TowerStats StatsNeeded { get; private set; }
 }
 
 
@@ -82,5 +81,15 @@ public class EnemyStats {
     public int Damage { get; private set; }
     [field: SerializeField]
     public int Gold { get; private set; }
+}
 
+[Serializable]
+public class Rounds {
+    [field: SerializeField]
+    public int Id { get; private set; }
+    [field: SerializeField]
+    public float SpawnRate { get; private set; }
+    [field: SerializeField]
+    [Header("X: enemyId, Y: amount you want to spawn")]
+    public List<Vector2Int> EnemiesToSpawn { get; private set; }
 }

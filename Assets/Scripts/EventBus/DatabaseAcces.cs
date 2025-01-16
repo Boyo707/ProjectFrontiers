@@ -19,6 +19,13 @@ public class DatabaseAcces : MonoBehaviour {
         return database.Enemies[enemyid];
     }
 
+    public Tower GetTowerById(int TowerId) {
+        return database.Towers[TowerId];
+    }
+    public Tower GetWaveById(int TowerId) {
+        return database.Towers[TowerId];
+    }
+
     public Enemy GetEnemyByDifficulty(int difficulty) {
         Enemy[] enemies = new Enemy[0];
 

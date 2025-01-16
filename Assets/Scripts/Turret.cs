@@ -9,6 +9,7 @@ public class Turret : MonoBehaviour {
     [SerializeField] public int id = 0;
 
     TowerStats stats;
+    TowerStats CurrentUpgrades;
 
     private bool isLookingAtTarget = false;
     private float fireCountDown = 0f;
@@ -28,7 +29,7 @@ public class Turret : MonoBehaviour {
     }
 
     private void Start() {
-        currentHealth = stats.MaxHealth;
+        currentHealth = stats.Health;
     }
 
     private void Update() {
@@ -57,7 +58,7 @@ public class Turret : MonoBehaviour {
     private void LookAtTarget() {
         Vector3 dir = targetLocation.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * stats.TurnSpeed).eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * 15).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
         Ray ray = new Ray(partToRotate.transform.position, partToRotate.transform.forward);
