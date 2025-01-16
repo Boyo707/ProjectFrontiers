@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyLogic : MonoBehaviour {
@@ -5,9 +6,12 @@ public class EnemyLogic : MonoBehaviour {
 
     private Transform target;
 
+    private int id = 0;
+
     public int damage = 1;
     public int maxHealth = 1;
     public float amount = 0.1f;
+    float difficultyValue;
 
     private int currentHealth;
 
@@ -17,6 +21,7 @@ public class EnemyLogic : MonoBehaviour {
 
     void Start() {
         GetNextTarget();
+        difficultyValue = DatabaseAcces.instance.GetEnemyValue(id);
     }
 
     void Update() {
@@ -64,10 +69,11 @@ public class EnemyLogic : MonoBehaviour {
     }
 
     public void TakeDamage(int damage, float currencyEfficienty) {
-        currentHealth -= damage;
+        currentHealth -= damage; 
 
         if (currentHealth < 0) {
-            EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this));
+            EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this, id));
+            EventBus<ChangeInCurrencyEvent>.Publish(new ChangeInCurrencyEvent(this, amount * difficultyValue * currencyEfficienty ));
             BuildManager.instance.AddCurrency(amount * currencyEfficienty);
             Destroy(gameObject); 
         }

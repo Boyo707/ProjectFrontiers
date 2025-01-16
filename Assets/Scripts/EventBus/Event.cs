@@ -9,7 +9,7 @@ public class Event {
     }
 }
 
-#region 
+#region enemy events
 /// <summary>
 /// Event triggered when enemy is spawned, takes in spawned enemy as parameter
 /// </summary>
@@ -19,24 +19,49 @@ public class EnemySpawnedEvent : Event {
         this.enemyId = enemyId;
     }
 }
-#endregion
 
 public class EnemyKilledEvent : Event {
-    public EnemyKilledEvent(object source) : base(source) {
+    public int enemyId;
+    public EnemyKilledEvent(object source, int enemyId) : base(source) {
+        this.enemyId = enemyId;
+    }
+}
+
+#endregion
+
+#region turret events
+
+
+#endregion
+
+#region difficulty events
+public class ChangeInGlobalBuffEvent : Event {
+    public int percentage;
+    public ChangeInGlobalBuffEvent(object source, int percentage) : base(source) {
+        this.percentage = percentage;
+    }
+}
+public class ChangeInDifficultyBuffEvent : Event {
+    public int difficulty;
+    public ChangeInDifficultyBuffEvent(object source, int difficulty) : base(source) {
+        this.difficulty = difficulty;
+    }
+}
+#endregion
+
+
+#region Currency
+
+public class ChangeInCurrencyEvent : Event {
+    public float currency;
+    public ChangeInCurrencyEvent(object source, float currency) : base(source) {
+        this.currency = currency;
     }
 }
 
 
 
-
-
-
-
-
-
-
-
-
+#endregion
 
 
 

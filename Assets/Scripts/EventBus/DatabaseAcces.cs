@@ -18,11 +18,19 @@ public class DatabaseAcces : MonoBehaviour {
     public Enemy GetEnemyById(int enemyid) {
         return database.Enemies[enemyid];
     }
+
+    public Tower GetTowerById(int TowerId) {
+        return database.Towers[TowerId];
+    }
+    public Tower GetWaveById(int TowerId) {
+        return database.Towers[TowerId];
+    }
+
     public Enemy GetEnemyByDifficulty(int difficulty) {
         Enemy[] enemies = new Enemy[0];
 
         foreach (Enemy enemy in database.Enemies) {
-            if (enemy.Difficulty == difficulty) {
+            if (enemy.DifficultyValue == difficulty) {
                 enemies.Append(enemy);
             }
         }
@@ -32,4 +40,5 @@ public class DatabaseAcces : MonoBehaviour {
         return enemies[0];
     }
 
+    public float GetEnemyValue(int id) => database.Enemies[id].DifficultyValue;
 }
