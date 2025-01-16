@@ -21,7 +21,9 @@ public class EnemySpawnedEvent : Event {
 }
 
 public class EnemyKilledEvent : Event {
-    public EnemyKilledEvent(object source) : base(source) {
+    public int enemyId;
+    public EnemyKilledEvent(object source, int enemyId) : base(source) {
+        this.enemyId = enemyId;
     }
 }
 
@@ -33,30 +35,33 @@ public class EnemyKilledEvent : Event {
 #endregion
 
 #region difficulty events
-public class IncreaseDifficultyEvent : Event {
-    public float Difficulty;
-    public IncreaseDifficultyEvent(object source, float Difficulty) : base(source) {
-        this.Difficulty = Difficulty;
+public class ChangeInGlobalBuffEvent : Event {
+    public int percentage;
+    public ChangeInGlobalBuffEvent(object source, int percentage) : base(source) {
+        this.percentage = percentage;
     }
 }
-
-public class DecreaseDifficultyEvent : Event {
-    public float Difficulty;
-    public DecreaseDifficultyEvent(object source, float Difficulty) : base(source) {
-        this.Difficulty = Difficulty;
+public class ChangeInDifficultyBuffEvent : Event {
+    public int difficulty;
+    public ChangeInDifficultyBuffEvent(object source, int difficulty) : base(source) {
+        this.difficulty = difficulty;
     }
 }
 #endregion
 
 
+#region Currency
+
+public class ChangeInCurrencyEvent : Event {
+    public float currency;
+    public ChangeInCurrencyEvent(object source, float currency) : base(source) {
+        this.currency = currency;
+    }
+}
 
 
 
-
-
-
-
-
+#endregion
 
 
 

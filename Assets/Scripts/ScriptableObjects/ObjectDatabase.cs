@@ -65,7 +65,7 @@ public class Enemy {
     [field: SerializeField]
     public int Id { get; private set; }
     [field: SerializeField]
-    public int Difficulty { get; private set; }
+    public float DifficultyValue { get; private set; }
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
     [field: SerializeField]
