@@ -9,7 +9,7 @@ public class Turret : MonoBehaviour {
     [SerializeField] public int id = 0;
 
     TowerStats stats;
-    TowerStats CurrentUpgrades;
+    TowerUpgrade CurrentUpgrades;
 
     private bool isLookingAtTarget = false;
     private float fireCountDown = 0f;
@@ -29,6 +29,8 @@ public class Turret : MonoBehaviour {
     }
 
     private void Start() {
+        CurrentUpgrades.Health = 1;
+
         currentHealth = stats.Health;
     }
 
