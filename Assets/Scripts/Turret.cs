@@ -54,7 +54,7 @@ public class Turret : MonoBehaviour {
 
     private void Shoot() {
         fireCountDown = 1f / stats.FireRate;
-        target.TakeDamage(stats.Damage, stats.KillEfficienty);
+        //target.TakeDamage(stats.Damage, stats.KillEfficienty);
     }
 
     private void LookAtTarget() {
