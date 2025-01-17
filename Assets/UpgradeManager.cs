@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System;
+using System.Collections.Generic;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -13,11 +13,14 @@ public class UpgradeManager : MonoBehaviour
     [Header("Required Objects")]
     [SerializeField] private GameObject _towerPanel;
 
-    
+    [SerializeField] private List<GameObject> _buttons = new List<GameObject>();
+
+    [SerializeField] private List<TMP_Text> _levelText = new List<TMP_Text>();
+    [SerializeField] private List<TMP_Text> _statTexts = new List<TMP_Text>(); 
 
     private Turret _currentTower;
 
-    [SerializeField] private TMP_Text _text;
+    //[SerializeField] private TMP_Text _text;
     //currently selected tower
 
     
@@ -25,7 +28,11 @@ public class UpgradeManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        for (int i = 0; i < _buttons.Count; i++)
+        {
+            _statTexts.Add(_buttons[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>());
+            _levelText.Add(_buttons[i].transform.GetChild(1).GetComponent<TMP_Text>());
+        }
     }
 
     // Update is called once per frame
@@ -49,10 +56,15 @@ public class UpgradeManager : MonoBehaviour
 
     private void DrawText()
     {
-        _text.text = $"{_currentTower.CurrentUpgrades.Health}\n" +
-              $"{_currentTower.CurrentUpgrades.Damage}\n" +
-              $"{_currentTower.CurrentUpgrades.FireRate}\n" +
-              $"{_currentTower.CurrentUpgrades.Range}";
+        _statTexts[0].text = $"Health\nCost: {5}";
+        _levelText[0].text = $"Level: {_currentTower.CurrentUpgrades.Health}";
+        _statTexts[1].text = $"Health\nCost: {5}";
+        _levelText[1].text = $"Level: {_currentTower.CurrentUpgrades.Damage}";
+        _statTexts[2].text = $"Health\nCost: {5}";
+        _levelText[2].text = $"Level: {_currentTower.CurrentUpgrades.FireRate}";
+        _statTexts[3].text = $"Health\nCost: {5}";
+        _levelText[3].text = $"Level: {_currentTower.CurrentUpgrades.Range}";
+
     }
 
     public void UpgradeStat(int statIndex)
