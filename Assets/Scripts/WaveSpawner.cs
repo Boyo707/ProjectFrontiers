@@ -1,19 +1,24 @@
-using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Overlays;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
     public static WaveSpawner instance;
 
     [SerializeField]
-    private int wave = 0;
-    Wave waveData;
-    private bool waveSpawning = false;
+    private int waveIndex = 0;
+    private Wave waveData;
+    private int currentEnemyIndex = 0;
+    private int enemiesSpawned = 0;
 
+    public float spawnRate = 1f;
+    private float spawnTimer = 0f;
     public float spawnRadius = 5f;
 
     [SerializeField]
-    private float gameTime = 0f;
+    private float gameTimer = 0f;
     private int currentEnemiesAlive = 0;
 
     public void Start() {
@@ -27,29 +32,44 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     private void Update() {
-        gameTime += Time.deltaTime;
-
-        if (gameTime == 50f) return;
-
-        if (currentEnemiesAlive > 20) return;
-        if (!waveSpawning) {
-            waveSpawning = true;
-            waveData = DatabaseAcces.instance.GetWave(wave);
+        if (waveData == null) {
+            waveData = DatabaseAcces.instance.GetWave(waveIndex);
         }
-        else {
-            SpawnWave(waveData);
+
+        gameTimer += Time.deltaTime;
+        spawnTimer += Time.deltaTime;
+
+        // check end of wave
+        if (currentEnemyIndex == waveData.EnemiesToSpawn.Count) {
+            waveIndex++;
+            waveData = DatabaseAcces.instance.GetWave(waveIndex);
+            spawnRate = waveData.SpawnRate;
+        }
+
+        // spawn enemy at x rate
+        if (spawnTimer >= spawnRate) {
+            EnemyEntry entry = waveData.EnemiesToSpawn[currentEnemyIndex];
+
+            if (enemiesSpawned < entry.amount) {
+                SpawnEnemy(entry.id);
+                enemiesSpawned++;
+
+                spawnTimer = 0f;
+            }
+            else {
+                currentEnemyIndex++;
+                enemiesSpawned = 0;
+            }
         }
     }
 
-    private void SpawnWave(Wave waveData) {
-        Vector3 position = SetSpawnPosition();
-
-        Enemy enemy = DatabaseAcces.instance.GetEnemy(0);
-
+    private void SpawnEnemy(int id) {
+        Vector3 position = SetRandomSpawnPosition();
+        Enemy enemy = DatabaseAcces.instance.GetEnemy(id);
         InstantiateEnemyAtPosition(enemy, position);
     }
 
-    private Vector3 SetSpawnPosition() {
+    private Vector3 SetRandomSpawnPosition() {
         float angle = Random.Range(0f, Mathf.PI * 2);
 
         float x = Mathf.Cos(angle) * spawnRadius;
@@ -63,7 +83,6 @@ public class WaveSpawner : MonoBehaviour {
         EventBus<EnemySpawnedEvent>.Publish(new EnemySpawnedEvent(this, enemy.Id));
         currentEnemiesAlive++;
     }
-
 
     private void EnemyDied(EnemyKilledEvent e) => currentEnemiesAlive--;
 
