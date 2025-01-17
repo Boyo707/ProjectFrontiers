@@ -1,11 +1,20 @@
+using System;
 using UnityEngine;
+
+public struct GlobalBuffTypes {
+    public int Health;
+    public int Damage;
+    public int Speed;
+    public int Gold;
+    public float SpawnRate;
+}
 
 public class GlobalBuff : MonoBehaviour {
     public static GlobalBuff instance;
 
-    public static int globalBuff = 0;
+    public GlobalBuffTypes globalBuffs;
 
-    public void Start() {
+    private void Awake() {
         if (instance != null) {
             Destroy(this);
             return;
@@ -13,14 +22,26 @@ public class GlobalBuff : MonoBehaviour {
         instance = this;
     }
 
-    public void SetBuffTo(int percentage) {
-        globalBuff = percentage;
+    private void Start() {
+        EventBus<ResetWavesEvent>.OnEvent += ChangeDifficulty;
+    }
 
-        EventBus<ChangeInGlobalBuffEvent>.Publish(new ChangeInGlobalBuffEvent(this, percentage));
+    private void ChangeDifficulty(ResetWavesEvent e) {
+        Debug.Log("Increase difficulty bro");
+    }
+
+    public void SetBuffTo(int percentage) {
+        //globalBuff = percentage;
+
+        EventBus<ChangeInGlobalBuffEvent>.Publish(new ChangeInGlobalBuffEvent(this, globalBuffs));
     }
     public void ChangeBuffBy(int percentage) {
-        globalBuff = globalBuff + percentage;
+        //globalBuff = globalBuff + percentage;
 
-        EventBus<ChangeInGlobalBuffEvent>.Publish(new ChangeInGlobalBuffEvent(this, percentage));
+        EventBus<ChangeInGlobalBuffEvent>.Publish(new ChangeInGlobalBuffEvent(this, globalBuffs));
     }
+    private void OnDestroy() {
+        EventBus<ResetWavesEvent>.OnEvent -= ChangeDifficulty;
+    }
+
 }

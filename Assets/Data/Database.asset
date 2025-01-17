@@ -86,14 +86,14 @@ MonoBehaviour:
       <Gold>k__BackingField: 1
   Waves:
   - <Id>k__BackingField: 0
-    <SpawnRate>k__BackingField: 0.5
+    <SpawnRate>k__BackingField: 0.1
     <EnemiesToSpawn>k__BackingField:
     - id: 0
-      amount: 20
+      amount: 10
   - <Id>k__BackingField: 1
-    <SpawnRate>k__BackingField: 1
+    <SpawnRate>k__BackingField: 0.1
     <EnemiesToSpawn>k__BackingField:
-    - id: 0
-      amount: 20
     - id: 1
-      amount: 40
+      amount: 20
+    - id: 2
+      amount: 20

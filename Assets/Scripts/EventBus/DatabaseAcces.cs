@@ -15,35 +15,34 @@ public class DatabaseAcces : MonoBehaviour {
         instance = this;
     }
 
-    public Enemy GetEnemy(int enemyid) {
-        return database.Enemies[enemyid];
+    public Enemy GetEnemy(int id) {
+        try {
+            return database.Enemies[id];
+        }
+        catch {
+            return null;
+        }
     }
 
-    public Tower GetTowerById(int towerId) {
-        return database.Towers[towerId];
+    public Tower GetTower(int id) {
+        try {
+            return database.Towers[id];
+        }
+        catch {
+            return null;
+        }
     }
 
-    public Wave GetWave(int wave) {
-        return database.Waves[wave];
+    public Wave GetWave(int id) {
+        try {
+            return database.Waves[id];
+        }
+        catch {
+            return null;
+        }
     }
 
     public List<TowerUpgrades> GetTowerUpgrades(int towerId) {
         return database.TowerUpgrades.FindAll(upgrade => upgrade.SelectedTower == towerId);
     }
-
-    public Enemy GetEnemyByDifficulty(int difficulty) {
-        Enemy[] enemies = new Enemy[0];
-
-        foreach (Enemy enemy in database.Enemies) {
-            if (enemy.DifficultyValue == difficulty) {
-                enemies.Append(enemy);
-            }
-        }
-
-        //add randomiser to wich enemy it return on that difficulty
-
-        return enemies[0];
-    }
-
-    public float GetEnemyValue(int id) => database.Enemies[id].DifficultyValue;
 }

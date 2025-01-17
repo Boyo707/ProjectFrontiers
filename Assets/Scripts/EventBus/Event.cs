@@ -26,6 +26,16 @@ public class EnemyKilledEvent : Event {
         this.enemyId = enemyId;
     }
 }
+public class WaveCompletedEvent : Event {
+    public int waveIndex;
+    public WaveCompletedEvent(object source, int waveIndex) : base(source) {
+        this.waveIndex = waveIndex;
+    }
+}
+public class ResetWavesEvent : Event {
+    public ResetWavesEvent(object source) : base(source) {
+    }
+}
 
 #endregion
 
@@ -36,17 +46,19 @@ public class EnemyKilledEvent : Event {
 
 #region difficulty events
 public class ChangeInGlobalBuffEvent : Event {
-    public int percentage;
-    public ChangeInGlobalBuffEvent(object source, int percentage) : base(source) {
-        this.percentage = percentage;
+    public GlobalBuffTypes globalBuff;
+    public ChangeInGlobalBuffEvent(object source, GlobalBuffTypes globalBuff) : base(source) {
+        this.globalBuff = globalBuff;
     }
 }
+
 public class ChangeInDifficultyBuffEvent : Event {
     public int difficulty;
     public ChangeInDifficultyBuffEvent(object source, int difficulty) : base(source) {
         this.difficulty = difficulty;
     }
 }
+
 #endregion
 
 

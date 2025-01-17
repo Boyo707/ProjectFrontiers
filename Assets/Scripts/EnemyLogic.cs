@@ -1,5 +1,7 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyLogic : MonoBehaviour {
     public float speed = 10f;
@@ -7,6 +9,9 @@ public class EnemyLogic : MonoBehaviour {
     private Transform target;
 
     private int id = 0;
+
+    public GlobalBuffTypes buff;
+
 
     public int damage = 1;
     public int maxHealth = 1;
@@ -21,7 +26,6 @@ public class EnemyLogic : MonoBehaviour {
 
     void Start() {
         GetNextTarget();
-        difficultyValue = DatabaseAcces.instance.GetEnemyValue(id);
     }
 
     void Update() {
