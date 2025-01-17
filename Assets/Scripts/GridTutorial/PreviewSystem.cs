@@ -19,7 +19,6 @@ public class PreviewSystem : MonoBehaviour
     private void Start()
     {
         previewMaterialInstance = new Material(previewMaterialPrefab);
-        cellIndicator.SetActive(false);
         cellIndicatorRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
@@ -27,7 +26,6 @@ public class PreviewSystem : MonoBehaviour
     {
         previewObject = Instantiate(prefab);
         PreparePreview(previewObject);
-        cellIndicator.SetActive(true);
     }
     private void PreparePreview(GameObject previewObject)
     {
@@ -46,7 +44,6 @@ public class PreviewSystem : MonoBehaviour
 
     public void StopShowingPreview()
     {
-        cellIndicator.SetActive(false);
         if (previewObject != null)
         {
             Destroy(previewObject);
@@ -87,7 +84,6 @@ public class PreviewSystem : MonoBehaviour
 
     public void StartShowingRemovePreview()
     {
-        cellIndicator.SetActive(true);
         ApplyFeedbackToCursor(false);
     }
 

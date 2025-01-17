@@ -7,6 +7,11 @@ public class ObjectPlacer : MonoBehaviour
     [SerializeField]
     private List<GameObject> placedGameObjects = new();
 
+    public List<GameObject> PlacedGameObjects
+    {
+        get { return placedGameObjects; }
+    }
+
     public void RemoveObjectAt(int gameObjectIndex)
     {
         if (placedGameObjects.Count <= gameObjectIndex ||
