@@ -20,11 +20,11 @@ MonoBehaviour:
     <UISprite>k__BackingField: {fileID: 0}
     <Cost>k__BackingField: 100
     <Stats>k__BackingField:
-      <Health>k__BackingField: 0
-      <FireRate>k__BackingField: 0
-      <Damage>k__BackingField: 0
-      <Range>k__BackingField: 0
-      <KillEfficienty>k__BackingField: 0
+      Health: 2
+      FireRate: 2
+      Damage: 1
+      Range: 10
+      KillEfficienty: 1
   - <Name>k__BackingField: Basic Tower 2
     <Id>k__BackingField: 1
     <Size>k__BackingField: {x: 2, y: 2}
@@ -32,21 +32,21 @@ MonoBehaviour:
     <UISprite>k__BackingField: {fileID: 0}
     <Cost>k__BackingField: 100
     <Stats>k__BackingField:
-      <Health>k__BackingField: 0
-      <FireRate>k__BackingField: 0
-      <Damage>k__BackingField: 0
-      <Range>k__BackingField: 0
-      <KillEfficienty>k__BackingField: 0
+      Health: 0
+      FireRate: 0
+      Damage: 0
+      Range: 0
+      KillEfficienty: 0
   TowerUpgrades:
   - <Id>k__BackingField: 0
     <SelectedTower>k__BackingField: 0
     <TowerUpgrade>k__BackingField: 1
     <StatsNeeded>k__BackingField:
-      <Health>k__BackingField: 0
-      <FireRate>k__BackingField: 0
-      <Damage>k__BackingField: 0
-      <Range>k__BackingField: 0
-      <KillEfficienty>k__BackingField: 0
+      Health: 0
+      FireRate: 0
+      Damage: 0
+      Range: 0
+      KillEfficienty: 0
   Enemies:
   - <Name>k__BackingField: BasicEnemy
     <Id>k__BackingField: 0

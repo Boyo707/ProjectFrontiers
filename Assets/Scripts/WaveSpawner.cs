@@ -7,7 +7,9 @@ public class WaveSpawner : MonoBehaviour {
 
     [SerializeField]
     private int wave = 0;
+    Wave waveData;
     private bool waveSpawning = false;
+
     public float spawnRadius = 5f;
 
     [SerializeField]
@@ -23,50 +25,37 @@ public class WaveSpawner : MonoBehaviour {
 
         EventBus<EnemyKilledEvent>.OnEvent += EnemyDied;
     }
+
     private void Update() {
         gameTime += Time.deltaTime;
 
-        if (!waveSpawning) SpawnWave();
-    }
+        if (gameTime == 50f) return;
 
-    private void SpawnWave() {
-        waveSpawning = true;
-        Wave waveData = DatabaseAcces.instance.GetWave(wave);
-
-        StartCoroutine(SpawnWaveCoroutine(waveData));
-    }
-
-    private IEnumerator SpawnWaveCoroutine(Wave waveData) {
-        float spawnRate = waveData.SpawnRate;
-        int enemyTypes = waveData.EnemiesToSpawn.Count - 1;
-
-        EnemyEntry enemiesToSpawn;
-        enemiesToSpawn.amount = 0;
-
-        int enemyToSpawn;
-
-        bool enemiestospawn = true;
-
-        float timeElapsed = 0f;
-        int enemyid = 0;
-
-        while (true) {
-            float angle = Random.Range(0f, Mathf.PI * 2);
-
-            float x = Mathf.Cos(angle) * spawnRadius;
-            float y = Mathf.Sin(angle) * spawnRadius;
-
-            Vector3 position = new(x, 0f, y);
-
-
-            Enemy enemy = DatabaseAcces.instance.GetEnemy(enemyid);
-
-            InstantiateEnemyAtPosition(enemy, position);
-
-            timeElapsed += Time.deltaTime;
-
-            yield return null;
+        if (currentEnemiesAlive > 20) return;
+        if (!waveSpawning) {
+            waveSpawning = true;
+            waveData = DatabaseAcces.instance.GetWave(wave);
         }
+        else {
+            SpawnWave(waveData);
+        }
+    }
+
+    private void SpawnWave(Wave waveData) {
+        Vector3 position = SetSpawnPosition();
+
+        Enemy enemy = DatabaseAcces.instance.GetEnemy(0);
+
+        InstantiateEnemyAtPosition(enemy, position);
+    }
+
+    private Vector3 SetSpawnPosition() {
+        float angle = Random.Range(0f, Mathf.PI * 2);
+
+        float x = Mathf.Cos(angle) * spawnRadius;
+        float y = Mathf.Sin(angle) * spawnRadius;
+
+        return new(x, 0f, y);
     }
 
     void InstantiateEnemyAtPosition(Enemy enemy, Vector3 position) {
@@ -74,6 +63,7 @@ public class WaveSpawner : MonoBehaviour {
         EventBus<EnemySpawnedEvent>.Publish(new EnemySpawnedEvent(this, enemy.Id));
         currentEnemiesAlive++;
     }
+
 
     private void EnemyDied(EnemyKilledEvent e) => currentEnemiesAlive--;
 
