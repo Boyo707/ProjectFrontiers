@@ -33,7 +33,7 @@ public class Tower {
 public struct TowerStats {
     public int Health;
     public float FireRate;
-    public float Damage;
+    public int Damage;
     public float Range;
     public float KillEfficienty;
 }
