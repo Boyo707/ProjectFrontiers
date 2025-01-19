@@ -17,103 +17,100 @@ using UnityEngine;
 /// - add different spawn logic for more differsity
 /// </summary>
 
-public struct EnemiesToSpawn {
-    public int id;        
-    public int amount;
-
-    public EnemiesToSpawn(int id, int amount) {
-        this.id = id;
-        this.amount = amount;
-    }
-}
-
 public class WaveSpawner : MonoBehaviour {
     public static WaveSpawner instance;
 
-    private Wave waveData;
-    private List<EnemiesToSpawn> enemySpawnList = new();
+    private List<Enemy> enemies;
+    private List<Wave> waves;
+
+    private Wave currentWave;
+    private Queue<int> enemyQueue = new();
 
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] private float spawnRadius = 5f;
-    [SerializeField] private float spawnTimer = 0f;
+    private float spawnTimer = 0f;
 
     [SerializeField] private int waveIndex = 0;
-
     private GlobalBuffTypes globalBuffs;
 
-    public void Start() {
+    private void OnEnable() {
         if (instance != null) {
             Destroy(this);
             return;
         }
         instance = this;
+    }
 
+    private void Start() {
         EventBus<ChangeInGlobalBuffEvent>.OnEvent += UpdateGlobalBuff;
+
+        enemies = DatabaseAcces.instance.database.Enemies;
+        waves = DatabaseAcces.instance.database.Waves;
+
+        GetWaveData(waveIndex);
     }
 
     private void Update() {
         spawnTimer += Time.deltaTime;
 
-        if (waveData == null) {
-            GetWaveData(waveIndex);
-            return;
-        }
+        if (spawnTimer > spawnRate) {
+            int enemiesToSpawn = Mathf.FloorToInt(spawnTimer/ spawnRate);
 
-        if (spawnTimer >= spawnRate) {
-            //get random enemy from enemies you need to spawn
-            int randomEnemyIndex = Random.Range(0, enemySpawnList.Count);
-            //get reference to enemyenty object
-            EnemiesToSpawn randomEnemy = enemySpawnList[randomEnemyIndex];
-            SpawnEnemy(randomEnemy.id);
-            randomEnemy.amount--;
-
-            // check if you spawned all enemies of that type
-            if (randomEnemy.amount <= 0) {
-                enemySpawnList.RemoveAt(randomEnemyIndex);
-
-                // if no more enemies need to be spawned go to next wave
-                if (enemySpawnList.Count <= 0) {
+            for (int i = 0; i < enemiesToSpawn; i++) {
+                if (enemyQueue.Count <= 0) {
                     waveIndex++;
                     GetWaveData(waveIndex);
-                    return;
                 }
-            } 
-            else enemySpawnList[randomEnemyIndex] = randomEnemy;
 
-            spawnTimer = 0;
+                int enemyId = enemyQueue.Dequeue();
+                SpawnEnemy(enemyId);
+            }
+
+            spawnTimer = 0f;
         }
     }
 
     private void GetWaveData(int index) {
-        waveData = DatabaseAcces.instance.GetWave(index);
-
-        if (waveData == null) {
+        if (index == waves.Count - 1) {
             Debug.Log("resetWaves event triggered");
+
             EventBus<ResetWavesEvent>.Publish(new ResetWavesEvent(this));
-
             waveIndex = 0;
-            GetWaveData(waveIndex);
-            return;
         }
 
-        spawnRate = waveData.SpawnRate;
-        foreach (EnemyEntry wave in waveData.EnemiesToSpawn) {
-            Debug.Log(wave.amount);
-            enemySpawnList.Add(new EnemiesToSpawn(wave.id, wave.amount));
-        }
+        currentWave = waves[index];
+        spawnRate = currentWave.SpawnRate;
 
-        EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this, waveIndex));
+        List<int>  enemyList = new();
+        foreach (EnemyEntry entry in currentWave.EnemiesToSpawn) {
+            for (int i = 0; i < entry.amount; i++) {
+                enemyList.Add(entry.id);
+            }
+        }
+        Shuffle(enemyList);
+
+        enemyQueue.Clear();
+        foreach (int enemyId in enemyList) {
+            enemyQueue.Enqueue(enemyId);
+        }
+    }
+
+    private void Shuffle<T>(List<T> list) {
+        for (int i = list.Count - 1; i > 0; i--) {
+            int randomIndex = Random.Range(0, i + 1);
+            (list[randomIndex], list[i]) = (list[i], list[randomIndex]);
+        }
     }
 
     private void SpawnEnemy(int id) {
         Vector3 position = SetRandomSpawnPosition();
 
-        //get enemy from DB
-        Enemy enemy = DatabaseAcces.instance.GetEnemy(id);
+        Enemy enemy = enemies[id];
 
-        //Instantiate enemy
         GameObject spawnedEnemy = Instantiate(enemy.Prefab, position, Quaternion.identity);
+
         spawnedEnemy.GetComponentInChildren<EnemyLogic>().buff = globalBuffs;
+
         EventBus<EnemySpawnedEvent>.Publish(new EnemySpawnedEvent(this, enemy.Id));
     }
 

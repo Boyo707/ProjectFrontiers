@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,12 +8,16 @@ public class DatabaseAcces : MonoBehaviour {
 
     public static DatabaseAcces instance;
 
-    public void Start() {
+    private void OnEnable() {
         if (instance != null) {
             Destroy(this);
             return;
         }
         instance = this;
+    }
+
+
+    public void Start() {
     }
 
     public Enemy GetEnemy(int id) {
