@@ -1,20 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// Enemy Spawner.
 /// uses the database waves to know what, when and how many to spawn in each wave
 /// it creates an struct to compare the amount it has spawned an need to spawn.
 /// 
-/// NOOT:
-/// - remove struct an convert it into an list 
-///     as you only need an list of amount of enemies you need to spawn
-///     and the list of enemies you need to spawn the same order as the wavedata 
-///     that contains the wave spawn enemies and id's
-/// 
-/// - update global buff so when the global buff changes you can update the local variable
-/// - add different spawn logic for more differsity
 /// </summary>
 
 public class WaveSpawner : MonoBehaviour {
@@ -115,12 +106,13 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     private Vector3 SetRandomSpawnPosition() {
-        float angle = Random.Range(0f, Mathf.PI * 2);
+        float minAngle = -Mathf.PI / 4;
+        float maxAngle = Mathf.PI / 4;
 
-        float x = Mathf.Cos(angle) * spawnRadius;
-        float y = Mathf.Sin(angle) * spawnRadius;
+        float angle = Random.Range(minAngle, maxAngle);
+        float x = Mathf.Tan(angle) * spawnRadius;
 
-        return new(x, 0f, y);
+        return new Vector3(x, 1f, spawnRadius);
     }
 
     private void UpdateGlobalBuff(ChangeInGlobalBuffEvent e) {

@@ -16,37 +16,6 @@ public class DatabaseAcces : MonoBehaviour {
         instance = this;
     }
 
-
-    public void Start() {
-    }
-
-    public Enemy GetEnemy(int id) {
-        try {
-            return database.Enemies[id];
-        }
-        catch {
-            return null;
-        }
-    }
-
-    public Tower GetTower(int id) {
-        try {
-            return database.Towers[id];
-        }
-        catch {
-            return null;
-        }
-    }
-
-    public Wave GetWave(int id) {
-        try {
-            return database.Waves[id];
-        }
-        catch {
-            return null;
-        }
-    }
-
     public List<TowerUpgrades> GetTowerUpgrades(int towerId) {
         return database.TowerUpgrades.FindAll(upgrade => upgrade.SelectedTower == towerId);
     }

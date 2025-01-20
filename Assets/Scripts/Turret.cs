@@ -8,8 +8,8 @@ public class Turret : MonoBehaviour {
     [SerializeField] private ObjectDatabase database;
     [SerializeField] public int id = 0;
 
-    TowerStats stats;
-    TowerUpgrade CurrentUpgrades;
+    TowerBaseStats stats;
+    TowerUpgradeLevels CurrentUpgrades;
 
     private bool isLookingAtTarget = false;
     private float fireCountDown = 0f;
@@ -54,7 +54,7 @@ public class Turret : MonoBehaviour {
 
     private void Shoot() {
         fireCountDown = 1f / stats.FireRate;
-        target.TakeDamage(stats.Damage, stats.KillEfficienty);
+        target.TakeDamage(stats.Damage, 1);
     }
 
     private void LookAtTarget() {

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ObjectDatabase", menuName = "MyAssets/ObjectDatabase")]
@@ -11,6 +10,9 @@ public class ObjectDatabase : ScriptableObject {
     public List<Wave> Waves;
 }
 
+/// <summary>
+/// Tower storage
+/// </summary>
 [Serializable]
 public class Tower {
     [field: SerializeField]
@@ -26,27 +28,20 @@ public class Tower {
     [field: SerializeField]
     public float Cost { get; private set; }
     [field: SerializeField]
-    public TowerStats Stats { get; private set; }
+    public TowerBaseStats Stats { get; private set; }
 }
 
 [Serializable]
-public struct TowerStats {
+public class TowerBaseStats {
     public int Health;
+    public int Damage;
     public float FireRate;
-    public int Damage;
     public float Range;
-    public float KillEfficienty;
 }
 
-[Serializable]
-public struct TowerUpgrade {
-    public int Health;
-    public int FireRate;
-    public int Damage;
-    public int Range;
-    public int KillEfficienty;
-}
-
+/// <summary>
+/// Tower upgrade data
+/// </summary>
 [Serializable]
 public class TowerUpgrades {
     [field: SerializeField]
@@ -54,12 +49,33 @@ public class TowerUpgrades {
     [field: SerializeField]
     public int SelectedTower { get; private set; }
     [field: SerializeField]
-    public int TowerUpgrade { get; private set; }
+    public int NewTower { get; private set; }
     [field: SerializeField]
-    public TowerUpgrade StatsNeeded { get; private set; }
+    public TowerUpgradeLevels StatsNeeded { get; private set; }
 }
 
+[Serializable]
+public class TowerUpgradeLevels {
+    [Range(0, 10)]
+    public int Health;
+    [Range(0, 10)]
+    public int FireRate;
+    [Range(0, 10)]
+    public int Damage;
+    [Range(0, 10)]
+    public int Range;
 
+    public void ValidateValues() {
+        Health = Mathf.Clamp(Health, 0, 10);
+        FireRate = Mathf.Clamp(FireRate, 0, 10);
+        Damage = Mathf.Clamp(Damage, 0, 10);
+        Range = Mathf.Clamp(Range, 0, 10);
+    }
+}
+
+/// <summary>
+/// Enemy data
+/// </summary>
 [Serializable]
 public class Enemy {
     [field: SerializeField]
@@ -71,21 +87,20 @@ public class Enemy {
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
     [field: SerializeField]
-    public EnemyStats Stats { get; private set; }
+    public EnemyBaseStats Stats { get; private set; }
 }
 
 [Serializable]
-public class EnemyStats {
-    [field: SerializeField]
-    public int Health { get; private set; }
-    [field: SerializeField]
-    public int Speed { get; private set; }
-    [field: SerializeField]
-    public int Damage { get; private set; }
-    [field: SerializeField]
-    public int Gold { get; private set; }
+public class EnemyBaseStats {
+    public int Health;
+    public int Damage;
+    public float FireRate;
+    public float Experience;
 }
 
+/// <summary>
+/// Wave information
+/// </summary>
 [Serializable]
 public class Wave {
     [field: SerializeField]
@@ -97,7 +112,7 @@ public class Wave {
 }
 
 [Serializable]
-public struct EnemyEntry {
+public class EnemyEntry {
     public int id;
     public int amount;
 }
