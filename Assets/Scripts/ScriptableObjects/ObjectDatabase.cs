@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ObjectDatabase", menuName = "MyAssets/ObjectDatabase")]
@@ -11,6 +10,9 @@ public class ObjectDatabase : ScriptableObject {
     public List<Wave> Waves;
 }
 
+/// <summary>
+/// Tower storage
+/// </summary>
 [Serializable]
 public class Tower {
     [field: SerializeField]
@@ -30,23 +32,16 @@ public class Tower {
 }
 
 [Serializable]
-public struct TowerStats {
+public class TowerStats {
     public int Health;
+    public int Damage;
     public float FireRate;
-    public int Damage;
     public float Range;
-    public float KillEfficienty;
 }
 
-[Serializable]
-public struct TowerUpgrade {
-    public int Health;
-    public int FireRate;
-    public int Damage;
-    public int Range;
-    public int KillEfficienty;
-}
-
+/// <summary>
+/// Tower upgrade data
+/// </summary>
 [Serializable]
 public class TowerUpgrades {
     [field: SerializeField]
@@ -54,12 +49,26 @@ public class TowerUpgrades {
     [field: SerializeField]
     public int SelectedTower { get; private set; }
     [field: SerializeField]
-    public int TowerUpgrade { get; private set; }
+    public int NewTower { get; private set; }
     [field: SerializeField]
-    public TowerUpgrade StatsNeeded { get; private set; }
+    public TowerUpgradeLevels StatsNeeded { get; private set; }
 }
 
+[Serializable]
+public class TowerUpgradeLevels {
+    [Range(0, 10)]
+    public int Health = 1;
+    [Range(0, 10)]
+    public int Damage = 1;
+    [Range(0, 10)]
+    public int FireRate = 1;
+    [Range(0, 10)]
+    public int Range = 1;
+}
 
+/// <summary>
+/// Enemy data
+/// </summary>
 [Serializable]
 public class Enemy {
     [field: SerializeField]
@@ -76,16 +85,17 @@ public class Enemy {
 
 [Serializable]
 public class EnemyStats {
-    [field: SerializeField]
-    public int Health { get; private set; }
-    [field: SerializeField]
-    public int Speed { get; private set; }
-    [field: SerializeField]
-    public int Damage { get; private set; }
-    [field: SerializeField]
-    public int Gold { get; private set; }
+    public int Health;
+    public int Damage;
+    public int Speed;
+    public float FireRate;
+    public float AttackSpeed;
+    public float Experience;
 }
 
+/// <summary>
+/// Wave information
+/// </summary>
 [Serializable]
 public class Wave {
     [field: SerializeField]
@@ -97,7 +107,7 @@ public class Wave {
 }
 
 [Serializable]
-public struct EnemyEntry {
+public class EnemyEntry {
     public int id;
     public int amount;
 }
