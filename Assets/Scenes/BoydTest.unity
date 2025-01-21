@@ -1196,6 +1196,7 @@ MonoBehaviour:
   _towerPanel: {fileID: 1219977134}
   _buttonsPanel: {fileID: 994722463}
   _levelText: []
+  _levelSliders: []
 --- !u!114 &1706010483 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4433745823390103509, guid: e21d10c4b26fa4b46960458d8ea6b45a, type: 3}
@@ -1854,6 +1855,14 @@ PrefabInstance:
     - target: {fileID: 4735305131728122701, guid: b6981f03195040943b1ee67300b10236, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DowngradeStat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007840966365262397, guid: b6981f03195040943b1ee67300b10236, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1601934010}
+    - target: {fileID: 5007840966365262397, guid: b6981f03195040943b1ee67300b10236, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellTower
       objectReference: {fileID: 0}
     - target: {fileID: 5177560455804928010, guid: b6981f03195040943b1ee67300b10236, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

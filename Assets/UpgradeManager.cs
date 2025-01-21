@@ -3,6 +3,8 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEditor.Build;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject _buttonsPanel;
 
     [SerializeField]private List<TMP_Text> _levelText = new List<TMP_Text>();
+    [SerializeField]private List<Slider> _levelSliders = new List<Slider>();
 
     private bool _hasReachedMaxLevel;
 
@@ -29,6 +32,7 @@ public class UpgradeManager : MonoBehaviour
             GameObject currentButton = _buttonsPanel.transform.GetChild(i).gameObject;
             GameObject deeper = currentButton.transform.GetChild(1).gameObject;
             _levelText.Add(deeper.transform.GetChild(3).GetComponent<TMP_Text>());
+            _levelSliders.Add(deeper.transform.GetChild(1).GetComponent<Slider>());
         }
     }
 
@@ -44,6 +48,8 @@ public class UpgradeManager : MonoBehaviour
         BuildManager.instance.AddCurrency(newCurrency);
 
         EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, _currentTowerObject.transform.position));
+
+        _towerPanel.SetActive(false);
     }
 
 
@@ -54,22 +60,26 @@ public class UpgradeManager : MonoBehaviour
 
         _towerPanel.SetActive(true);
 
-        DrawText();
+        DrawStatUpgrades();
     }
 
-    private void DrawText()
+    private void DrawStatUpgrades()
     {
         //Health
         _levelText[0].text = $"Level: {_currentTower.CurrentUpgrades.Health}";
+        _levelSliders[0].value = (float)_currentTower.CurrentUpgrades.Health/10;
 
         //Damage
         _levelText[1].text = $"Level: {_currentTower.CurrentUpgrades.Damage}";
+        _levelSliders[1].value = (float)_currentTower.CurrentUpgrades.Damage / 10;
 
         //Firerate
         _levelText[2].text = $"Level: {_currentTower.CurrentUpgrades.FireRate}";
+        _levelSliders[2].value = (float)_currentTower.CurrentUpgrades.FireRate / 10;
 
         //Range
         _levelText[3].text = $"Level: {_currentTower.CurrentUpgrades.Range}";
+        _levelSliders[3].value = (float)_currentTower.CurrentUpgrades.Range / 10;
     }
 
     public void UpgradeStat(int statIndex)
@@ -78,55 +88,83 @@ public class UpgradeManager : MonoBehaviour
         {
             //HEALTH
             case 0:
-                
-                int healthUpgrade = _currentTower.CurrentUpgrades.Health + 1;
-                _currentTower.CurrentUpgrades.Health = Mathf.Clamp(healthUpgrade, 0, 10);
-                //if(_currentTower.CurrentUpgrades.Health ==)
+                _currentTower.CurrentUpgrades.Health = IncreaseLevel(_currentTower.CurrentUpgrades.Health);
                 break;
             //DAMAGE
             case 1:
-                _currentTower.CurrentUpgrades.Damage++;
+                _currentTower.CurrentUpgrades.Damage = IncreaseLevel(_currentTower.CurrentUpgrades.Damage);
                 break;
             //FIRERATE
             case 2:
-                _currentTower.CurrentUpgrades.FireRate++;
+                _currentTower.CurrentUpgrades.FireRate = IncreaseLevel(_currentTower.CurrentUpgrades.FireRate);
                 break;
             //RANGE
             case 3:
-                _currentTower.CurrentUpgrades.Range++;
+                _currentTower.CurrentUpgrades.Range = IncreaseLevel(_currentTower.CurrentUpgrades.Range);
                 break;
         }
-        DrawText();
+        DrawStatUpgrades();
     }
+    private int IncreaseLevel(int currentLevel)
+    {
+        int newLevel = currentLevel + 1;
+
+        newLevel = Mathf.Clamp(newLevel, 0,
+            (_hasReachedMaxLevel && currentLevel != 10) ? 9 : 10);
+
+        if (newLevel == 10 && !_hasReachedMaxLevel) 
+        { 
+            _hasReachedMaxLevel = true;
+            DrawTowerUpgrades();
+        }
+
+        return newLevel;
+    }
+
     public void DowngradeStat(int statIndex)
     {
         switch (statIndex)
         {
             //HEALTH
             case 0:
-                _currentTower.CurrentUpgrades.Health--;
+                _currentTower.CurrentUpgrades.Health = DecreaseLevel(_currentTower.CurrentUpgrades.Health);
                 break;
             //DAMAGE
             case 1:
-                _currentTower.CurrentUpgrades.Damage--;
+                _currentTower.CurrentUpgrades.Damage = DecreaseLevel(_currentTower.CurrentUpgrades.Damage);
+
                 break;
             //FIRERATE
             case 2:
-                _currentTower.CurrentUpgrades.FireRate--;
+                _currentTower.CurrentUpgrades.FireRate = DecreaseLevel(_currentTower.CurrentUpgrades.FireRate);
+
                 break;
             //RANGE
             case 3:
-                _currentTower.CurrentUpgrades.Range--;
+
+                _currentTower.CurrentUpgrades.Range = DecreaseLevel(_currentTower.CurrentUpgrades.Range);
                 break;
         }
-        DrawText();
+        DrawStatUpgrades();
+    }
+    private int DecreaseLevel(int currentLevel)
+    {
+        if (currentLevel == 10)
+        {
+            _hasReachedMaxLevel = false;
+        }
+        int newLevel = currentLevel - 1;
+        return Mathf.Clamp(newLevel, 0, 10);
     }
 
     public void DrawTowerUpgrades()
     {
-        //DatabaseAcces.instance.database.TowerUpgrades
 
-        //this void activates when level 10 is reached.
+        //get current tower max stat
+
+        //DatabaseAcces.instance.database.TowerUpgrades[0].
+
+        
         //get current tower possible upgrades
         //instantiate towers amount
         //Get instantiated tower, assign names and image

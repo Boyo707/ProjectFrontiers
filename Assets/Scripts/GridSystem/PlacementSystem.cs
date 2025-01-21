@@ -90,16 +90,6 @@ public class PlacementSystem : MonoBehaviour {
         buildingState.OnAction(gridposition);
     }
 
-    public void StartRemoving()
-    {
-        StopPlacement();
-        upgradeManager.EnableUI(false);
-        gridVisualisation.SetActive(true);
-        buildingState = new SellState(grid, previewSystem, towerGridData, objectPlacer);
-        inputManager.OnClicked += PlaceStructure;
-        inputManager.OnExit += StopPlacement;
-    }
-
     private void RemoveTower(TowerDestroyedEvent e)
     {
         Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
