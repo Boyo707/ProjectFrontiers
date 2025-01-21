@@ -1,37 +1,34 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class UpgradeManager : MonoBehaviour
 {
     [Header("Required Component")]
     [SerializeField] private DatabaseAcces _dataBase;
-    [SerializeField] private InputManager _inputManager;
-    [SerializeField] private PlacementSystem _placementSystem;
+    //[SerializeField] private InputManager _inputManager;
+    //[SerializeField] private PlacementSystem _placementSystem;
     [SerializeField] private ObjectPlacer _objectPlacer;
 
     [Header("Required Objects")]
     [SerializeField] private GameObject _towerPanel;
 
-    [SerializeField] private List<GameObject> _buttons = new List<GameObject>();
+    [SerializeField] private GameObject _buttonsPanel;
 
-    [SerializeField] private List<TMP_Text> _levelText = new List<TMP_Text>();
-    [SerializeField] private List<TMP_Text> _statTexts = new List<TMP_Text>(); 
+    private List<TMP_Text> _levelText = new List<TMP_Text>();
+    private List<TMP_Text> _statTexts = new List<TMP_Text>(); 
 
     private Turret _currentTower;
-
-    //[SerializeField] private TMP_Text _text;
-    //currently selected tower
-
-    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 0; i < _buttons.Count; i++)
+        for (int i = 0; i < _buttonsPanel.transform.childCount; i++)
         {
-            _statTexts.Add(_buttons[i].transform.GetChild(0).GetComponentInChildren<TMP_Text>());
-            _levelText.Add(_buttons[i].transform.GetChild(1).GetComponent<TMP_Text>());
+            GameObject currentButton = _buttonsPanel.transform.GetChild(i).gameObject;
+            _statTexts.Add(currentButton.transform.GetChild(0).GetComponentInChildren<TMP_Text>());
+            _levelText.Add(currentButton.transform.GetChild(1).GetComponent<TMP_Text>());
         }
     }
 
@@ -40,10 +37,9 @@ public class UpgradeManager : MonoBehaviour
     {
     }
 
-    //Needs to communicate with grid and placement system
-    //click on tower - able to do that when not placing a tower OR when placing a tower.
+
     //Open tower UI - Temp Panel with upgrade button [+] 
-    //Button to upgrade health - speed - attack etc, When reaching max upgrade of one stat - turn into another prefab
+    //ask if upgrade has a max
     //  Turn into another prefab - Remove Current Turret - Get upgraded turret ID - Place new turret
     
     public void SetTower(Turret selectedTower)
@@ -56,13 +52,20 @@ public class UpgradeManager : MonoBehaviour
 
     private void DrawText()
     {
+        //Health
         _statTexts[0].text = $"Health\nCost: {5}";
         _levelText[0].text = $"Level: {_currentTower.CurrentUpgrades.Health}";
-        _statTexts[1].text = $"Health\nCost: {5}";
+
+        //Damage
+        _statTexts[1].text = $"Damage\nCost: {5}";
         _levelText[1].text = $"Level: {_currentTower.CurrentUpgrades.Damage}";
-        _statTexts[2].text = $"Health\nCost: {5}";
+
+        //Firerate
+        _statTexts[2].text = $"Firerate\nCost: {5}";
         _levelText[2].text = $"Level: {_currentTower.CurrentUpgrades.FireRate}";
-        _statTexts[3].text = $"Health\nCost: {5}";
+
+        //Range
+        _statTexts[3].text = $"Range\nCost: {5}";
         _levelText[3].text = $"Level: {_currentTower.CurrentUpgrades.Range}";
 
     }
@@ -74,31 +77,43 @@ public class UpgradeManager : MonoBehaviour
             //HEALTH
             case 0:
                 _currentTower.CurrentUpgrades.Health++;
-                DrawText();
-
                 break;
             //DAMAGE
             case 1:
                 _currentTower.CurrentUpgrades.Damage++;
-                DrawText();
                 break;
             //FIRERATE
             case 2:
                 _currentTower.CurrentUpgrades.FireRate++;
-                DrawText();
                 break;
             //RANGE
             case 3:
                 _currentTower.CurrentUpgrades.Range++;
-                DrawText();
                 break;
         }
+        DrawText();
+    }
+
+    public void DrawTowerUpgrades()
+    {
+        //get current tower possible upgrades
+        //instantiate towers amount
+        //Get instantiated tower, assign names and image
+    }
+
+    public void UpgradeTower()
+    {
+        //remove current Tower,
+        //get tower grid location
+        //place new tower in its place.
+        //Draw Current tower upgrades
+
+
     }
 
     public void SelectionState(Vector3Int gridPosition, GridData towerGridData)
     {
-        //Set this on the click action
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             int gameObjectIndex;
             gameObjectIndex = towerGridData.GetRepresentationIndex(gridPosition);
@@ -113,11 +128,12 @@ public class UpgradeManager : MonoBehaviour
             }
             else
             {
-                if (!_inputManager.IsPointerOverUI())
-                {
-                    EnableUI(false);
-                }
+                EnableUI(false);
             }
+        }
+        else if (Input.GetMouseButtonDown(1))
+        {
+            EnableUI(false);
         }
     }
 
