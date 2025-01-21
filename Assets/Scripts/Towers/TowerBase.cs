@@ -5,18 +5,18 @@ public abstract class TowerBase : MonoBehaviour {
     private List<Tower> towers;
 
     [SerializeField] protected TowerStats stats;
-    public TowerUpgradeLevels CurrentUpgrades;
-
-    [Header("Unity Setup")]
-    public int id = -1;
-    public LayerMask targetLayerMask;
-    public Transform partToRotate;
+    public TowerUpgradeLevels CurrentUpgrades = new();
 
     protected int currentHealth;
     protected float shootCooldown = 0f;
 
     protected GameObject currentTarget = null;
     protected bool isLookingAtTarget = false;
+
+    [Header("Unity Setup")]
+    public int id = -1;
+    public LayerMask targetLayerMask;
+    public Transform partToRotate;
 
     protected virtual void Start() {
         towers = DatabaseAcces.instance.database.Towers;
@@ -61,6 +61,7 @@ public abstract class TowerBase : MonoBehaviour {
         currentHealth -= amount;
 
         if (currentHealth <= 0) {
+            //event tower destoryed for grid manager
             Destroy(this.gameObject);
         }
     }

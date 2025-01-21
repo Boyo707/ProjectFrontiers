@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
     public static WaveSpawner instance;
+
     [SerializeField]
     private Transform enemyParent;
 
@@ -104,7 +105,7 @@ public class WaveSpawner : MonoBehaviour {
 
         GameObject spawnedEnemy = Instantiate(enemy.Prefab, position, Quaternion.identity, enemyParent);
 
-        spawnedEnemy.GetComponentInChildren<EnemyLogic>().buff = globalBuffs;
+        spawnedEnemy.GetComponentInChildren<EnemyBase>().buff = globalBuffs;
 
         EventBus<EnemySpawnedEvent>.Publish(new EnemySpawnedEvent(this, enemy.Id));
     }

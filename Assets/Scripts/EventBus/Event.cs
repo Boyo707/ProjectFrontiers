@@ -39,7 +39,12 @@ public class ResetWavesEvent : Event {
 #endregion
 
 #region turret events
-
+public class TowerDestroyedEvent : Event {
+    public int health;
+    public TowerDestroyedEvent(object source, int health) : base(source) {
+        this.health = health;
+    }
+}
 
 #endregion
 
