@@ -2,13 +2,11 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEditor.Build;
 
 public class UpgradeManager : MonoBehaviour
 {
     [Header("Required Component")]
-    [SerializeField] private DatabaseAcces _dataBase;
-    //[SerializeField] private InputManager _inputManager;
-    //[SerializeField] private PlacementSystem _placementSystem;
     [SerializeField] private ObjectPlacer _objectPlacer;
 
     [Header("Required Objects")]
@@ -16,10 +14,12 @@ public class UpgradeManager : MonoBehaviour
 
     [SerializeField] private GameObject _buttonsPanel;
 
-    private List<TMP_Text> _levelText = new List<TMP_Text>();
-    private List<TMP_Text> _statTexts = new List<TMP_Text>(); 
+    [SerializeField]private List<TMP_Text> _levelText = new List<TMP_Text>();
 
-    private Turret _currentTower;
+    private bool _hasReachedMaxLevel;
+
+    private GameObject _currentTowerObject;
+    private TowerBase _currentTower;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,24 +27,31 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < _buttonsPanel.transform.childCount; i++)
         {
             GameObject currentButton = _buttonsPanel.transform.GetChild(i).gameObject;
-            _statTexts.Add(currentButton.transform.GetChild(0).GetComponentInChildren<TMP_Text>());
-            _levelText.Add(currentButton.transform.GetChild(1).GetComponent<TMP_Text>());
+            GameObject deeper = currentButton.transform.GetChild(1).gameObject;
+            _levelText.Add(deeper.transform.GetChild(3).GetComponent<TMP_Text>());
         }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    // tower has a min n max value. Get value from that tower and incease/decrease it
+    //  Turn into another prefab - Remove Current Turret - Get upgraded turret ID - Place new turret
+    //
+
+    public void SellTower()
     {
+        float newCurrency = DatabaseAcces.instance.database.Towers[_currentTower.id].Cost * _currentTower.GetHealthPercentage();
+
+        BuildManager.instance.AddCurrency(newCurrency);
+
+        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, _currentTowerObject.transform.position));
     }
 
 
-    //Open tower UI - Temp Panel with upgrade button [+] 
-    //ask if upgrade has a max
-    //  Turn into another prefab - Remove Current Turret - Get upgraded turret ID - Place new turret
-    
-    public void SetTower(Turret selectedTower)
+    public void SetTower(GameObject selectedTower)
     {
-        _currentTower = selectedTower;
+        _currentTower = selectedTower.GetComponent<TowerBase>();
+        _currentTowerObject = selectedTower;
+
         _towerPanel.SetActive(true);
 
         DrawText();
@@ -53,21 +60,16 @@ public class UpgradeManager : MonoBehaviour
     private void DrawText()
     {
         //Health
-        _statTexts[0].text = $"Health\nCost: {5}";
         _levelText[0].text = $"Level: {_currentTower.CurrentUpgrades.Health}";
 
         //Damage
-        _statTexts[1].text = $"Damage\nCost: {5}";
         _levelText[1].text = $"Level: {_currentTower.CurrentUpgrades.Damage}";
 
         //Firerate
-        _statTexts[2].text = $"Firerate\nCost: {5}";
         _levelText[2].text = $"Level: {_currentTower.CurrentUpgrades.FireRate}";
 
         //Range
-        _statTexts[3].text = $"Range\nCost: {5}";
         _levelText[3].text = $"Level: {_currentTower.CurrentUpgrades.Range}";
-
     }
 
     public void UpgradeStat(int statIndex)
@@ -76,7 +78,10 @@ public class UpgradeManager : MonoBehaviour
         {
             //HEALTH
             case 0:
-                _currentTower.CurrentUpgrades.Health++;
+                
+                int healthUpgrade = _currentTower.CurrentUpgrades.Health + 1;
+                _currentTower.CurrentUpgrades.Health = Mathf.Clamp(healthUpgrade, 0, 10);
+                //if(_currentTower.CurrentUpgrades.Health ==)
                 break;
             //DAMAGE
             case 1:
@@ -93,9 +98,35 @@ public class UpgradeManager : MonoBehaviour
         }
         DrawText();
     }
+    public void DowngradeStat(int statIndex)
+    {
+        switch (statIndex)
+        {
+            //HEALTH
+            case 0:
+                _currentTower.CurrentUpgrades.Health--;
+                break;
+            //DAMAGE
+            case 1:
+                _currentTower.CurrentUpgrades.Damage--;
+                break;
+            //FIRERATE
+            case 2:
+                _currentTower.CurrentUpgrades.FireRate--;
+                break;
+            //RANGE
+            case 3:
+                _currentTower.CurrentUpgrades.Range--;
+                break;
+        }
+        DrawText();
+    }
 
     public void DrawTowerUpgrades()
     {
+        //DatabaseAcces.instance.database.TowerUpgrades
+
+        //this void activates when level 10 is reached.
         //get current tower possible upgrades
         //instantiate towers amount
         //Get instantiated tower, assign names and image
@@ -108,8 +139,15 @@ public class UpgradeManager : MonoBehaviour
         //place new tower in its place.
         //Draw Current tower upgrades
 
-
+        //only 1 can be level 10
+        //others get limited to level 9
+        //1 upgrade tower button / scrap upgrade grid
+        //Sell button on the tower upgrade panel (NOT YET DECIDED BUT MAKE THE FUNCTION)
+        //sell level
+        
     }
+
+    
 
     public void SelectionState(Vector3Int gridPosition, GridData towerGridData)
     {
@@ -120,9 +158,9 @@ public class UpgradeManager : MonoBehaviour
 
             if (gameObjectIndex >= 0)
             {
-                Turret turret = _objectPlacer.PlacedGameObjects[gameObjectIndex].GetComponentInChildren<Turret>();
+                GameObject towerObject = _objectPlacer.PlacedGameObjects[gameObjectIndex];
 
-                SetTower(turret);
+                SetTower(towerObject);
 
                 EnableUI(true);
             }

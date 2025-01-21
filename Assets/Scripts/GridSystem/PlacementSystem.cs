@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEditor;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour {
@@ -33,9 +30,36 @@ public class PlacementSystem : MonoBehaviour {
     private UpgradeManager upgradeManager;
 
     IBuildingState buildingState;
+
+    private void OnEnable()
+    {
+        EventBus<TowerDestroyedEvent>.OnEvent += RemoveTower;
+    }
+
     private void Start() {
         StopPlacement();
         towerGridData = new GridData();
+    }
+
+    private void Update()
+    {
+        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
+        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+
+        previewSystem.UpdatePosition(gridPosition, true);
+
+        if (buildingState == null)
+        {
+            upgradeManager.SelectionState(gridPosition, towerGridData);
+            return;
+        }
+
+
+        if (lastDetectedPosition != gridPosition)
+        {
+            buildingState.UpdateState(gridPosition);
+            lastDetectedPosition = gridPosition;
+        }
     }
 
     public void StartPlacement(int id) {
@@ -54,25 +78,51 @@ public class PlacementSystem : MonoBehaviour {
         inputManager.OnExit += StopPlacement;
     }
 
-    public void StartRemoving()
+    private void PlaceStructure()
     {
-        StopPlacement();
-        upgradeManager.EnableUI(false);
-        gridVisualisation.SetActive(true);
-        buildingState = new RemovingState(grid, previewSystem, towerGridData, objectPlacer);
-        inputManager.OnClicked += PlaceStructure;
-        inputManager.OnExit += StopPlacement;
-    }
-    private void PlaceStructure() 
-    {
-        if (inputManager.IsPointerOverUI()) 
+        if (inputManager.IsPointerOverUI())
         {
             return;
         }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridposition = grid.WorldToCell(mousePosition);
-
+        
         buildingState.OnAction(gridposition);
+    }
+
+    public void StartRemoving()
+    {
+        StopPlacement();
+        upgradeManager.EnableUI(false);
+        gridVisualisation.SetActive(true);
+        buildingState = new SellState(grid, previewSystem, towerGridData, objectPlacer);
+        inputManager.OnClicked += PlaceStructure;
+        inputManager.OnExit += StopPlacement;
+    }
+
+    private void RemoveTower(TowerDestroyedEvent e)
+    {
+        Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
+
+        if (towerGridData == null)
+        {
+            //If nothing is in its spot
+        }
+        else
+        {
+            int gameObjectIndex = towerGridData.GetRepresentationIndex(gridposition);
+            if (gameObjectIndex == -1)
+            {
+                return;
+            }
+
+            //ask wes
+            //sells the tower if it comes from SellState
+            
+
+            towerGridData.RemoveObjectAt(gridposition);
+            objectPlacer.RemoveObjectAt(gameObjectIndex);
+        }
     }
 
     private void StopPlacement() {
@@ -88,26 +138,8 @@ public class PlacementSystem : MonoBehaviour {
         buildingState = null;
     }
 
-    
-
-    private void Update() 
+    private void OnDisable()
     {
-        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-
-        previewSystem.UpdatePosition(gridPosition, true);
-
-        if (buildingState == null) 
-        {
-            upgradeManager.SelectionState(gridPosition, towerGridData);
-            return;
-        }
-
-
-        if (lastDetectedPosition != gridPosition)
-        {
-            buildingState.UpdateState(gridPosition);
-            lastDetectedPosition = gridPosition;
-        }
+        EventBus<TowerDestroyedEvent>.OnEvent += RemoveTower;
     }
 }

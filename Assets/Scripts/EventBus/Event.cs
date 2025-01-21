@@ -1,5 +1,5 @@
 using System;
-
+using UnityEngine;
 public class Event {
     public object Source { get; private set; }
 
@@ -40,9 +40,9 @@ public class ResetWavesEvent : Event {
 
 #region turret events
 public class TowerDestroyedEvent : Event {
-    public int health;
-    public TowerDestroyedEvent(object source, int health) : base(source) {
-        this.health = health;
+    public Vector3 towerPosition;
+    public TowerDestroyedEvent(object source, Vector3 position) : base(source) {
+        this.towerPosition = position;
     }
 }
 

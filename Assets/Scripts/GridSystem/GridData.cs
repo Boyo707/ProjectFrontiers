@@ -59,6 +59,11 @@ public class GridData
         return placedObjects[gridPosition].PlaceObjectIndex;
     }
 
+    public int GetRepresentationIndex(GameObject towerObject)
+    {
+        return 2;
+    }
+
     public void RemoveObjectAt(Vector3Int gridPosition)
     {
         foreach (var pos in placedObjects[gridPosition].occupiedPositions)

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class RemovingState : IBuildingState
+public class SellState : IBuildingState
 {
     private int gameObjectIndex = -1;
     Grid grid;
@@ -9,7 +9,7 @@ public class RemovingState : IBuildingState
     GridData floorData;
     ObjectPlacer objectPlacer;
 
-    public RemovingState(Grid grid,
+    public SellState(Grid grid,
                          PreviewSystem previewSystem,
                          GridData floorData,
                          ObjectPlacer objectPlacer)
@@ -29,28 +29,7 @@ public class RemovingState : IBuildingState
 
     public void OnAction(Vector3Int gridPosition)
     {
-        GridData selectedData = null;
-        if (floorData.CanPlaceObjectAt(gridPosition, Vector2Int.one) == false)
-        {
-            selectedData = floorData;
-        }
-
-        if (selectedData == null)
-        {
-            //A sound that there is nothing here
-        }
-        else
-        {
-            gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
-            if(gameObjectIndex == -1)
-            {
-                return;
-            }
-            selectedData.RemoveObjectAt(gridPosition);
-            objectPlacer.RemoveObjectAt(gameObjectIndex);
-        }
-        Vector3 cellPosition = grid.CellToWorld(gridPosition);
-        previewSystem.UpdatePosition(cellPosition, CheckIfCollectionIsValid(gridPosition));
+        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, gridPosition));
     }
 
     private bool CheckIfCollectionIsValid(Vector3Int gridPosition)
