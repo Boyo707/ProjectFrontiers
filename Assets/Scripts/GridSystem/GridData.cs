@@ -17,7 +17,9 @@ public class GridData
         foreach(var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
+            {
                 throw new System.Exception($"Dictionary already contains this cell position {pos}");
+            }
             placedObjects[pos] = data;
         }
     }
@@ -40,8 +42,10 @@ public class GridData
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         foreach(var pos in positionToOccupy)
         {
-            if(placedObjects.ContainsKey(pos))
+            if (placedObjects.ContainsKey(pos))
+            {
                 return false;
+            }
         }
         return true;
     }
@@ -53,6 +57,11 @@ public class GridData
             return -1;
         }
         return placedObjects[gridPosition].PlaceObjectIndex;
+    }
+
+    public int GetRepresentationIndex(GameObject towerObject)
+    {
+        return 2;
     }
 
     public void RemoveObjectAt(Vector3Int gridPosition)

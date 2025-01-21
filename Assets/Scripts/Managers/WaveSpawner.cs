@@ -105,7 +105,7 @@ public class WaveSpawner : MonoBehaviour {
 
         GameObject spawnedEnemy = Instantiate(enemy.Prefab, position, Quaternion.identity, enemyParent);
 
-        spawnedEnemy.GetComponentInChildren<EnemyBase>().buff = globalBuffs;
+        //spawnedEnemy.GetComponentInChildren<EnemyBase>().buff = globalBuffs;
 
         EventBus<EnemySpawnedEvent>.Publish(new EnemySpawnedEvent(this, enemy.Id));
     }

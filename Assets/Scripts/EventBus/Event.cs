@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
-
 public class Event {
     public object Source { get; private set; }
 
@@ -42,7 +40,13 @@ public class ResetWavesEvent : Event {
 
 #region turret events
 public class TowerCreatedEvent : Event {
-    public GameObject tower;
+
+public class TowerDestroyedEvent : Event {
+--- Merge Conflict ---
+
+
+    }
+}    public GameObject tower;
     public TowerCreatedEvent(object source, GameObject tower) : base(source) {
         this.tower = tower;
     }
