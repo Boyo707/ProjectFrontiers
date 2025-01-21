@@ -34,6 +34,7 @@ public class PlacementSystem : MonoBehaviour {
     private void OnEnable()
     {
         EventBus<TowerDestroyedEvent>.OnEvent += RemoveTower;
+        EventBus<CreateTowerEvent>.OnEvent += PlaceTower;
     }
 
     private void Start() {
@@ -86,8 +87,11 @@ public class PlacementSystem : MonoBehaviour {
         }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridposition = grid.WorldToCell(mousePosition);
-        
-        buildingState.OnAction(gridposition);
+
+        //buildingState.OnAction(gridposition);
+
+        EventBus<CreateTowerEvent>.Publish(new CreateTowerEvent(this, gridposition, 0));
+
     }
 
     private void RemoveTower(TowerDestroyedEvent e)
@@ -106,13 +110,41 @@ public class PlacementSystem : MonoBehaviour {
                 return;
             }
 
-            //ask wes
-            //sells the tower if it comes from SellState
-            
-
             towerGridData.RemoveObjectAt(gridposition);
             objectPlacer.RemoveObjectAt(gameObjectIndex);
         }
+    }
+
+    private void PlaceTower(CreateTowerEvent e)
+    {
+        //CHECK IF THIS WORKS IN INSTANTIATING IN UPGRADE MANAGER
+        Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
+
+        GridData selectedData = towerGridData;
+        int gameObjectIndex = towerGridData.GetRepresentationIndex(gridposition);
+
+        int selectedObjectIndex = database.Towers.FindIndex(data => data.Id == e.towerId);
+
+        bool placementValidity = selectedData.CanPlaceObjectAt(gridposition, database.Towers[selectedObjectIndex].Size);
+
+
+        if (placementValidity == false)
+        {
+            Debug.Log("Im already occupied");
+            return;
+        }
+
+        int index = objectPlacer.PlaceObject(database.Towers[selectedObjectIndex].Prefab, grid.CellToWorld(gridposition));
+
+
+        GridData selectData = towerGridData;
+
+        selectData.AddObjectAt(gridposition,
+            database.Towers[selectedObjectIndex].Size,
+            database.Towers[selectedObjectIndex].Id,
+            index);
+
+        previewSystem.UpdatePosition(grid.CellToWorld(gridposition), false);
     }
 
     private void StopPlacement() {
@@ -130,6 +162,7 @@ public class PlacementSystem : MonoBehaviour {
 
     private void OnDisable()
     {
-        EventBus<TowerDestroyedEvent>.OnEvent += RemoveTower;
+        EventBus<TowerDestroyedEvent>.OnEvent -= RemoveTower;
+        EventBus<CreateTowerEvent>.OnEvent -= PlaceTower;
     }
 }

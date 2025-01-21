@@ -2,9 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using UnityEditor.Build;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -23,6 +21,8 @@ public class UpgradeManager : MonoBehaviour
 
     private GameObject _currentTowerObject;
     private TowerBase _currentTower;
+
+    private int _nextTowerId;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -159,15 +159,49 @@ public class UpgradeManager : MonoBehaviour
 
     public void DrawTowerUpgrades()
     {
+        //if we are gonna have an upgrade where more then one level is level 10
+        //Make from bool to int. then ++ the int each time an if statement is true. And then go from there.
+        bool canUpgrade = false;
 
-        //get current tower max stat
+        for (int i = 0; i < DatabaseAcces.instance.database.TowerUpgrades.Count; i++)
+        {
+            TowerUpgrades databaseTowerUpgrades = DatabaseAcces.instance.database.TowerUpgrades[i];
 
-        //DatabaseAcces.instance.database.TowerUpgrades[0].
+            if (_currentTower.id != databaseTowerUpgrades.SelectedTower)
+            {
+                continue;
+            }
 
-        
-        //get current tower possible upgrades
-        //instantiate towers amount
-        //Get instantiated tower, assign names and image
+            if(_currentTower.CurrentUpgrades.Health >= databaseTowerUpgrades.StatsNeeded.Health)
+            {
+                canUpgrade = true;
+                _nextTowerId = databaseTowerUpgrades.NewTower;
+            }
+            if (_currentTower.CurrentUpgrades.Damage >= databaseTowerUpgrades.StatsNeeded.Damage)
+            {
+                canUpgrade = true;
+                _nextTowerId = databaseTowerUpgrades.NewTower;
+            }
+            if (_currentTower.CurrentUpgrades.FireRate >= databaseTowerUpgrades.StatsNeeded.FireRate)
+            {
+                canUpgrade = true;
+                _nextTowerId = databaseTowerUpgrades.NewTower;
+            }
+            if (_currentTower.CurrentUpgrades.Range >= databaseTowerUpgrades.StatsNeeded.Range)
+            {
+                canUpgrade = true;
+                _nextTowerId = databaseTowerUpgrades.NewTower;
+            }
+        }
+
+        if (canUpgrade)
+        {
+            Debug.Log("CAN UPGRADE THIS");
+            //refrence to thw button
+            //turn it from inactive to active
+            //change the name
+            //save the upgrade ID
+        }
     }
 
     public void UpgradeTower()

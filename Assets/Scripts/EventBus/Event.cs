@@ -46,6 +46,17 @@ public class TowerDestroyedEvent : Event {
     }
 }
 
+public class CreateTowerEvent : Event
+{
+    public Vector3 towerPosition;
+    public int towerId;
+    public CreateTowerEvent(object source, Vector3 position, int Id) : base(source)
+    {
+        this.towerPosition = position;
+        this.towerId = Id;
+    }
+}
+
 #endregion
 
 #region difficulty events
