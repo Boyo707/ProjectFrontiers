@@ -45,19 +45,23 @@ public abstract class EnemyBase : MonoBehaviour {
         if (currentTarget == null) {
             FindNewTarget();
         }
+        if (currentTarget == null) return;
 
-        if (currentTarget != null) {
-            MoveToTarget();
+        MoveToTarget();
 
-            if (attackCooldown <= 0f) {
-                Attack();
-                attackCooldown = 1f / stats.FireRate;
-            }
+        if (IsTargetInRange() && attackCooldown <= 0f) {
+            Attack();
+            attackCooldown = 1f / stats.FireRate;
         }
+
 
         if (attackCooldown > 0f) {
             attackCooldown -= Time.deltaTime;
         }
+    }
+
+    private bool IsTargetInRange() {
+        return Vector3.Distance(transform.position, currentTarget.transform.position) <= stats.Range;
     }
 
     protected void FindNewTarget() {
@@ -77,11 +81,7 @@ public abstract class EnemyBase : MonoBehaviour {
     }
 
     private void MoveToTarget() {
-        Vector3 direction = (currentTarget.transform.position - transform.position).normalized;
-
-
-
-        // Move to target
+        Vector3 direction = (currentTarget.transform.position - transform.position);
         transform.Translate(Time.deltaTime * stats.Speed * direction.normalized);
     }
 
@@ -94,5 +94,10 @@ public abstract class EnemyBase : MonoBehaviour {
             EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this, id));
             Destroy(gameObject); 
         }
+    }
+
+    protected virtual void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, stats.Range);
     }
 }
