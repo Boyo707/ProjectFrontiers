@@ -89,7 +89,7 @@ public class EnemyStats {
     public int Damage;
     public int Speed;
     public float FireRate;
-    public float AttackSpeed;
+    public float Range;
     public float Experience;
 }
 

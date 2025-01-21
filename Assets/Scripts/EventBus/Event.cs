@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Event {
     public object Source { get; private set; }
@@ -40,12 +41,17 @@ public class ResetWavesEvent : Event {
 
 #region turret events
 public class TowerDestroyedEvent : Event {
-    public int health;
-    public TowerDestroyedEvent(object source, int health) : base(source) {
-        this.health = health;
+    public GameObject tower;
+    public TowerDestroyedEvent(object source, GameObject tower) : base(source) {
+        this.tower = tower;
     }
 }
-
+public class TowerCreatedEvent : Event {
+    public GameObject tower;
+    public TowerCreatedEvent(object source, GameObject tower) : base(source) {
+        this.tower = tower;
+    }
+}
 #endregion
 
 #region difficulty events

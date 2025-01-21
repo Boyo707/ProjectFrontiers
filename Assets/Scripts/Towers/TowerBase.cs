@@ -58,10 +58,13 @@ public abstract class TowerBase : MonoBehaviour {
     }
 
     public void TakeDamage(int amount) {
+        Debug.Log("Tower Took DAmage");
         currentHealth -= amount;
 
         if (currentHealth <= 0) {
+            Debug.Log("Tower Got desoyed!!!!!");
             //event tower destoryed for grid manager
+            EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, gameObject));
             Destroy(this.gameObject);
         }
     }

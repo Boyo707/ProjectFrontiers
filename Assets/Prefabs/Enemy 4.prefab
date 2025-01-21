@@ -118,10 +118,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3433239746264095387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a26806db630ff9647b40f98fb52353ed, type: 3}
+  m_Script: {fileID: 11500000, guid: b52c3b8c883e3b54e915812aa79a454d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  damage: 1
-  maxHealth: 1
-  amount: 0.1
+  name: 
+  stats:
+    Health: 0
+    Damage: 0
+    Speed: 0
+    FireRate: 0
+    Range: 0
+    Experience: 0
+  targets: []
+  id: 3
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  firePoint: {fileID: 3723287916442715633}

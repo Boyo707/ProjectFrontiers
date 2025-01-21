@@ -21,6 +21,8 @@ public class ObjectPlacer : MonoBehaviour
     public int PlaceObject(GameObject prefab, Vector3 position)
     {
         GameObject newGameobject = Instantiate(prefab);
+        EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, newGameobject));
+
         newGameobject.transform.position = position;
         placedGameObjects.Add(newGameobject);
         return placedGameObjects.Count - 1;
