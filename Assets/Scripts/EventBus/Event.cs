@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Event {
     public object Source { get; private set; }

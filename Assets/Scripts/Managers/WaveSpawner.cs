@@ -10,6 +10,8 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour {
     public static WaveSpawner instance;
+    [SerializeField]
+    private Transform enemyParent;
 
     private List<Enemy> enemies;
     private List<Wave> waves;
@@ -24,7 +26,7 @@ public class WaveSpawner : MonoBehaviour {
     [SerializeField] private int waveIndex = 0;
     private GlobalBuffTypes globalBuffs;
 
-    private void OnEnable() {
+    private void Awake() {
         if (instance != null) {
             Destroy(this);
             return;
@@ -32,9 +34,11 @@ public class WaveSpawner : MonoBehaviour {
         instance = this;
     }
 
-    private void Start() {
+    private void OnEnable() {
         EventBus<ChangeInGlobalBuffEvent>.OnEvent += UpdateGlobalBuff;
+    }
 
+    private void Start() {
         enemies = DatabaseAcces.instance.database.Enemies;
         waves = DatabaseAcces.instance.database.Waves;
 
@@ -98,7 +102,7 @@ public class WaveSpawner : MonoBehaviour {
 
         Enemy enemy = enemies[id];
 
-        GameObject spawnedEnemy = Instantiate(enemy.Prefab, position, Quaternion.identity);
+        GameObject spawnedEnemy = Instantiate(enemy.Prefab, position, Quaternion.identity, enemyParent);
 
         spawnedEnemy.GetComponentInChildren<EnemyLogic>().buff = globalBuffs;
 

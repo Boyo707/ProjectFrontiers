@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class DatabaseAcces : MonoBehaviour {
@@ -8,15 +5,11 @@ public class DatabaseAcces : MonoBehaviour {
 
     public static DatabaseAcces instance;
 
-    private void OnEnable() {
+    private void Awake() {
         if (instance != null) {
             Destroy(this);
             return;
         }
         instance = this;
-    }
-
-    public List<TowerUpgrades> GetTowerUpgrades(int towerId) {
-        return database.TowerUpgrades.FindAll(upgrade => upgrade.SelectedTower == towerId);
     }
 }

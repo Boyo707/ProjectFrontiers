@@ -28,11 +28,11 @@ public class Tower {
     [field: SerializeField]
     public float Cost { get; private set; }
     [field: SerializeField]
-    public TowerBaseStats Stats { get; private set; }
+    public TowerStats Stats { get; private set; }
 }
 
 [Serializable]
-public class TowerBaseStats {
+public class TowerStats {
     public int Health;
     public int Damage;
     public float FireRate;
@@ -57,20 +57,13 @@ public class TowerUpgrades {
 [Serializable]
 public class TowerUpgradeLevels {
     [Range(0, 10)]
-    public int Health;
+    public int Health = 1;
     [Range(0, 10)]
-    public int FireRate;
-    [Range(0, 10)]
-    public int Damage;
-    [Range(0, 10)]
-    public int Range;
-
-    public void ValidateValues() {
-        Health = Mathf.Clamp(Health, 0, 10);
-        FireRate = Mathf.Clamp(FireRate, 0, 10);
-        Damage = Mathf.Clamp(Damage, 0, 10);
-        Range = Mathf.Clamp(Range, 0, 10);
-    }
+    public int Damage = 1;
+    [Range(0f, 10f)]
+    public int FireRate = 1;
+    [Range(0f, 10f)]
+    public int Range = 1;
 }
 
 /// <summary>

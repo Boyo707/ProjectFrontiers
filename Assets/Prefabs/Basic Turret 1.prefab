@@ -226,6 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 279157216825245044}
+  - component: {fileID: 2822807353915638251}
   m_Layer: 8
   m_Name: Basic Turret 1
   m_TagString: Untagged
@@ -246,61 +247,39 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1179444390149334508}
   - {fileID: 1925993080486253391}
   - {fileID: 8520085863453371886}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6893822619869044415
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1179444390149334508}
-  - component: {fileID: 2896230011867249932}
-  m_Layer: 8
-  m_Name: TurretLogic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1179444390149334508
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893822619869044415}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 279157216825245044}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2896230011867249932
+--- !u!114 &2822807353915638251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893822619869044415}
+  m_GameObject: {fileID: 4537993389439893393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bfdd529305fb2045b9f3d820e12769e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1879985f3beab324ca814c1b0a051577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  database: {fileID: 11400000, guid: 009ae65d0f20b0943bf344f291161074, type: 2}
-  id: 0
-  layerMask:
+  stats:
+    Health: 0
+    Damage: 0
+    FireRate: 0
+    Range: 0
+  CurrentUpgrades:
+    Health: 1
+    Damage: 1
+    FireRate: 1
+    Range: 1
+  id: 1
+  targetLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 256
   partToRotate: {fileID: 8520085863453371886}
+  firePoint: {fileID: 8520085863453371886}
+  hitscanEffectPrefab: {fileID: 0}
 --- !u!1 &6919895142145391670
 GameObject:
   m_ObjectHideFlags: 0
