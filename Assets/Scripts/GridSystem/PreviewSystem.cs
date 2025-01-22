@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class PreviewSystem : MonoBehaviour
 {
-    [SerializeField]
-    private float previewOffset = 0.05f;
 
-    [SerializeField]
-    private GameObject cellIndicator;
+    [SerializeField] private float previewOffset = 0.05f;
+
+    [SerializeField] private GameObject cellIndicator;
+
+    [SerializeField] private Material previewMaterialPrefab;
+
+
     private GameObject previewObject;
 
-    [SerializeField]
-    private Material previewMaterialPrefab;
     private Material previewMaterialInstance;
 
     private Renderer cellIndicatorRenderer;
@@ -39,7 +40,6 @@ public class PreviewSystem : MonoBehaviour
             }
             renderer.materials = materials;
         }
-
     }
 
     public void StopShowingPreview()

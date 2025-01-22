@@ -1,35 +1,31 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour {
 
-    public TowerLocations TowerLocations;
 
-    [SerializeField]
-    InputManager inputManager;
-    [SerializeField]
-    private Grid grid;
+    [Header("Required GameObjects")]
+    [SerializeField] private GameObject gridVisualisation;
 
-    [SerializeField]
-    private ObjectDatabase database;
+    [Header("Required Components")]
+    [SerializeField] private TowerLocations TowerLocations;
 
-    [SerializeField]
-    private GameObject gridVisualisation;
+    [SerializeField] private InputManager inputManager;
 
-    public GridData towerGridData { get; private set; }
+    [SerializeField] private ObjectPlacer objectPlacer;
 
+    [SerializeField] private Grid grid;
+    [SerializeField] private GridData towerGridData;
 
-    [SerializeField]
-    private PreviewSystem previewSystem;
+    [SerializeField] private PreviewSystem previewSystem;
+
+    [SerializeField] private UpgradeManager upgradeManager;
+
+    [SerializeField] private ObjectDatabase database;
 
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
-    [SerializeField]
-    private ObjectPlacer objectPlacer;
-
-    [SerializeField] 
-    private UpgradeManager upgradeManager;
-
-    IBuildingState buildingState;
+    private bool isBuilding;
 
     private void OnEnable()
     {
@@ -49,7 +45,7 @@ public class PlacementSystem : MonoBehaviour {
 
         previewSystem.UpdatePosition(gridPosition, true);
 
-        if (buildingState == null)
+        if (isBuilding == false)
         {
             upgradeManager.SelectionState(gridPosition, towerGridData);
             return;
@@ -58,27 +54,19 @@ public class PlacementSystem : MonoBehaviour {
 
         if (lastDetectedPosition != gridPosition)
         {
-            buildingState.UpdateState(gridPosition);
             lastDetectedPosition = gridPosition;
         }
     }
 
     public void StartPlacement(int id) {
         StopPlacement();
-        upgradeManager.EnableUI(false);
         gridVisualisation.SetActive(true);
 
-        buildingState = new PlacementState(id,
-                                           grid,
-                                           previewSystem,
-                                           database,
-                                           towerGridData,
-                                           objectPlacer);
+        isBuilding = true;
 
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
-
     private void PlaceStructure()
     {
         if (inputManager.IsPointerOverUI())
@@ -88,36 +76,27 @@ public class PlacementSystem : MonoBehaviour {
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridposition = grid.WorldToCell(mousePosition);
 
-        //buildingState.OnAction(gridposition);
-
         EventBus<CreateTowerEvent>.Publish(new CreateTowerEvent(this, gridposition, 0));
 
     }
-
-    private void RemoveTower(TowerDestroyedEvent e)
+    private void StopPlacement()
     {
-        Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
-
-        if (towerGridData == null)
+        if (isBuilding == false)
         {
-            //If nothing is in its spot
+            return;
         }
-        else
-        {
-            int gameObjectIndex = towerGridData.GetRepresentationIndex(gridposition);
-            if (gameObjectIndex == -1)
-            {
-                return;
-            }
+        gridVisualisation.SetActive(false);
 
-            towerGridData.RemoveObjectAt(gridposition);
-            objectPlacer.RemoveObjectAt(gameObjectIndex);
-        }
+        lastDetectedPosition = Vector3Int.zero;
+
+        inputManager.OnClicked -= PlaceStructure;
+        inputManager.OnExit -= StopPlacement;
+
+        isBuilding = false;
     }
 
     private void PlaceTower(CreateTowerEvent e)
     {
-        //CHECK IF THIS WORKS IN INSTANTIATING IN UPGRADE MANAGER
         Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
 
         GridData selectedData = towerGridData;
@@ -136,6 +115,7 @@ public class PlacementSystem : MonoBehaviour {
 
         int index = objectPlacer.PlaceObject(database.Towers[selectedObjectIndex].Prefab, grid.CellToWorld(gridposition));
 
+        upgradeManager.SetTower(objectPlacer.PlacedGameObjects.Last()); 
 
         GridData selectData = towerGridData;
 
@@ -146,20 +126,26 @@ public class PlacementSystem : MonoBehaviour {
 
         previewSystem.UpdatePosition(grid.CellToWorld(gridposition), false);
     }
+    private void RemoveTower(TowerDestroyedEvent e)
+    {
+        Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
 
-    private void StopPlacement() {
-        if(buildingState == null)
+        if (towerGridData == null)
         {
-            return;
+            //If nothing is in the spot you want to remove
         }
-        gridVisualisation.SetActive(false);
-        buildingState.EndState();
-        inputManager.OnClicked -= PlaceStructure;
-        inputManager.OnExit -= StopPlacement;
-        lastDetectedPosition = Vector3Int.zero;
-        buildingState = null;
-    }
+        else
+        {
+            int gameObjectIndex = towerGridData.GetRepresentationIndex(gridposition);
+            if (gameObjectIndex == -1)
+            {
+                return;
+            }
 
+            towerGridData.RemoveObjectAt(gridposition);
+            objectPlacer.RemoveObjectAt(gameObjectIndex);
+        }
+    }
     private void OnDisable()
     {
         EventBus<TowerDestroyedEvent>.OnEvent -= RemoveTower;
