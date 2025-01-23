@@ -4,7 +4,6 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using JetBrains.Annotations;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -73,11 +72,11 @@ public class UpgradeManager : MonoBehaviour
 
     public void SellTower()
     {
-        float newCurrency = DatabaseAcces.instance.database.Towers[currentTower.id].Cost / 2;
+        float newCurrency = GameManager.instance.database.Towers[currentTower.id].Cost / 2;
 
         BuildManager.instance.AddCurrency(newCurrency);
 
-        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject.transform.position));
+        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject));
 
         MovePanel(false);
 
@@ -105,7 +104,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void DrawTitle()
     {
-        panelTitelText.text = $"{DatabaseAcces.instance.database.Towers[currentTower.id].Name}";
+        panelTitelText.text = $"{GameManager.instance.database.Towers[currentTower.id].Name}";
     }
 
     private void DrawStatUpgrades()
@@ -220,11 +219,11 @@ public class UpgradeManager : MonoBehaviour
 
     private void DrawTowerUpgrades()
     {
-        for (int i = 0; i < DatabaseAcces.instance.database.TowerUpgrades.Count; i++)
+        for (int i = 0; i < GameManager.instance.database.TowerUpgrades.Count; i++)
         {
             int validChecks = 0;
 
-            TowerUpgrades databaseTowerUpgrades = DatabaseAcces.instance.database.TowerUpgrades[i];
+            TowerUpgrades databaseTowerUpgrades = GameManager.instance.database.TowerUpgrades[i];
 
             if (currentTower.id != databaseTowerUpgrades.SelectedTower)
             {
@@ -255,7 +254,7 @@ public class UpgradeManager : MonoBehaviour
             if (validChecks == 4)
             {
                 upgradeTowerPanel.SetActive(true);
-                upgradeTowerPanel.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = $"{DatabaseAcces.instance.database.Towers[nextTowerId].Name}";
+                upgradeTowerPanel.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = $"{GameManager.instance.database.Towers[nextTowerId].Name}";
             }
             else
             {
@@ -267,13 +266,13 @@ public class UpgradeManager : MonoBehaviour
     }
     public void UpgradeTower()
     {
-        Vector3 currentPos = currentTowerObject.transform.position;
+        //Vector3 currentPos = currentTowerObject.transform.position;
 
         //remove
-        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentPos));
+        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject));
 
         //create
-        EventBus<CreateTowerEvent>.Publish(new CreateTowerEvent(this, currentPos, nextTowerId));
+        EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, currentTowerObject));
 
         //get current tower from created tower
         SetTower(objectPlacer.PlacedGameObjects.Last());

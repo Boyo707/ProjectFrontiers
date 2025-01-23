@@ -41,6 +41,8 @@ public class ResetWavesEvent : Event {
 #region turret events
 public class TowerCreatedEvent : Event {
     public GameObject tower;
+    public Vector3 position;
+    public int id;
     public TowerCreatedEvent(object source, GameObject tower) : base(source) {
         this.tower = tower;
     }
@@ -50,17 +52,6 @@ public class TowerDestroyedEvent : Event {
     public GameObject tower;
     public TowerDestroyedEvent(object source, GameObject tower) : base(source) {
         this.tower = tower;
-    }
-}
-
-public class CreateTowerEvent : Event
-{
-    public Vector3 towerPosition;
-    public int towerId;
-    public CreateTowerEvent(object source, Vector3 position, int Id) : base(source)
-    {
-        this.towerPosition = position;
-        this.towerId = Id;
     }
 }
 

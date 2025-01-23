@@ -6,6 +6,7 @@ public class PlacementSystem : MonoBehaviour {
 
     [Header("Required GameObjects")]
     [SerializeField] private GameObject gridVisualisation;
+    [SerializeField] private GameObject basicTowerPrefab;
 
     [Header("Required Components")]
     [SerializeField] private TowerLocations TowerLocations;
@@ -31,7 +32,7 @@ public class PlacementSystem : MonoBehaviour {
     private void OnEnable()
     {
         EventBus<TowerDestroyedEvent>.OnEvent += RemoveTower;
-        EventBus<CreateTowerEvent>.OnEvent += PlaceTower;
+        EventBus<TowerCreatedEvent>.OnEvent += PlaceTower;
     }
 
     private void Start() {
@@ -79,7 +80,7 @@ public class PlacementSystem : MonoBehaviour {
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridposition = grid.WorldToCell(mousePosition);
 
-        EventBus<CreateTowerEvent>.Publish(new CreateTowerEvent(this, gridposition, 0));
+        EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, GameManager.instance.database.Towers[0].Prefab));
 
     }
     private void StopPlacement()
@@ -99,14 +100,15 @@ public class PlacementSystem : MonoBehaviour {
         isBuilding = false;
     }
 
-    private void PlaceTower(CreateTowerEvent e)
+    private void PlaceTower(TowerCreatedEvent e)
     {
-        Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
+        Debug.Log(e.tower);
+        Vector3Int gridposition = grid.WorldToCell(e.tower.transform.position);
 
         GridData selectedData = towerGridData;
         int gameObjectIndex = towerGridData.GetRepresentationIndex(gridposition);
 
-        int selectedObjectIndex = database.Towers.FindIndex(data => data.Id == e.towerId);
+        int selectedObjectIndex = database.Towers.FindIndex(data => data.Id == e.tower.GetComponent<TowerBase>().id);
 
         bool placementValidity = selectedData.CanPlaceObjectAt(gridposition, database.Towers[selectedObjectIndex].Size);
 
@@ -153,6 +155,6 @@ public class PlacementSystem : MonoBehaviour {
     private void OnDisable()
     {
         EventBus<TowerDestroyedEvent>.OnEvent -= RemoveTower;
-        EventBus<CreateTowerEvent>.OnEvent -= PlaceTower;
+        EventBus<TowerCreatedEvent>.OnEvent -= PlaceTower;
     }
 }
