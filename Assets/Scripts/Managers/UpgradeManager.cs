@@ -76,7 +76,11 @@ public class UpgradeManager : MonoBehaviour
 
         EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject.transform.position));
 
-        gameObject.SetActive(false);
+        hasOpened = false;
+
+        panelAnimator.SetBool("MovePanel", hasOpened);
+
+        ClearPanel();
     }
 
     public void SetTower(GameObject selectedTower)
@@ -265,6 +269,15 @@ public class UpgradeManager : MonoBehaviour
         SetTower(objectPlacer.PlacedGameObjects.Last());
 
         upgradeTowerPanel.SetActive(false);
+    }
+
+    private void ClearPanel()
+    {
+        panelTitelText.text = "No tower selected";
+        standardStatsPanel.SetActive(false);
+        statsUpgradePanel.SetActive(false);
+        upgradeTowerPanel.SetActive(false);
+        sellTowerButton.SetActive(false);
     }
 
     public void MovePanel()

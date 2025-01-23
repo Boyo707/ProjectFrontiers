@@ -147,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3206891789507500736}
   - component: {fileID: 23925916424672945}
+  - component: {fileID: 5704569894745987795}
   m_Layer: 0
   m_Name: PreviewSystem
   m_TagString: Untagged
@@ -184,6 +185,22 @@ MonoBehaviour:
   previewOffset: 0.05
   cellIndicator: {fileID: 4913947306944628731}
   previewMaterialPrefab: {fileID: 2100000, guid: 57214a09923779441b1d33e9596a888f, type: 2}
+--- !u!114 &5704569894745987795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3457265209504230760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125bcb5389721214492bb906be2201b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: 009ae65d0f20b0943bf344f291161074, type: 2}
+  previewSystem: {fileID: 23925916424672945}
+  objectPlacer: {fileID: 372018670593187925}
+  grid: {fileID: 7999610480006199380}
 --- !u!1 &5838756998766624987
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +389,7 @@ MonoBehaviour:
   objectPlacer: {fileID: 372018670593187925}
   grid: {fileID: 7999610480006199380}
   previewSystem: {fileID: 23925916424672945}
+  towerPreview: {fileID: 5704569894745987795}
   upgradeManager: {fileID: 0}
   database: {fileID: 11400000, guid: 009ae65d0f20b0943bf344f291161074, type: 2}
 --- !u!1 &8733219068528125226

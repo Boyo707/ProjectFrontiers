@@ -18,6 +18,7 @@ public class PlacementSystem : MonoBehaviour {
     [SerializeField] private GridData towerGridData;
 
     [SerializeField] private PreviewSystem previewSystem;
+    [SerializeField] private TowerPreview towerPreview;
 
     [SerializeField] private UpgradeManager upgradeManager;
 
@@ -50,7 +51,7 @@ public class PlacementSystem : MonoBehaviour {
             upgradeManager.SelectionState(gridPosition, towerGridData);
             return;
         }
-
+        towerPreview.UpdateState(towerGridData, gridPosition);
 
         if (lastDetectedPosition != gridPosition)
         {
@@ -63,6 +64,8 @@ public class PlacementSystem : MonoBehaviour {
         gridVisualisation.SetActive(true);
 
         isBuilding = true;
+        towerPreview.AssignPrefab(id);
+
 
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
@@ -86,6 +89,7 @@ public class PlacementSystem : MonoBehaviour {
             return;
         }
         gridVisualisation.SetActive(false);
+        towerPreview.EndPreview();
 
         lastDetectedPosition = Vector3Int.zero;
 
