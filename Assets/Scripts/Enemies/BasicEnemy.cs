@@ -7,7 +7,7 @@ public class BasicEnemy : EnemyBase {
     protected override void Attack() {
         if (currentTarget != null) {
             //Instantiate(hitscanEffect, currentTarget.transform.position, Quaternion.identity);
-            currentTarget.GetComponent<TowerBase>()?.TakeDamage(stats.Damage);
+            currentTarget.transform.parent?.GetComponent<TowerBase>()?.TakeDamage(stats.Damage);
             Debug.Log($"Enemy {id} performed a hitscan shot!");
         }
         //if (towerData.projectilePrefab != null && firePoint != null) {

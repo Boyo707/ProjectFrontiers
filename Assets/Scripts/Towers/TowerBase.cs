@@ -19,7 +19,7 @@ public abstract class TowerBase : MonoBehaviour {
     public Transform partToRotate;
 
     protected virtual void Start() {
-        towers = DatabaseAcces.instance.database.Towers;
+        towers = GameManager.instance.database.Towers;
         
         try {
             stats = new TowerStats {
@@ -114,6 +114,10 @@ public abstract class TowerBase : MonoBehaviour {
 
     protected bool IsTargetInRange(GameObject target) {
         return Vector3.Distance(transform.position, target.transform.position) <= stats.Range;
+    }
+
+    public float GetHealthPercentage() {
+        return currentHealth / stats.Health;
     }
 
     protected abstract void Shoot();

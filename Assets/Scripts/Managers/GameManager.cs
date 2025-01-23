@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DatabaseAcces : MonoBehaviour {
-    public static DatabaseAcces instance;
+public class GameManager : MonoBehaviour {
+    public static GameManager instance;
 
     public ObjectDatabase database;
     public List<GameObject> towersInGame;

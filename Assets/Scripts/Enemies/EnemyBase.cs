@@ -15,11 +15,12 @@ public abstract class EnemyBase : MonoBehaviour {
     [Header("Unity Setup")]
     public int id = -1;
     [SerializeField] protected LayerMask targetLayerMask;
+    private readonly float rangeOffset = 2f;
 
     protected virtual void Start() {
         try {
-            targets = DatabaseAcces.instance.towersInGame;
-            Enemy enemy = DatabaseAcces.instance.database.Enemies[id];
+            targets = GameManager.instance.towersInGame;
+            Enemy enemy = GameManager.instance.database.Enemies[id];
 
             name = enemy.Name;
             stats = new EnemyStats {
@@ -27,7 +28,7 @@ public abstract class EnemyBase : MonoBehaviour {
                 Damage = enemy.Stats.Damage,
                 Speed = enemy.Stats.Speed,
                 FireRate = enemy.Stats.FireRate,
-                Range = enemy.Stats.Range,
+                Range = enemy.Stats.Range + rangeOffset,
                 Experience = enemy.Stats.Experience
             };
         }
@@ -37,22 +38,24 @@ public abstract class EnemyBase : MonoBehaviour {
             return;
         }
 
+        EventBus<TowerCreatedEvent>.OnEvent += CheckNewTarget;
+
         currentHealth = stats.Health;
     }
 
     protected virtual void Update() {
         if (currentTarget == null) {
             FindNewTarget();
+            if (currentTarget == null) return;
         }
-        if (currentTarget == null) return;
 
-        MoveToTarget();
-
-        if (IsTargetInRange() && attackCooldown <= 0f) {
+        if (!IsTargetInRange()) {
+            MoveToTarget();
+        } 
+        else if (attackCooldown <= 0f) {
             Attack();
             attackCooldown = 1f / stats.FireRate;
         }
-
 
         if (attackCooldown > 0f) {
             attackCooldown -= Time.deltaTime;
@@ -64,20 +67,24 @@ public abstract class EnemyBase : MonoBehaviour {
     }
 
     protected void FindNewTarget() {
-        float shortestDistance = Mathf.Infinity;
+        float shortestDistanceSqr = Mathf.Infinity;
         GameObject nearestTarget = null;
 
         foreach (GameObject target in targets) {
-            //change to sqrMag (better perform)
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance < shortestDistance) {
-                shortestDistance = distance;
+            float distanceSqr = (transform.position - target.transform.position).sqrMagnitude;
+            if (distanceSqr < shortestDistanceSqr) {
+                shortestDistanceSqr = distanceSqr;
                 nearestTarget = target;
             }
         }
-
-        currentTarget = nearestTarget;
+        
+        currentTarget = nearestTarget.transform.Find("target_root")?.gameObject;
     }
+
+    private void CheckNewTarget(TowerCreatedEvent e) {
+        Invoke(nameof(FindNewTarget), 0.5f);
+    }
+
 
     private void MoveToTarget() {
         Vector3 direction = (currentTarget.transform.position - transform.position);
@@ -98,5 +105,9 @@ public abstract class EnemyBase : MonoBehaviour {
     protected virtual void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, stats.Range);
+    }
+
+    private void OnDestroy() {
+        EventBus<TowerCreatedEvent>.OnEvent -= CheckNewTarget;
     }
 }

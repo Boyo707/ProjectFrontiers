@@ -29,7 +29,6 @@ public class SellState : IBuildingState
 
     public void OnAction(Vector3Int gridPosition)
     {
-        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, gridPosition));
     }
 
     private bool CheckIfCollectionIsValid(Vector3Int gridPosition)

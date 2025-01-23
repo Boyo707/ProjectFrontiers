@@ -52,6 +52,7 @@ public class PlacementState : IBuildingState
             return;
         }
 
+
         int index = objectPlacer.PlaceObject(database.Towers[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition));
 
 

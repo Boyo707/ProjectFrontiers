@@ -39,11 +39,11 @@ public class UpgradeManager : MonoBehaviour
 
     public void SellTower()
     {
-        float newCurrency = DatabaseAcces.instance.database.Towers[_currentTower.id].Cost * _currentTower.GetHealthPercentage();
+        float newCurrency = GameManager.instance.database.Towers[_currentTower.id].Cost * _currentTower.GetHealthPercentage();
 
         BuildManager.instance.AddCurrency(newCurrency);
 
-        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, _currentTowerObject.transform.position));
+        EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, _currentTowerObject));
     }
 
 

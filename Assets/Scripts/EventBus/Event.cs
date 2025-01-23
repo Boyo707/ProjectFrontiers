@@ -40,13 +40,7 @@ public class ResetWavesEvent : Event {
 
 #region turret events
 public class TowerCreatedEvent : Event {
-
-public class TowerDestroyedEvent : Event {
---- Merge Conflict ---
-
-
-    }
-}    public GameObject tower;
+    public GameObject tower;
     public TowerCreatedEvent(object source, GameObject tower) : base(source) {
         this.tower = tower;
     }

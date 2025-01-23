@@ -40,8 +40,8 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     private void Start() {
-        enemies = DatabaseAcces.instance.database.Enemies;
-        waves = DatabaseAcces.instance.database.Waves;
+        enemies = GameManager.instance.database.Enemies;
+        waves = GameManager.instance.database.Waves;
 
         GetWaveData(waveIndex);
     }
