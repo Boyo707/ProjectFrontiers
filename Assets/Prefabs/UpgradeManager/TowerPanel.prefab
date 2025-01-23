@@ -5383,7 +5383,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '>'
+  m_text: '<
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6520,10 +6522,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPlacer: {fileID: 0}
   panelTitelText: {fileID: 2866498071650987344}
+  panelButtonText: {fileID: 2844578993461285147}
   standardStatsPanel: {fileID: 3175122312976513623}
   statsUpgradePanel: {fileID: 3703062380284402067}
   upgradeTowerPanel: {fileID: 924389812686904883}
   sellTowerButton: {fileID: 2416726378002461984}
+  currentXP: 0
 --- !u!95 &1804559115486151434
 Animator:
   serializedVersion: 7

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using JetBrains.Annotations;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private ObjectPlacer objectPlacer;
 
     [SerializeField] private TMP_Text panelTitelText;
+    [SerializeField] private TMP_Text panelButtonText;
 
     [Header("Required Objects")]
 
@@ -26,7 +28,10 @@ public class UpgradeManager : MonoBehaviour
     private List<Slider> levelSliders = new List<Slider>();
 
     //FOR THE FUTURE WHEN WE NEED TO USE LEVELS TO UPGRADE THE STATS
-    private int availableLevels = 0;
+    //MAY NEED A NEW SCRIPT
+    //NEEDS A GET XP SO THIS WILL BE REPLACED BY THE CURRENTTOWER.XP
+    [SerializeField] private int currentXP = 0;
+    //private int availableLevels = 0;
 
     private GameObject currentTowerObject;
     private TowerBase currentTower;
@@ -61,24 +66,20 @@ public class UpgradeManager : MonoBehaviour
 
                 SetTower(towerObject);
 
-                hasOpened = true;
-
-                panelAnimator.SetBool("MovePanel", hasOpened);
+                MovePanel(true);
             }
         }
     }
 
     public void SellTower()
     {
-        float newCurrency = DatabaseAcces.instance.database.Towers[currentTower.id].Cost * currentTower.GetHealthPercentage();
+        float newCurrency = DatabaseAcces.instance.database.Towers[currentTower.id].Cost / 2;
 
         BuildManager.instance.AddCurrency(newCurrency);
 
         EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject.transform.position));
 
-        hasOpened = false;
-
-        panelAnimator.SetBool("MovePanel", hasOpened);
+        MovePanel(false);
 
         ClearPanel();
     }
@@ -162,16 +163,25 @@ public class UpgradeManager : MonoBehaviour
     }
     private int IncreaseLevel(int currentLevel, bool max)
     {
-        int newLevel = currentLevel + 1;
-
-        newLevel = Mathf.Clamp(newLevel, 0,
-            (max && currentLevel != 10) ? 9 : 10);
-
-        if (newLevel == 10 && !max) 
+        Debug.Log(currentLevel);
+        int levelCost = 10 * currentLevel;
+        Debug.Log(levelCost);
+        Debug.Log(currentXP >= levelCost);
+        if (currentXP >= levelCost)
         {
-            max = true;
+            int newLevel = currentLevel + 1;
+
+            newLevel = Mathf.Clamp(newLevel, 0,
+                (max && currentLevel != 10) ? 9 : 10);
+
+            if (newLevel == 10 && !max)
+            {
+                max = true;
+            }
+            currentXP -= levelCost;
+            return newLevel;
         }
-        return newLevel;
+        return currentLevel;
     }
 
     public void DowngradeStat(int statIndex)
@@ -283,6 +293,13 @@ public class UpgradeManager : MonoBehaviour
     public void MovePanel()
     {
         hasOpened = !hasOpened;
+        panelButtonText.text = hasOpened ? ">" : "<";
+        panelAnimator.SetBool("MovePanel", hasOpened);
+    }
+    public void MovePanel(bool open)
+    {
+        hasOpened = open;
+        panelButtonText.text = hasOpened ? ">" : "<";
         panelAnimator.SetBool("MovePanel", hasOpened);
     }
 }
