@@ -132,7 +132,7 @@ public class PlacementSystem : MonoBehaviour {
     }
     private void RemoveTower(TowerDestroyedEvent e)
     {
-        Vector3Int gridposition = grid.WorldToCell(e.towerPosition);
+        Vector3Int gridposition = grid.WorldToCell(e.tower.transform.position);
 
         if (towerGridData == null)
         {
