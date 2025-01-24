@@ -19,7 +19,7 @@ public abstract class EnemyBase : MonoBehaviour {
 
     protected virtual void Start() {
         try {
-            targets = GameManager.instance.towersInGame;
+            targets = PlacementSystem.instance.towersInGame;
             Enemy enemy = GameManager.instance.database.Enemies[id];
 
             name = enemy.Name;

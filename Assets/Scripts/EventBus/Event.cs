@@ -8,6 +8,19 @@ public class Event {
     }
 }
 
+#region Placement handeler
+public class PlaceTowerEvent : Event {
+    public int towerId;
+    public PlaceTowerEvent(object source, int towerId) : base(source) {
+        this.towerId = towerId;
+    }
+}
+
+
+
+#endregion
+
+
 #region enemy events
 /// <summary>
 /// Event triggered when enemy is spawned, takes in spawned enemy as parameter
@@ -41,8 +54,7 @@ public class ResetWavesEvent : Event {
 #region turret events
 public class TowerCreatedEvent : Event {
     public GameObject tower;
-    public Vector3 position;
-    public int id;
+
     public TowerCreatedEvent(object source, GameObject tower) : base(source) {
         this.tower = tower;
     }

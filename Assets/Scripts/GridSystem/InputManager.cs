@@ -5,11 +5,9 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour {
     
     [SerializeField] private Camera sceneCamera;
-
     [SerializeField] private LayerMask placementLayerMask;
 
     public event Action OnClicked, OnExit;
-
     private Vector3 lastPosition;
 
     private void Update() {
@@ -21,16 +19,12 @@ public class InputManager : MonoBehaviour {
         }
     }
 
-    public bool IsPointerOverUI()
-        => EventSystem.current.IsPointerOverGameObject();
-
     public Vector3 GetSelectedMapPosition() {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = sceneCamera.nearClipPlane;
         Ray ray = sceneCamera.ScreenPointToRay(mousePos);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100, placementLayerMask)) {
+        if (Physics.Raycast(ray, out RaycastHit hit, 100, placementLayerMask)) {
             lastPosition = hit.point;
         }
 

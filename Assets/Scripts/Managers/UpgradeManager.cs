@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour
 {
     [Header("Required Component")]
-    [SerializeField] private ObjectPlacer objectPlacer;
 
     [SerializeField] private TMP_Text panelTitelText;
     [SerializeField] private TMP_Text panelButtonText;
@@ -23,8 +22,8 @@ public class UpgradeManager : MonoBehaviour
 
     private Animator panelAnimator;
 
-    private List<TMP_Text> levelText = new List<TMP_Text>();
-    private List<Slider> levelSliders = new List<Slider>();
+    private List<TMP_Text> levelText = new ();
+    private List<Slider> levelSliders = new ();
 
     //FOR THE FUTURE WHEN WE NEED TO USE LEVELS TO UPGRADE THE STATS
     //MAY NEED A NEW SCRIPT
@@ -61,7 +60,7 @@ public class UpgradeManager : MonoBehaviour
 
             if (gameObjectIndex >= 0)
             {
-                GameObject towerObject = objectPlacer.PlacedGameObjects[gameObjectIndex];
+                GameObject towerObject = PlacementSystem.instance.towersInGame[gameObjectIndex];
 
                 SetTower(towerObject);
 
@@ -72,9 +71,9 @@ public class UpgradeManager : MonoBehaviour
 
     public void SellTower()
     {
-        float newCurrency = GameManager.instance.database.Towers[currentTower.id].Cost / 2;
+        int newCurrency = (int)GameManager.instance.database.Towers[currentTower.id].Cost / 2;
 
-        BuildManager.instance.AddCurrency(newCurrency);
+        GameManager.instance.currency += newCurrency;
 
         EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject));
 
@@ -275,7 +274,7 @@ public class UpgradeManager : MonoBehaviour
         EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, currentTowerObject));
 
         //get current tower from created tower
-        SetTower(objectPlacer.PlacedGameObjects.Last());
+        SetTower(PlacementSystem.instance.towersInGame.Last());
 
         upgradeTowerPanel.SetActive(false);
     }
