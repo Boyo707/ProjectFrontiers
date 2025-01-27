@@ -8,17 +8,13 @@ public class GrenadeProjectile : ProjectileBase
 
     [SerializeField] private GameObject explosionPrefab;
 
-    private float curveStartTime;
-
     private float archPercentage;
-
-    private Component comp;
 
     public override void CalculationAction()
     {
         if (archPercentage < 1)
         {
-            archPercentage = (Time.time - curveStartTime) / 10 * projectileSpeed;
+            archPercentage = Time.time / 10 * projectileSpeed;
         }
         else
         {

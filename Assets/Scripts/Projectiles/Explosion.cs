@@ -7,8 +7,6 @@ public class Explosion : MonoBehaviour
     
     private int damage;
 
-    private float curveStartTime;
-
     SphereCollider sphereCollider;
 
     projectileOrigin currentOrigin;
@@ -22,32 +20,24 @@ public class Explosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("HEEELP");
-
         Collider[] hitColliders = new Collider[30];
         int numColliders = Physics.OverlapSphereNonAlloc(transform.position, explosionSize, hitColliders);
         for (int i = 0; i < numColliders; i++)
         {
-            //distance for damage
+            //WRITE THE DAMAGE SEND DEPENDING ON DISTANCE
 
-            //hitColliders[i]
             EnemyBase enemyComponent = hitColliders[i].GetComponent<EnemyBase>();
             TowerBase towerComponent = hitColliders[i].GetComponent<TowerBase>();
+
             if (enemyComponent != null && currentOrigin == projectileOrigin.tower)
             {
                 enemyComponent.TakeDamage(damage);
-                //OnTriggerHit(other, enemyComponent);
             }
             else if (towerComponent != null && currentOrigin == projectileOrigin.enemy)
             {
                 towerComponent.TakeDamage(damage);
             }
-            else
-            {
-                Debug.Log($"Object {hitColliders[i].gameObject.name} does not contain a enemy or tower base");
-            }
         }
-
         Destroy(gameObject);
     }
 

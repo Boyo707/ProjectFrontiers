@@ -2,14 +2,18 @@ using UnityEngine;
 
 public enum projectileOrigin { tower, enemy }
 
-public abstract class ProjectileBase : MonoBehaviour
+public class ProjectileBase : MonoBehaviour
 {
+    //target of the projectile will be given by the shooter on instantiate
+
+    //Target does not determine its range. The projectile will keep traveling
+
+    //projectiles needs to be booled in the enemy or tower IF it starts lagging.
+
     [Header("Normal Options")]
     [SerializeField] protected Transform projectileTarget;
     [SerializeField] protected float projectileSpeed;
     [SerializeField] private float lifeTime;
-
-    private bool hasALifeTime = true;
 
     private float currentTime = 0;
 
@@ -17,37 +21,27 @@ public abstract class ProjectileBase : MonoBehaviour
 
     protected Vector3 startingPos;
 
-    [HideInInspector] public projectileOrigin origin = projectileOrigin.tower;
+    protected projectileOrigin origin;
    
     protected Rigidbody rb;
-
-    //Projectile variants for tower and enemy will be devided with collision matrix - layers
-    //target of the projectile will be given by the shooter on instantiate
-    //potential booling of the projectiles
-    //does not need a base script/inheritance
-
-
-    //Target does not determine its range. The projectile will keep traveling
-
-    //projectiles needs to be booled in the enemy or tower IF it starts lagging.
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log(origin);
         startingPos = transform.position;
+
+        rb = GetComponent<Rigidbody>();
 
         if (lifeTime <= 0)
         {
-            hasALifeTime = false;
             Debug.Log($"GameObject {gameObject.name} does not have a lifeTime");
         }
         else
         {
             currentTime = lifeTime;
         }
-        rb = GetComponent<Rigidbody>();
-        Debug.Log(rb);
 
         if (projectileTarget != null)
         {
@@ -70,18 +64,14 @@ public abstract class ProjectileBase : MonoBehaviour
             rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, projectileSpeed);
         }
 
-        if (hasALifeTime)
+        if (currentTime > 0)
         {
-            if (currentTime > 0)
-            {
-                currentTime -= Time.deltaTime;
-            }
-            else
-            {
-                //life time ended
-                Destroy(gameObject);
-                //gameObject.SetActive(false);
-            }
+            currentTime -= Time.deltaTime;
+        }
+        else
+        {
+            //life time ended
+            Destroy(gameObject);
         }
     }
 
@@ -90,24 +80,21 @@ public abstract class ProjectileBase : MonoBehaviour
         PhysicsAction();
     }
 
+    //everything to do with physics or moving the projectile will be written in here.
     public virtual void PhysicsAction()
     {
         rb.AddForce(transform.forward * projectileSpeed, ForceMode.VelocityChange);
     }
 
+    //everything that needs to be calculated outside every frame will be written in here.
     public virtual void CalculationAction()
     {
         
     }
 
-    public virtual void OnTriggerHit(Collider other)
-    {
-        //component.SendMessage("TakeDamage", projectileDamage);
-        //gameObject.SetActive(false);
-        //on trigger enter. Apply damage and destroy/bool the projectile
 
-    }
-
+    //Assings the important values to the projectile
+    //if the shooter wants to assign a target to rotate towards
     public void AssignValues(projectileOrigin origin, Transform target, int damage)
     {
         this.origin = origin;
@@ -132,6 +119,7 @@ public abstract class ProjectileBase : MonoBehaviour
         }
     }
 
+    //if the shooter wants to feed the projectile direction directly
     public void AssignValues(projectileOrigin origin, Quaternion rotation, int damage)
     {
         this.origin = origin;
@@ -151,7 +139,7 @@ public abstract class ProjectileBase : MonoBehaviour
                 if (enemyComponent != null)
                 {
                     enemyComponent.TakeDamage(projectileDamage);
-                    //OnTriggerHit(other, enemyComponent);
+                    Destroy(gameObject);
                 }
                 break;
 
@@ -160,7 +148,7 @@ public abstract class ProjectileBase : MonoBehaviour
                 if (towerComponent != null)
                 {
                     towerComponent.TakeDamage(projectileDamage);
-                    //OnTriggerHit(other, towerComponent);
+                    Destroy(gameObject);
                 }
                 break;
         }
