@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -38,6 +39,21 @@ public class UpgradeManager : MonoBehaviour
 
     private bool hasOpened;
 
+
+    private void OnEnable() {
+        EventBus<SelectTowerEvent>.OnEvent += ShowUpgradePanel;
+    }
+
+    private void ShowUpgradePanel(SelectTowerEvent e) {
+        // show panel
+        // set data for panel
+        throw new NotImplementedException();
+    }
+
+
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,6 +67,7 @@ public class UpgradeManager : MonoBehaviour
 
         panelAnimator = GetComponent<Animator>();
     }
+
     public void SelectionState(Vector3Int gridPosition, GridData towerGridData)
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -73,7 +90,7 @@ public class UpgradeManager : MonoBehaviour
     {
         int newCurrency = (int)GameManager.instance.database.Towers[currentTower.id].Cost / 2;
 
-        GameManager.instance.currency += newCurrency;
+        GameManager.instance.AddCurrency(newCurrency);
 
         EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, currentTowerObject));
 
