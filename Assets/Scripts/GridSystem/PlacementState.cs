@@ -48,7 +48,7 @@ public class PlacementState : IBuildingState
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
         if (placementValidity == false)
         {
-            //not placing action
+            Debug.Log("Im already occupied");
             return;
         }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,33 +18,36 @@ public class PlacementSystem : MonoBehaviour {
     [SerializeField]
     private GameObject gridVisualisation;
 
-    private GridData floorData;
+    public GridData towerGridData { get; private set; }
 
 
     [SerializeField]
-    private PreviewSystem preview;
+    private PreviewSystem previewSystem;
 
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
     [SerializeField]
     private ObjectPlacer objectPlacer;
 
+    [SerializeField] 
+    private UpgradeManager upgradeManager;
+
     IBuildingState buildingState;
     private void Start() {
         StopPlacement();
-        floorData = new GridData();
+        towerGridData = new GridData();
     }
 
     public void StartPlacement(int id) {
         StopPlacement();
-
+        upgradeManager.EnableUI(false);
         gridVisualisation.SetActive(true);
 
         buildingState = new PlacementState(id,
                                            grid,
-                                           preview,
+                                           previewSystem,
                                            database,
-                                           floorData,
+                                           towerGridData,
                                            objectPlacer);
 
         inputManager.OnClicked += PlaceStructure;
@@ -53,8 +57,9 @@ public class PlacementSystem : MonoBehaviour {
     public void StartRemoving()
     {
         StopPlacement();
+        upgradeManager.EnableUI(false);
         gridVisualisation.SetActive(true);
-        buildingState = new RemovingState(grid, preview, floorData, objectPlacer);
+        buildingState = new RemovingState(grid, previewSystem, towerGridData, objectPlacer);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
@@ -83,15 +88,23 @@ public class PlacementSystem : MonoBehaviour {
         buildingState = null;
     }
 
-    private void Update() {
-        if (buildingState == null) {
-            return;
-        }
+    
 
+    private void Update() 
+    {
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-        if(lastDetectedPosition != gridPosition)
+        previewSystem.UpdatePosition(gridPosition, true);
+
+        if (buildingState == null) 
+        {
+            upgradeManager.SelectionState(gridPosition, towerGridData);
+            return;
+        }
+
+
+        if (lastDetectedPosition != gridPosition)
         {
             buildingState.UpdateState(gridPosition);
             lastDetectedPosition = gridPosition;

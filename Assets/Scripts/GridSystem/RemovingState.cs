@@ -37,7 +37,7 @@ public class RemovingState : IBuildingState
 
         if (selectedData == null)
         {
-            
+            //A sound that there is nothing here
         }
         else
         {
