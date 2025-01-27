@@ -40,8 +40,13 @@ public class UpgradeManager : MonoBehaviour
     private bool hasOpened;
 
 
+    
+    /// <summary>
+    /// Sam's colonizing this part::::
+    /// </summary>
     private void OnEnable() {
         EventBus<SelectTowerEvent>.OnEvent += ShowUpgradePanel;
+        
     }
 
     private void ShowUpgradePanel(SelectTowerEvent e) {
@@ -50,6 +55,9 @@ public class UpgradeManager : MonoBehaviour
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// G E K O L O N I S E E R D
+    /// </summary>
 
 
 

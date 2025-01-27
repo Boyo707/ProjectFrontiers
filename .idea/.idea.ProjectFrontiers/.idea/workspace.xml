@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="365be568-4799-4a6d-9e4f-c82db9beb8d3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectFrontiers/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectFrontiers/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Database.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Database.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SamScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SamScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/HUD.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/HUD.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UpgradeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UpgradeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Turret.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Turret.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
