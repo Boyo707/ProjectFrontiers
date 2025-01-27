@@ -19,7 +19,7 @@ public abstract class EnemyBase : MonoBehaviour {
 
     protected virtual void Start() {
         try {
-            targets = PlacementSystem.instance.towersInGame;
+            targets = GridManager.instance.towersInGame;
             Enemy enemy = GameManager.instance.database.Enemies[id];
 
             name = enemy.Name;
@@ -67,6 +67,8 @@ public abstract class EnemyBase : MonoBehaviour {
     }
 
     protected void FindNewTarget() {
+        if (targets.Count == 0) return;
+
         float shortestDistanceSqr = Mathf.Infinity;
         GameObject nearestTarget = null;
 

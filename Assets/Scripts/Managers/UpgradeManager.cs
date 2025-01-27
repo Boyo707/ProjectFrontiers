@@ -60,7 +60,7 @@ public class UpgradeManager : MonoBehaviour
 
             if (gameObjectIndex >= 0)
             {
-                GameObject towerObject = PlacementSystem.instance.towersInGame[gameObjectIndex];
+                GameObject towerObject = GridManager.instance.towersInGame[gameObjectIndex];
 
                 SetTower(towerObject);
 
@@ -274,7 +274,7 @@ public class UpgradeManager : MonoBehaviour
         EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, currentTowerObject));
 
         //get current tower from created tower
-        SetTower(PlacementSystem.instance.towersInGame.Last());
+        SetTower(GridManager.instance.towersInGame.Last());
 
         upgradeTowerPanel.SetActive(false);
     }
