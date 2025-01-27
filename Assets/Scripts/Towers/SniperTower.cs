@@ -7,7 +7,7 @@ public class SniperTower : TowerBase {
     protected override void Shoot() {
         if (currentTarget != null) {
             //Instantiate(hitscanEffect, currentTarget.transform.position, Quaternion.identity);
-            currentTarget.GetComponent<EnemyLogic>()?.TakeDamage(stats.Damage);
+            currentTarget.GetComponent<EnemyBase>()?.TakeDamage(stats.Damage);
             Debug.Log($"{id} performed a hitscan shot!");
         }
     }

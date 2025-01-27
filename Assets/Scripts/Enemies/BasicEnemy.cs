@@ -1,13 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BasicTower : TowerBase {
+public class BasicEnemy : EnemyBase {
+
     public Transform firePoint;
 
-    protected override void Shoot() {
+    protected override void Attack() {
         if (currentTarget != null) {
             //Instantiate(hitscanEffect, currentTarget.transform.position, Quaternion.identity);
-            currentTarget.GetComponent<EnemyBase>()?.TakeDamage(stats.Damage);
-            //Debug.Log($"{id} performed a hitscan shot!");
+            currentTarget.transform.parent?.GetComponent<TowerBase>()?.TakeDamage(stats.Damage);
+            Debug.Log($"Enemy {id} performed a hitscan shot!");
         }
         //if (towerData.projectilePrefab != null && firePoint != null) {
         //GameObject projectile = Instantiate(towerData.projectilePrefab, firePoint.position, firePoint.rotation);
