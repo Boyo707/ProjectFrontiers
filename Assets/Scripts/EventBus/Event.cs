@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Event {
     public object Source { get; private set; }
@@ -9,7 +8,7 @@ public class Event {
     }
 }
 
-#region 
+#region enemy events
 /// <summary>
 /// Event triggered when enemy is spawned, takes in spawned enemy as parameter
 /// </summary>
@@ -19,24 +18,61 @@ public class EnemySpawnedEvent : Event {
         this.enemyId = enemyId;
     }
 }
-#endregion
 
 public class EnemyKilledEvent : Event {
-    public EnemyKilledEvent(object source) : base(source) {
+    public int enemyId;
+    public EnemyKilledEvent(object source, int enemyId) : base(source) {
+        this.enemyId = enemyId;
+    }
+}
+public class WaveCompletedEvent : Event {
+    public int waveIndex;
+    public WaveCompletedEvent(object source, int waveIndex) : base(source) {
+        this.waveIndex = waveIndex;
+    }
+}
+public class ResetWavesEvent : Event {
+    public ResetWavesEvent(object source) : base(source) {
+    }
+}
+
+#endregion
+
+#region turret events
+
+
+#endregion
+
+#region difficulty events
+public class ChangeInGlobalBuffEvent : Event {
+    public GlobalBuffTypes globalBuff;
+    public ChangeInGlobalBuffEvent(object source, GlobalBuffTypes globalBuff) : base(source) {
+        this.globalBuff = globalBuff;
+    }
+}
+
+public class ChangeInDifficultyBuffEvent : Event {
+    public int difficulty;
+    public ChangeInDifficultyBuffEvent(object source, int difficulty) : base(source) {
+        this.difficulty = difficulty;
+    }
+}
+
+#endregion
+
+
+#region Currency
+
+public class ChangeInCurrencyEvent : Event {
+    public float currency;
+    public ChangeInCurrencyEvent(object source, float currency) : base(source) {
+        this.currency = currency;
     }
 }
 
 
 
-
-
-
-
-
-
-
-
-
+#endregion
 
 
 

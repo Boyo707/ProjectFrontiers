@@ -7,8 +7,12 @@ public class ObjectDatabase : ScriptableObject {
     public List<Tower> Towers;
     public List<TowerUpgrades> TowerUpgrades;
     public List<Enemy> Enemies;
+    public List<Wave> Waves;
 }
 
+/// <summary>
+/// Tower storage
+/// </summary>
 [Serializable]
 public class Tower {
     [field: SerializeField]
@@ -29,35 +33,42 @@ public class Tower {
 
 [Serializable]
 public class TowerStats {
-    [field: SerializeField]
-    public int MaxHealth { get; private set; }
-    [field: SerializeField]
-    public int BonusHealth { get; private set; }
-    [field: SerializeField]
-    public int FireRate { get; private set; }
-    [field: SerializeField]
-    public int TurnSpeed { get; private set; }
-    [field: SerializeField]
-    public int Damage { get; private set; }
-    [field: SerializeField]
-    public int KillEfficienty { get; private set; }
-    [field: SerializeField]
-    public int Range { get; private set; }
+    public int Health;
+    public int Damage;
+    public float FireRate;
+    public float Range;
 }
 
+/// <summary>
+/// Tower upgrade data
+/// </summary>
 [Serializable]
 public class TowerUpgrades {
     [field: SerializeField]
-    public string Name { get; private set; }
-    [field: SerializeField]
     public int Id { get; private set; }
     [field: SerializeField]
-    public int TowerToUpgrade { get; private set; }
+    public int SelectedTower { get; private set; }
     [field: SerializeField]
-    public int TowerUpgrade { get; private set; }
+    public int NewTower { get; private set; }
+    [field: SerializeField]
+    public TowerUpgradeLevels StatsNeeded { get; private set; }
 }
 
+[Serializable]
+public class TowerUpgradeLevels {
+    [Range(0, 10)]
+    public int Health = 1;
+    [Range(0, 10)]
+    public int Damage = 1;
+    [Range(0f, 10f)]
+    public int FireRate = 1;
+    [Range(0f, 10f)]
+    public int Range = 1;
+}
 
+/// <summary>
+/// Enemy data
+/// </summary>
 [Serializable]
 public class Enemy {
     [field: SerializeField]
@@ -65,22 +76,36 @@ public class Enemy {
     [field: SerializeField]
     public int Id { get; private set; }
     [field: SerializeField]
-    public int Difficulty { get; private set; }
+    public float DifficultyValue { get; private set; }
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
     [field: SerializeField]
-    public EnemyStats Stats { get; private set; }
+    public EnemyBaseStats Stats { get; private set; }
 }
 
 [Serializable]
-public class EnemyStats {
-    [field: SerializeField]
-    public int Health { get; private set; }
-    [field: SerializeField]
-    public int Speed { get; private set; }
-    [field: SerializeField]
-    public int Damage { get; private set; }
-    [field: SerializeField]
-    public int Gold { get; private set; }
+public class EnemyBaseStats {
+    public int Health;
+    public int Damage;
+    public float FireRate;
+    public float Experience;
+}
 
+/// <summary>
+/// Wave information
+/// </summary>
+[Serializable]
+public class Wave {
+    [field: SerializeField]
+    public int Id { get; private set; }
+    [field: SerializeField]
+    public float SpawnRate { get; private set; }
+    [field: SerializeField]
+    public List<EnemyEntry> EnemiesToSpawn { get; private set; }
+}
+
+[Serializable]
+public class EnemyEntry {
+    public int id;
+    public int amount;
 }

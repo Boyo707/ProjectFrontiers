@@ -1,13 +1,23 @@
+using TMPro;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyLogic : MonoBehaviour {
     public float speed = 10f;
 
     private Transform target;
 
+    private int id = 0;
+
+    public GlobalBuffTypes buff;
+
+
     public int damage = 1;
     public int maxHealth = 1;
     public float amount = 0.1f;
+    float difficultyValue;
 
     private int currentHealth;
 
@@ -29,6 +39,7 @@ public class EnemyLogic : MonoBehaviour {
     }
     
     private void GetNextTarget() {
+
         if (target != null)
             Destroy(gameObject);
 
@@ -63,12 +74,34 @@ public class EnemyLogic : MonoBehaviour {
         */
     }
 
-    public void TakeDamage(int damage, float currencyEfficienty) {
-        currentHealth -= damage;
+    //use thsi for finding nearest tower if it enters range use trigger enter/ collisions (speherecast) smart man beer sayd so
+    /*
+    protected void FindNewTarget() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, stats.Range, targetLayerMask);
+
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+
+        foreach (Collider collider in colliders) {
+            //change to sqrMag (better perform)
+            float distance = Vector3.Distance(transform.position, collider.transform.position);
+            if (distance < shortestDistance) {
+                shortestDistance = distance;
+                nearestEnemy = collider.gameObject;
+            }
+        }
+
+        currentTarget = nearestEnemy;
+    }
+    */
+
+    public void TakeDamage(int damage) {
+        currentHealth -= damage; 
 
         if (currentHealth < 0) {
-            EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this));
-            BuildManager.instance.AddCurrency(amount * currencyEfficienty);
+            EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this, id));
+            EventBus<ChangeInCurrencyEvent>.Publish(new ChangeInCurrencyEvent(this, amount * difficultyValue ));
+            BuildManager.instance.AddCurrency(amount);
             Destroy(gameObject); 
         }
     }
