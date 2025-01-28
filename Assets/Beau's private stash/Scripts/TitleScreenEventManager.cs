@@ -3,31 +3,38 @@ using UnityEngine.UIElements;
 
 public class TitleScreenEventManager : MonoBehaviour
 {
-    public UIDocument titleScreenDoc;
     private VisualElement rootElement;
-    private VisualElement myButton;
-    private VisualElement mySecButton;
+    private VisualElement startButton;
+    private VisualElement exitButton;
+    public GameObject titleScreenObj;
+    public GameObject dificultySelectObj;
 
     void OnEnable()
     {
         var UIDocument = GetComponent<UIDocument>();
         rootElement = UIDocument.rootVisualElement;
-        myButton = rootElement.Q<VisualElement>("StartGameBtn");
-        mySecButton = rootElement.Q<VisualElement>("ExitGameBtn");
+        startButton = rootElement.Q<VisualElement>("StartGameBtn");
+        exitButton = rootElement.Q<VisualElement>("ExitGameBtn");
     }
-    private void Awake()
+
+    void Awake()
     {
-       //element = titleScreenDoc.GetComponent<VisualElement>("");
+        titleScreenObj.SetActive(true);
+        dificultySelectObj.SetActive(false);
     }
+
 
     private void Update()
     {
-        myButton.AddManipulator(new Clickable(evt =>
+        startButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("Clicked!");
+
+            titleScreenObj.SetActive(false);
+            dificultySelectObj.SetActive(true);
         }));
 
-        mySecButton.AddManipulator(new Clickable(evt =>
+        exitButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("Clicked!");
         }));
