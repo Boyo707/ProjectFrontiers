@@ -60,9 +60,9 @@ public class TowerUpgradeLevels {
     public int Health = 1;
     [Range(0, 10)]
     public int Damage = 1;
-    [Range(0f, 10f)]
+    [Range(0, 10)]
     public int FireRate = 1;
-    [Range(0f, 10f)]
+    [Range(0, 10)]
     public int Range = 1;
 }
 
@@ -80,14 +80,16 @@ public class Enemy {
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
     [field: SerializeField]
-    public EnemyBaseStats Stats { get; private set; }
+    public EnemyStats Stats { get; private set; }
 }
 
 [Serializable]
-public class EnemyBaseStats {
+public class EnemyStats {
     public int Health;
     public int Damage;
+    public int Speed;
     public float FireRate;
+    public float Range;
     public float Experience;
 }
 

@@ -5,21 +5,25 @@ public abstract class TowerBase : MonoBehaviour {
     private List<Tower> towers;
 
     [SerializeField] protected TowerStats stats;
-    public TowerUpgradeLevels CurrentUpgrades;
+    public TowerUpgradeLevels CurrentUpgrades = new();
+
+    public int currentHealth;
+    protected float shootCooldown = 0f;
+
+    protected GameObject currentTarget = null;
+    protected bool isLookingAtTarget = false;
+
+    private bool spawnProtection = true;
+    private float spawnProtectionTimer = 3f;
+    private float lifeTime = 0;
 
     [Header("Unity Setup")]
     public int id = -1;
     public LayerMask targetLayerMask;
     public Transform partToRotate;
 
-    protected int currentHealth;
-    protected float shootCooldown = 0f;
-
-    protected GameObject currentTarget = null;
-    protected bool isLookingAtTarget = false;
-
     protected virtual void Start() {
-        towers = DatabaseAcces.instance.database.Towers;
+        towers = GameManager.instance.database.Towers;
         
         try {
             stats = new TowerStats {
@@ -55,12 +59,22 @@ public abstract class TowerBase : MonoBehaviour {
         if (shootCooldown > 0f) {
             shootCooldown -= Time.deltaTime;
         }
+
+        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+
+        lifeTime += Time.deltaTime;
     }
 
     public void TakeDamage(int amount) {
+        if (spawnProtection) return;
+
+        //Debug.Log("Tower Took DAmage");
         currentHealth -= amount;
 
         if (currentHealth <= 0) {
+            //Debug.Log("Tower Got desoyed!!!!!");
+            //event tower destoryed for grid manager
+            EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, gameObject));
             Destroy(this.gameObject);
         }
     }
@@ -110,6 +124,10 @@ public abstract class TowerBase : MonoBehaviour {
 
     protected bool IsTargetInRange(GameObject target) {
         return Vector3.Distance(transform.position, target.transform.position) <= stats.Range;
+    }
+
+    public float GetHealthPercentage() {
+        return currentHealth / stats.Health;
     }
 
     protected abstract void Shoot();
