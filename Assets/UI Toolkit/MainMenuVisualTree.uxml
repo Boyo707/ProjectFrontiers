@@ -1,6 +1,6 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=4c6c78b34f8dacc4caee1f93b4b0b3a7&amp;type=3#MainMenuStyle" />
-    <engine:VisualElement name="Container" style="flex-grow: 1;">
+    <engine:VisualElement name="Container" style="flex-grow: 1; left: 10%;">
         <engine:VisualElement class="parent" style="flex-grow: 1;">
             <engine:Label text="Main menu" class="header" style="position: absolute; top: auto; left: auto;" />
         </engine:VisualElement>
