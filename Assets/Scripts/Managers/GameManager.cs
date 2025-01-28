@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public ObjectDatabase database;
-    public List<GameObject> towersInGame;
+    private int currency = 0;
 
     private void Awake() {
         if (instance != null) {
@@ -15,21 +14,19 @@ public class GameManager : MonoBehaviour {
         instance = this;
     }
 
-    private void OnEnable() {
-        EventBus<TowerCreatedEvent>.OnEvent += AddToTowerList;
-        EventBus<TowerDestroyedEvent>.OnEvent += RemoveFromTowerList;
+    public int GetCurrency() {
+        return currency;
     }
 
-    private void AddToTowerList(TowerCreatedEvent e) {
-        towersInGame.Add(e.tower);
+    public bool CanAfford(int cost) {
+        return currency >= cost;
     }
 
-    private void RemoveFromTowerList(TowerDestroyedEvent e) {
-        towersInGame.Remove(e.tower);
+    public void AddCurrency(int amount) {
+        currency += amount;
     }
 
-    private void OnDestroy() {
-        EventBus<TowerCreatedEvent>.OnEvent -= AddToTowerList;
-        EventBus<TowerDestroyedEvent>.OnEvent -= RemoveFromTowerList;
+    public void RemoveCurrency(int amount) {
+        if (CanAfford(amount)) currency -= amount;
     }
 }

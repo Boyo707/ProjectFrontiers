@@ -7,11 +7,15 @@ public abstract class TowerBase : MonoBehaviour {
     [SerializeField] protected TowerStats stats;
     public TowerUpgradeLevels CurrentUpgrades = new();
 
-    protected int currentHealth;
+    public int currentHealth;
     protected float shootCooldown = 0f;
 
     protected GameObject currentTarget = null;
     protected bool isLookingAtTarget = false;
+
+    private bool spawnProtection = true;
+    private float spawnProtectionTimer = 3f;
+    private float lifeTime = 0;
 
     [Header("Unity Setup")]
     public int id = -1;
@@ -55,14 +59,20 @@ public abstract class TowerBase : MonoBehaviour {
         if (shootCooldown > 0f) {
             shootCooldown -= Time.deltaTime;
         }
+
+        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+
+        lifeTime += Time.deltaTime;
     }
 
     public void TakeDamage(int amount) {
-        Debug.Log("Tower Took DAmage");
+        if (spawnProtection) return;
+
+        //Debug.Log("Tower Took DAmage");
         currentHealth -= amount;
 
         if (currentHealth <= 0) {
-            Debug.Log("Tower Got desoyed!!!!!");
+            //Debug.Log("Tower Got desoyed!!!!!");
             //event tower destoryed for grid manager
             EventBus<TowerDestroyedEvent>.Publish(new TowerDestroyedEvent(this, gameObject));
             Destroy(this.gameObject);

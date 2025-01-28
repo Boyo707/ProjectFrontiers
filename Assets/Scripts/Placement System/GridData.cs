@@ -3,6 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlacementData {
+    public List<Vector3Int> occupiedPositions;
+
+    public int ID { get; private set; }
+    public int PlaceObjectIndex { get; private set; }
+
+    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placeObjectIndex) {
+        this.occupiedPositions = occupiedPositions;
+        ID = iD;
+        PlaceObjectIndex = placeObjectIndex;
+    }
+}
+
 public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
@@ -13,7 +26,7 @@ public class GridData
                             int placedObjectIndex)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex);
+        PlacementData data = new (positionToOccupy, ID, placedObjectIndex);
         foreach(var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -59,31 +72,11 @@ public class GridData
         return placedObjects[gridPosition].PlaceObjectIndex;
     }
 
-    public int GetRepresentationIndex(GameObject towerObject)
-    {
-        return 2;
-    }
-
     public void RemoveObjectAt(Vector3Int gridPosition)
     {
-        foreach (var pos in placedObjects[gridPosition].occupiedPositions)
-        {
+        foreach (var pos in placedObjects[gridPosition].occupiedPositions) {
             placedObjects.Remove(pos);
         }
     }
 }
 
-public class PlacementData
-{
-    public List<Vector3Int> occupiedPositions;
-
-    public int ID { get; private set; }
-    public int PlaceObjectIndex { get; private set; }
-
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placeObjectIndex)
-    {
-        this.occupiedPositions = occupiedPositions;
-        ID = iD;
-        PlaceObjectIndex = placeObjectIndex;
-    }
-}
