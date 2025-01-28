@@ -6,7 +6,8 @@ public class GrenadeProjectile : ProjectileBase
     [Header("Curve Options")]
     [SerializeField] private AnimationCurve projectileCurve;
 
-    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private GameObject explosionChild;
+    [SerializeField] private float explosionRadius;
 
     private float archPercentage;
 
@@ -18,8 +19,7 @@ public class GrenadeProjectile : ProjectileBase
         }
         else
         {
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            explosion.GetComponent<Explosion>().AssignVariables(projectileDamage, origin);
+            InstantiateExplosion();
             Destroy(gameObject);
         }
     }
@@ -31,6 +31,23 @@ public class GrenadeProjectile : ProjectileBase
         rb.position = new Vector3(normalSlerp.x, normalSlerp.y * projectileCurve.Evaluate(archPercentage), normalSlerp.z);
     }
 
+    public override void OnHit()
+    {
+        InstantiateExplosion();
+        Destroy(gameObject);
+    }
 
+    private void InstantiateExplosion()
+    {
+        explosionChild.GetComponent<Explosion>().AssignVariables(origin, projectileDamage, explosionRadius);
+        explosionChild.transform.parent = null;
+        explosionChild.transform.position = transform.position;
+        explosionChild.SetActive(true);
+    }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
 }

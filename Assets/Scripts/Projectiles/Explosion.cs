@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private int explosionSize;
+    private float explosionRadius;
     
     private int damage;
 
@@ -21,7 +21,7 @@ public class Explosion : MonoBehaviour
     void Update()
     {
         Collider[] hitColliders = new Collider[30];
-        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, explosionSize, hitColliders);
+        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, hitColliders);
         for (int i = 0; i < numColliders; i++)
         {
             //WRITE THE DAMAGE SEND DEPENDING ON DISTANCE
@@ -41,15 +41,10 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void AssignVariables(int damage, projectileOrigin origin)
+    public void AssignVariables(projectileOrigin origin, int damage, float explosionRadius)
     {
-        this.damage = damage;
         currentOrigin = origin;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sphereCollider.radius);
+        this.damage = damage;
+        this.explosionRadius = explosionRadius;
     }
 }

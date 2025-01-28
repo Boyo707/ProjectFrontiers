@@ -92,6 +92,11 @@ public class ProjectileBase : MonoBehaviour
         
     }
 
+    public virtual void OnHit()
+    {
+        Destroy(gameObject);
+    }
+
 
     //Assings the important values to the projectile
     //if the shooter wants to assign a target to rotate towards
@@ -139,7 +144,7 @@ public class ProjectileBase : MonoBehaviour
                 if (enemyComponent != null)
                 {
                     enemyComponent.TakeDamage(projectileDamage);
-                    Destroy(gameObject);
+                    OnHit();
                 }
                 break;
 
@@ -148,7 +153,7 @@ public class ProjectileBase : MonoBehaviour
                 if (towerComponent != null)
                 {
                     towerComponent.TakeDamage(projectileDamage);
-                    Destroy(gameObject);
+                    OnHit();
                 }
                 break;
         }
