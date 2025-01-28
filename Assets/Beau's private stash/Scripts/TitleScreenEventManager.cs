@@ -28,7 +28,7 @@ public class TitleScreenEventManager : MonoBehaviour
     {
         startButton.AddManipulator(new Clickable(evt =>
         {
-            Debug.Log("Clicked!");
+            Debug.Log("Clicked! And selected 'START GAME' button");
 
             titleScreenObj.SetActive(false);
             dificultySelectObj.SetActive(true);
@@ -36,7 +36,9 @@ public class TitleScreenEventManager : MonoBehaviour
 
         exitButton.AddManipulator(new Clickable(evt =>
         {
-            Debug.Log("Clicked!");
+            Debug.Log("Clicked! And quit application");
+
+            Application.Quit();
         }));
     }
 }

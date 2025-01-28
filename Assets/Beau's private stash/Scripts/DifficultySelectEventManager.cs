@@ -32,22 +32,28 @@ public class DifficultySelectEventManager : MonoBehaviour
     {
         easyButton.AddManipulator(new Clickable(evt =>
         {
-            Debug.Log("Clicked!");
+            Debug.Log("'EASY' difficulty selected");
+
+            //Add the settings for EASY difficulty here
         }));
 
         normalButton.AddManipulator(new Clickable(evt =>
         {
-            Debug.Log("Clicked!");
+            Debug.Log("'NORMAL' difficulty selected");
+
+            //Add the settings for NORMAL difficulty here
         }));
 
         hardButton.AddManipulator(new Clickable(evt =>
         {
-            Debug.Log("Clicked!");
+            Debug.Log("'HARD' difficulty selected");
+
+            //Add the settings for HARD difficulty here
         }));
 
         backButton.AddManipulator(new Clickable(evt =>
         {
-            Debug.Log("Clicked!");
+            Debug.Log("Clicked and selected 'BACK' button");
 
             titleScreenObj.SetActive(true);
             difficultySelectObj.SetActive(false);
