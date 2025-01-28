@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7212953045444907588}
   m_Layer: 0
-  m_Name: Visuals
+  m_Name: Visuals CAN BE REPLACED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,11 +214,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3650743074735723333}
+  - component: {fileID: 5673455024207462937}
   - component: {fileID: 1933620857231478234}
   - component: {fileID: 2847039951735932238}
-  - component: {fileID: 5673455024207462937}
   m_Layer: 0
-  m_Name: Grenade Projectile
+  m_Name: Grenade Projectile TEMPLATE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,6 +241,47 @@ Transform:
   - {fileID: 7212953045444907588}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5673455024207462937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832386175594175600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d84175eec1fdf94a8617a0cff147a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileTarget: {fileID: 0}
+  projectileSpeed: 6
+  lifeTime: 99
+  projectileCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.77814966
+      outSlope: 0.77814966
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.036672633
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.7442891
+      outSlope: -0.7442891
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03130591
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  explosionChild: {fileID: 6861402009019605617}
+  explosionRadius: 3
 --- !u!135 &1933620857231478234
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -289,47 +330,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5673455024207462937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7832386175594175600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84175eec1fdf94a8617a0cff147a1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileTarget: {fileID: 0}
-  projectileSpeed: 6
-  lifeTime: 99
-  projectileCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0.77814966
-      outSlope: 0.77814966
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.036672633
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.7442891
-      outSlope: -0.7442891
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.03130591
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  explosionChild: {fileID: 6861402009019605617}
-  explosionRadius: 3
 --- !u!1001 &8075256763093621269
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class GrenadeProjectile : ProjectileBase
 {
-    [Header("Curve Options")]
-    [SerializeField] private AnimationCurve projectileCurve;
-
+    [Header("ExplosionOptions")]
     [SerializeField] private GameObject explosionChild;
     [SerializeField] private float explosionRadius;
+
+    [Header("Curve Options")]
+    [SerializeField] private AnimationCurve projectileCurve;
 
     private float archPercentage;
 
