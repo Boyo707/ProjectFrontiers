@@ -13,14 +13,15 @@ public abstract class TowerBase : MonoBehaviour {
     protected GameObject currentTarget = null;
     protected bool isLookingAtTarget = false;
 
-    private bool spawnProtection = true;
-    private float spawnProtectionTimer = 3f;
-    private float lifeTime = 0;
+    //private bool spawnProtection = true;
+    //private float spawnProtectionTimer = 3f;
+    //private float lifeTime = 0;
 
     [Header("Unity Setup")]
     public int id = -1;
     public LayerMask targetLayerMask;
     public Transform partToRotate;
+    public float rotationSpeed;
 
     protected virtual void Start() {
         towers = GameManager.instance.database.Towers;
@@ -60,13 +61,13 @@ public abstract class TowerBase : MonoBehaviour {
             shootCooldown -= Time.deltaTime;
         }
 
-        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+        //if (lifeTime > spawnProtectionTimer) spawnProtection = false;
 
-        lifeTime += Time.deltaTime;
+        //lifeTime += Time.deltaTime;
     }
 
     public void TakeDamage(int amount) {
-        if (spawnProtection) return;
+        //if (spawnProtection) return;
 
         //Debug.Log("Tower Took DAmage");
         currentHealth -= amount;
@@ -85,26 +86,16 @@ public abstract class TowerBase : MonoBehaviour {
         float angleToTarget = Vector3.Angle(partToRotate.forward, direction);
         Quaternion lookRotation = Quaternion.LookRotation(direction);
 
-        partToRotate.rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * 10f);
+        partToRotate.rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
         // Use Angle calculation 
         isLookingAtTarget = angleToTarget < 5f;
 
-        /* // Use Raycast 
-        Ray ray = new(partToRotate.position, partToRotate.forward);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, stats.Range, targetLayerMask)) {
-            isLookingAtTarget = hitInfo.collider.gameObject == currentTarget;
-        }
-        else {
-            isLookingAtTarget = false;
-        }
-
-        Debug.DrawRay(ray.origin, ray.direction * stats.Range, isLookingAtTarget ? Color.green : Color.red);
-        */
         Debug.DrawLine(partToRotate.position, currentTarget.transform.position, isLookingAtTarget ? Color.green : Color.red);
     }
 
-    protected void FindNewTarget() {
+    protected virtual void FindNewTarget() {
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, stats.Range, targetLayerMask);
 
         float shortestDistance = Mathf.Infinity;

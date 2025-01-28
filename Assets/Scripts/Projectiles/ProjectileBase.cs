@@ -15,6 +15,8 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected float projectileSpeed;
     [SerializeField] private float lifeTime;
 
+    protected Vector3 projectileTargetPosition;
+
     private float currentTime = 0;
 
     protected int projectileDamage;
@@ -29,7 +31,6 @@ public class ProjectileBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log(origin);
         startingPos = transform.position;
 
         rb = GetComponent<Rigidbody>();
@@ -94,6 +95,7 @@ public class ProjectileBase : MonoBehaviour
 
     public virtual void OnHit()
     {
+        Debug.Log(gameObject.name);
         Destroy(gameObject);
     }
 
@@ -112,6 +114,30 @@ public class ProjectileBase : MonoBehaviour
         {
 
             Vector3 direction = (projectileTarget.position - transform.position).normalized;
+            float angleToTarget = Vector3.Angle(transform.forward, direction);
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = lookRotation;
+            return;
+        }
+        else
+        {
+            Debug.LogError($"Target of projectile {gameObject.name} is NULL");
+        }
+    }
+
+    public void AssignValues(projectileOrigin origin, Vector3 location, int damage)
+    {
+        this.origin = origin;
+
+        projectileDamage = damage;
+
+        projectileTargetPosition = location;
+
+        if (projectileTargetPosition != null)
+        {
+
+            Vector3 direction = (projectileTargetPosition - transform.position).normalized;
             float angleToTarget = Vector3.Angle(transform.forward, direction);
             Quaternion lookRotation = Quaternion.LookRotation(direction);
 

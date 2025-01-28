@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4874008412149675251}
   - component: {fileID: 3472300327979181711}
   m_Layer: 0
-  m_Name: Default Projectile TEMPLATE
+  m_Name: Sniper Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileTarget: {fileID: 0}
-  projectileSpeed: 8
-  lifeTime: 10
+  projectileSpeed: 25
+  lifeTime: 5
 --- !u!135 &4874008412149675251
 SphereCollider:
   m_ObjectHideFlags: 0

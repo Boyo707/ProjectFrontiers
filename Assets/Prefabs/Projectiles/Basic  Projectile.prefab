@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4874008412149675251}
   - component: {fileID: 3472300327979181711}
   m_Layer: 0
-  m_Name: Default Projectile TEMPLATE
+  m_Name: Basic  Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

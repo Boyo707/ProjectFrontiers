@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 1933620857231478234}
   - component: {fileID: 2847039951735932238}
   m_Layer: 0
-  m_Name: Grenade Projectile TEMPLATE
+  m_Name: Grenade Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileTarget: {fileID: 0}
-  projectileSpeed: 6
+  projectileTargetPosition: {x: 0, y: 0, z: 0}
+  projectileSpeed: 8
   lifeTime: 99
   explosionChild: {fileID: 6861402009019605617}
   explosionRadius: 3
@@ -264,20 +265,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0.77814966
-      outSlope: 0.77814966
+      inSlope: 21.010681
+      outSlope: 21.010681
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.036672633
+      outWeight: 0.012522362
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -0.7442891
-      outSlope: -0.7442891
+      inSlope: -21.194927
+      outSlope: -21.194927
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.03130591
+      inWeight: 0.010733485
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
