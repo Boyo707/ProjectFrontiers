@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1301986612785805666}
   - component: {fileID: 7664850477252483679}
   - component: {fileID: 4557182595170992512}
-  - component: {fileID: 8298112569348321714}
   m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8298112569348321714
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3547092815698018795}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4248836033895915373
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +98,6 @@ GameObject:
   - component: {fileID: 2870028930344736938}
   - component: {fileID: 2710886026265589267}
   - component: {fileID: 6508041694441646360}
-  - component: {fileID: 8782425157112496615}
   m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
@@ -196,27 +173,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8782425157112496615
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4248836033895915373}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4323325338960217110
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2443309172930612058}
   - component: {fileID: 9218848410797227580}
+  - component: {fileID: 4352779929776956728}
   m_Layer: 8
   m_Name: Grenade Tower
   m_TagString: Untagged
@@ -280,8 +237,30 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   partToRotate: {fileID: 2944078283332219228}
+  rotationSpeed: 0
   towerProjectile: {fileID: 7832386175594175600, guid: 33a04363dad74064d96e949d1bb9158f, type: 3}
   firePoint: {fileID: 3386846455262454491}
+--- !u!65 &4352779929776956728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323325338960217110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 1, y: 0.25, z: 1}
 --- !u!1 &8047103111947771729
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +272,6 @@ GameObject:
   - component: {fileID: 3386846455262454491}
   - component: {fileID: 2734321647102651445}
   - component: {fileID: 2444650054435338713}
-  - component: {fileID: 1809370796426079605}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -369,27 +347,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1809370796426079605
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8047103111947771729}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8805627412695890493
 GameObject:
   m_ObjectHideFlags: 0

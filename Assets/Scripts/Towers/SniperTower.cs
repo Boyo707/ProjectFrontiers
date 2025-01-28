@@ -1,10 +1,15 @@
 using UnityEngine;
 
 public class SniperTower : TowerBase {
-    
+
+    [Header("Sniper VFX")]
+    [SerializeField] private GameObject muzzleFlashParticle;
+    [SerializeField] private GameObject enemyHitParticle;
+
     [Header("Muzzle")]
     [SerializeField] private GameObject towerProjectile;
     public Transform firePoint;
+
 
 
     protected override void FindNewTarget()
@@ -32,8 +37,9 @@ public class SniperTower : TowerBase {
     {
         if (currentTarget != null)
         {
-            GameObject projectile = Instantiate(towerProjectile, firePoint.position, Quaternion.identity);
-            projectile.GetComponent<ProjectileBase>().AssignValues(projectileOrigin.tower, partToRotate.rotation, stats.Damage);
+            Instantiate(muzzleFlashParticle, firePoint);
+            Instantiate(enemyHitParticle, currentTarget.transform.position, Quaternion.identity);
+            currentTarget.GetComponent<EnemyBase>().TakeDamage(stats.Damage);
         }
     }
     

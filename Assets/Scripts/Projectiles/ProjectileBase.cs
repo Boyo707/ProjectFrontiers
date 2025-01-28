@@ -23,7 +23,7 @@ public class ProjectileBase : MonoBehaviour
 
     protected Vector3 startingPos;
 
-    protected projectileOrigin origin;
+    [SerializeField]protected projectileOrigin origin;
    
     protected Rigidbody rb;
 
@@ -163,6 +163,10 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        ///implement 2d sprites for enemies
+        ///basic enemy mellee no projectile
+       
         switch (origin)
         {
             case projectileOrigin.tower:

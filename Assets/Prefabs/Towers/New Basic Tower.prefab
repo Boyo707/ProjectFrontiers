@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 4378465959528924198}
   - component: {fileID: 5006703077228695342}
   - component: {fileID: 2993247424111274511}
-  - component: {fileID: 4749912232376948782}
   m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
@@ -119,27 +118,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4749912232376948782
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641622632900152425}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2727961360571755969
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +129,6 @@ GameObject:
   - component: {fileID: 7497557679463613691}
   - component: {fileID: 3395244503708734500}
   - component: {fileID: 2652117366579853135}
-  - component: {fileID: 6649022604649083980}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -227,27 +204,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6649022604649083980
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2727961360571755969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4537993389439893393
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279157216825245044}
   - component: {fileID: 1506776214987993000}
+  - component: {fileID: 4200575894149111940}
   m_Layer: 8
   m_Name: New Basic Tower
   m_TagString: Untagged
@@ -314,6 +271,27 @@ MonoBehaviour:
   rotationSpeed: 10
   towerProjectile: {fileID: 8410916685618646040, guid: 29118fcf1b07aa34691e54179f6dda90, type: 3}
   firePoint: {fileID: 7497557679463613691}
+--- !u!65 &4200575894149111940
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537993389439893393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 1, y: 0.25, z: 1}
 --- !u!1 &6919895142145391670
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +303,6 @@ GameObject:
   - component: {fileID: 1925993080486253391}
   - component: {fileID: 4119289666598638719}
   - component: {fileID: 3962223667771882709}
-  - component: {fileID: 3654640977785954782}
   m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
@@ -401,27 +378,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3654640977785954782
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6919895142145391670}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7235955148581297278
 GameObject:
   m_ObjectHideFlags: 0
