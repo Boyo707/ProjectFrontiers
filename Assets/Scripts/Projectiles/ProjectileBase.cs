@@ -15,13 +15,15 @@ public class ProjectileBase : MonoBehaviour
     [SerializeField] protected float projectileSpeed;
     [SerializeField] private float lifeTime;
 
+    protected Vector3 projectileTargetPosition;
+
     private float currentTime = 0;
 
     protected int projectileDamage;
 
     protected Vector3 startingPos;
 
-    protected projectileOrigin origin;
+    [SerializeField]protected projectileOrigin origin;
    
     protected Rigidbody rb;
 
@@ -29,7 +31,6 @@ public class ProjectileBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log(origin);
         startingPos = transform.position;
 
         rb = GetComponent<Rigidbody>();
@@ -94,6 +95,7 @@ public class ProjectileBase : MonoBehaviour
 
     public virtual void OnHit()
     {
+        Debug.Log(gameObject.name);
         Destroy(gameObject);
     }
 
@@ -124,6 +126,30 @@ public class ProjectileBase : MonoBehaviour
         }
     }
 
+    public void AssignValues(projectileOrigin origin, Vector3 location, int damage)
+    {
+        this.origin = origin;
+
+        projectileDamage = damage;
+
+        projectileTargetPosition = location;
+
+        if (projectileTargetPosition != null)
+        {
+
+            Vector3 direction = (projectileTargetPosition - transform.position).normalized;
+            float angleToTarget = Vector3.Angle(transform.forward, direction);
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = lookRotation;
+            return;
+        }
+        else
+        {
+            Debug.LogError($"Target of projectile {gameObject.name} is NULL");
+        }
+    }
+
     //if the shooter wants to feed the projectile direction directly
     public void AssignValues(projectileOrigin origin, Quaternion rotation, int damage)
     {
@@ -137,6 +163,10 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        ///implement 2d sprites for enemies
+        ///basic enemy mellee no projectile
+       
         switch (origin)
         {
             case projectileOrigin.tower:

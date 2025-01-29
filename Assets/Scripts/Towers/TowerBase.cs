@@ -22,6 +22,7 @@ public abstract class TowerBase : MonoBehaviour {
     public int id = -1;
     public LayerMask targetLayerMask;
     public Transform partToRotate;
+    public float rotationSpeed;
 
     protected virtual void Start() {
         towers = GameManager.instance.database.Towers;
@@ -70,6 +71,10 @@ public abstract class TowerBase : MonoBehaviour {
         if (shootCooldown > 0f) {
             shootCooldown -= Time.deltaTime;
         }
+
+        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+
+        lifeTime += Time.deltaTime;
     }
 
     public void TakeDamage(int amount) {
@@ -100,7 +105,7 @@ public abstract class TowerBase : MonoBehaviour {
         float angleToTarget = Vector3.Angle(partToRotate.forward, direction);
         Quaternion lookRotation = Quaternion.LookRotation(direction);
 
-        partToRotate.rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * 10f);
+        partToRotate.rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
         // Use Angle calculation 
         isLookingAtTarget = angleToTarget < 5f;

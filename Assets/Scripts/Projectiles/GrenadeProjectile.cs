@@ -12,30 +12,37 @@ public class GrenadeProjectile : ProjectileBase
 
     private float archPercentage;
 
+    private float currentProjectileTime;
+
     public override void CalculationAction()
     {
         if (archPercentage < 1)
         {
-            archPercentage = Time.time / 10 * projectileSpeed;
+            Debug.Log("weeeeeee");
+            currentProjectileTime += Time.deltaTime;
+            archPercentage = currentProjectileTime / 10 * projectileSpeed;
         }
         else
         {
             InstantiateExplosion();
             Destroy(gameObject);
         }
+
     }
 
     public override void PhysicsAction()
     {
-        Vector3 normalSlerp = Vector3.Lerp(startingPos, projectileTarget.position, archPercentage);
+        if (projectileTargetPosition != null)
+        {
+            Vector3 normalSlerp = Vector3.Lerp(startingPos, projectileTargetPosition, archPercentage);
 
-        rb.position = new Vector3(normalSlerp.x, normalSlerp.y * projectileCurve.Evaluate(archPercentage), normalSlerp.z);
+            rb.position = new Vector3(normalSlerp.x, normalSlerp.y * projectileCurve.Evaluate(archPercentage), normalSlerp.z);
+        }
     }
 
     public override void OnHit()
     {
-        InstantiateExplosion();
-        Destroy(gameObject);
+        Debug.Log("I GOT TRIGGERD");
     }
 
     private void InstantiateExplosion()
