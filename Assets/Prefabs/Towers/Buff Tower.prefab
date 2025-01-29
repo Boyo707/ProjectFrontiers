@@ -81,13 +81,18 @@ MonoBehaviour:
     Damage: 0
     FireRate: 0
     Range: 0
-  CurrentUpgrades:
+  lastUpgrades:
+    Health: 1
+    Damage: 1
+    FireRate: 1
+    Range: 1
+  currentUpgrades:
     Health: 1
     Damage: 1
     FireRate: 1
     Range: 1
   currentHealth: 0
-  id: 5
+  id: 4
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 256

@@ -37,7 +37,7 @@ public class SniperTower : TowerBase {
     {
         if (currentTarget != null)
         {
-            Instantiate(muzzleFlashParticle, firePoint);
+            Instantiate(muzzleFlashParticle, firePoint.position, Quaternion.identity);
             Instantiate(enemyHitParticle, currentTarget.transform.position, Quaternion.identity);
             currentTarget.GetComponent<EnemyBase>().TakeDamage(stats.Damage);
         }

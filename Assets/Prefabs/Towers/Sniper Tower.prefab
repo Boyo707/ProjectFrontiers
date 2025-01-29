@@ -52,7 +52,12 @@ MonoBehaviour:
     Damage: 0
     FireRate: 0
     Range: 0
-  CurrentUpgrades:
+  lastUpgrades:
+    Health: 1
+    Damage: 1
+    FireRate: 1
+    Range: 1
+  currentUpgrades:
     Health: 1
     Damage: 1
     FireRate: 1
@@ -62,14 +67,14 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  partToRotate: {fileID: 3687476155182088517}
+  partToRotate: {fileID: 3928714493725368616}
   rotationSpeed: 20
   attackAudio: {fileID: 8300000, guid: 07f0cb9bc4d169549a13a78f2fb27f06, type: 3}
   hitAudio: {fileID: 8300000, guid: 4cb44fbc699c66b4bab89357eb318712, type: 3}
-  muzzleFlashParticle: {fileID: 1942530980741802489, guid: 26dc40fd13ae64d4d87ecfacb4bb1698, type: 3}
-  enemyHitParticle: {fileID: 7945985383087180319, guid: 72a45ad1989a6ec4c9288ebe23c30b09, type: 3}
+  muzzleFlashParticle: {fileID: 3707903320245496446, guid: 283f1f48e0f72424db7a6eb24fe5f6a1, type: 3}
+  enemyHitParticle: {fileID: 8940579103248573270, guid: d4cc1d20aa73dbc428ef4d574af4cfcd, type: 3}
   towerProjectile: {fileID: 8410916685618646040, guid: 6778e7adac5f3ed43887e76ccc41f0b0, type: 3}
-  firePoint: {fileID: 3687476155182088517}
+  firePoint: {fileID: 3928714493725368616}
 --- !u!65 &2310983352408344907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -229,6 +234,11 @@ PrefabInstance:
       addedObject: {fileID: 3687476155182088517}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711b4414abfb01b48af747ea798d06b3, type: 3}
+--- !u!4 &3928714493725368616 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8475546202509284113, guid: 711b4414abfb01b48af747ea798d06b3, type: 3}
+  m_PrefabInstance: {fileID: 4835363353605435961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7821508168638726018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3427588294669569467, guid: 711b4414abfb01b48af747ea798d06b3, type: 3}
