@@ -1,4 +1,6 @@
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class DifficultySelectEventManager : MonoBehaviour
@@ -11,6 +13,8 @@ public class DifficultySelectEventManager : MonoBehaviour
 
     public GameObject titleScreenObj;
     public GameObject difficultySelectObj;
+
+    [SerializeField] Difficulty difficultySetting;
 
     void OnEnable()
     {
@@ -34,21 +38,27 @@ public class DifficultySelectEventManager : MonoBehaviour
         {
             Debug.Log("'EASY' difficulty selected");
 
-            //Add the settings for EASY difficulty here
+            difficultySetting.EasySelect();
+
+            SceneManager.LoadScene("Main");
         }));
 
         normalButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("'NORMAL' difficulty selected");
 
-            //Add the settings for NORMAL difficulty here
+            difficultySetting.NormalSelect();
+
+            SceneManager.LoadScene("Main");
         }));
 
         hardButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("'HARD' difficulty selected");
 
-            //Add the settings for HARD difficulty here
+            difficultySetting.HardSelect();
+
+            SceneManager.LoadScene("Main");
         }));
 
         backButton.AddManipulator(new Clickable(evt =>
