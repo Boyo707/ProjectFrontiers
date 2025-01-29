@@ -64,6 +64,8 @@ MonoBehaviour:
     m_Bits: 128
   partToRotate: {fileID: 3687476155182088517}
   rotationSpeed: 20
+  attackAudio: {fileID: 8300000, guid: 07f0cb9bc4d169549a13a78f2fb27f06, type: 3}
+  hitAudio: {fileID: 8300000, guid: 4cb44fbc699c66b4bab89357eb318712, type: 3}
   muzzleFlashParticle: {fileID: 1942530980741802489, guid: 26dc40fd13ae64d4d87ecfacb4bb1698, type: 3}
   enemyHitParticle: {fileID: 7945985383087180319, guid: 72a45ad1989a6ec4c9288ebe23c30b09, type: 3}
   towerProjectile: {fileID: 8410916685618646040, guid: 6778e7adac5f3ed43887e76ccc41f0b0, type: 3}

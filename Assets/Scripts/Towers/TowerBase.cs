@@ -24,6 +24,10 @@ public abstract class TowerBase : MonoBehaviour {
     public Transform partToRotate;
     public float rotationSpeed;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip attackAudio;
+    [SerializeField] private AudioClip hitAudio;
+
     protected virtual void Start() {
         towers = GameManager.instance.database.Towers;
         
@@ -62,6 +66,7 @@ public abstract class TowerBase : MonoBehaviour {
                 }
 
                 if (isLookingAtTarget) {
+                    AudioManager.instance.PlayOneShot(attackAudio, true);
                     Shoot();
                     shootCooldown = 1f / stats.FireRate;
                 }
@@ -82,7 +87,7 @@ public abstract class TowerBase : MonoBehaviour {
 
         //Debug.Log("Tower Took DAmage");
         currentHealth -= amount;
-
+        AudioManager.instance.PlayOneShot(hitAudio, true);
         if (currentHealth <= 0) {
             //Debug.Log("Tower Got desoyed!!!!!");
             //event tower destoryed for grid manager

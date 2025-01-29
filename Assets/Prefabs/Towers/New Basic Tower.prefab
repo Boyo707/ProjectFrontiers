@@ -238,8 +238,12 @@ MonoBehaviour:
     m_Bits: 128
   partToRotate: {fileID: 3151618085236892735}
   rotationSpeed: 10
+  attackAudio: {fileID: 8300000, guid: 07f0cb9bc4d169549a13a78f2fb27f06, type: 3}
+  hitAudio: {fileID: 8300000, guid: 4cb44fbc699c66b4bab89357eb318712, type: 3}
   towerProjectile: {fileID: 8410916685618646040, guid: 29118fcf1b07aa34691e54179f6dda90, type: 3}
   firePoint: {fileID: 3151618085236892735}
+  attackAudio: {fileID: 8300000, guid: f47f28f5b5e856d4ebafe451227dc986, type: 3}
+  hitAudio: {fileID: 8300000, guid: 4cb44fbc699c66b4bab89357eb318712, type: 3}
 --- !u!65 &4200575894149111940
 BoxCollider:
   m_ObjectHideFlags: 0
