@@ -126,29 +126,29 @@ public class UpgradeManager : MonoBehaviour
     private void DrawStatUpgrades()
     {
         //Health
-        levelText[0].text = $"Level: {currentTower.CurrentUpgrades.Health}";
-        levelSliders[0].value = (float)currentTower.CurrentUpgrades.Health/10;
+        levelText[0].text = $"Level: {currentTower.currentUpgrades.Health}";
+        levelSliders[0].value = (float)currentTower.currentUpgrades.Health/10;
 
         //Damage
-        levelText[1].text = $"Level: {currentTower.CurrentUpgrades.Damage}";
-        levelSliders[1].value = (float)currentTower.CurrentUpgrades.Damage / 10;
+        levelText[1].text = $"Level: {currentTower.currentUpgrades.Damage}";
+        levelSliders[1].value = (float)currentTower.currentUpgrades.Damage / 10;
 
         //Firerate
-        levelText[2].text = $"Level: {currentTower.CurrentUpgrades.FireRate}";
-        levelSliders[2].value = (float)currentTower.CurrentUpgrades.FireRate / 10;
+        levelText[2].text = $"Level: {currentTower.currentUpgrades.FireRate}";
+        levelSliders[2].value = (float)currentTower.currentUpgrades.FireRate / 10;
 
         //Range
-        levelText[3].text = $"Level: {currentTower.CurrentUpgrades.Range}";
-        levelSliders[3].value = (float)currentTower.CurrentUpgrades.Range / 10;
+        levelText[3].text = $"Level: {currentTower.currentUpgrades.Range}";
+        levelSliders[3].value = (float)currentTower.currentUpgrades.Range / 10;
     }
 
     public void UpgradeStat(int statIndex)
     {
         bool hasReachedMaxLevel = false;
-        if (currentTower.CurrentUpgrades.Health >= 10 ||
-            currentTower.CurrentUpgrades.Damage >= 10 ||
-            currentTower.CurrentUpgrades.FireRate >= 10 ||
-            currentTower.CurrentUpgrades.Range >= 10)
+        if (currentTower.currentUpgrades.Health >= 10 ||
+            currentTower.currentUpgrades.Damage >= 10 ||
+            currentTower.currentUpgrades.FireRate >= 10 ||
+            currentTower.currentUpgrades.Range >= 10)
         {
             hasReachedMaxLevel = true;
         }
@@ -157,19 +157,19 @@ public class UpgradeManager : MonoBehaviour
         {
             //HEALTH
             case 0:
-                currentTower.CurrentUpgrades.Health = IncreaseLevel(currentTower.CurrentUpgrades.Health, hasReachedMaxLevel);
+                currentTower.currentUpgrades.Health = IncreaseLevel(currentTower.currentUpgrades.Health, hasReachedMaxLevel);
                 break;
             //DAMAGE
             case 1:
-                currentTower.CurrentUpgrades.Damage = IncreaseLevel(currentTower.CurrentUpgrades.Damage, hasReachedMaxLevel);
+                currentTower.currentUpgrades.Damage = IncreaseLevel(currentTower.currentUpgrades.Damage, hasReachedMaxLevel);
                 break;
             //FIRERATE
             case 2:
-                currentTower.CurrentUpgrades.FireRate = IncreaseLevel(currentTower.CurrentUpgrades.FireRate, hasReachedMaxLevel);
+                currentTower.currentUpgrades.FireRate = IncreaseLevel(currentTower.currentUpgrades.FireRate, hasReachedMaxLevel);
                 break;
             //RANGE
             case 3:
-                currentTower.CurrentUpgrades.Range = IncreaseLevel(currentTower.CurrentUpgrades.Range, hasReachedMaxLevel);
+                currentTower.currentUpgrades.Range = IncreaseLevel(currentTower.currentUpgrades.Range, hasReachedMaxLevel);
                 break;
         }
 
@@ -205,22 +205,22 @@ public class UpgradeManager : MonoBehaviour
         {
             //HEALTH
             case 0:
-                currentTower.CurrentUpgrades.Health = DecreaseLevel(currentTower.CurrentUpgrades.Health);
+                currentTower.currentUpgrades.Health = DecreaseLevel(currentTower.currentUpgrades.Health);
                 break;
             //DAMAGE
             case 1:
-                currentTower.CurrentUpgrades.Damage = DecreaseLevel(currentTower.CurrentUpgrades.Damage);
+                currentTower.currentUpgrades.Damage = DecreaseLevel(currentTower.currentUpgrades.Damage);
 
                 break;
             //FIRERATE
             case 2:
-                currentTower.CurrentUpgrades.FireRate = DecreaseLevel(currentTower.CurrentUpgrades.FireRate);
+                currentTower.currentUpgrades.FireRate = DecreaseLevel(currentTower.currentUpgrades.FireRate);
 
                 break;
             //RANGE
             case 3:
 
-                currentTower.CurrentUpgrades.Range = DecreaseLevel(currentTower.CurrentUpgrades.Range);
+                currentTower.currentUpgrades.Range = DecreaseLevel(currentTower.currentUpgrades.Range);
                 break;
         }
         DrawStatUpgrades();
@@ -246,22 +246,22 @@ public class UpgradeManager : MonoBehaviour
                 continue;
             }
 
-            if(currentTower.CurrentUpgrades.Health >= databaseTowerUpgrades.StatsNeeded.Health)
+            if(currentTower.currentUpgrades.Health >= databaseTowerUpgrades.StatsNeeded.Health)
             {
                 validChecks++;
                 nextTowerId = databaseTowerUpgrades.NewTower;
             }
-            if (currentTower.CurrentUpgrades.Damage >= databaseTowerUpgrades.StatsNeeded.Damage)
+            if (currentTower.currentUpgrades.Damage >= databaseTowerUpgrades.StatsNeeded.Damage)
             {
                 validChecks++;
                 nextTowerId = databaseTowerUpgrades.NewTower;
             }
-            if (currentTower.CurrentUpgrades.FireRate >= databaseTowerUpgrades.StatsNeeded.FireRate)
+            if (currentTower.currentUpgrades.FireRate >= databaseTowerUpgrades.StatsNeeded.FireRate)
             {
                 validChecks++;
                 nextTowerId = databaseTowerUpgrades.NewTower;
             }
-            if (currentTower.CurrentUpgrades.Range >= databaseTowerUpgrades.StatsNeeded.Range)
+            if (currentTower.currentUpgrades.Range >= databaseTowerUpgrades.StatsNeeded.Range)
             {
                 validChecks++;
                 nextTowerId = databaseTowerUpgrades.NewTower;

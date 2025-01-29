@@ -305,11 +305,14 @@ MonoBehaviour:
     Damage: 1
     FireRate: 1
     Range: 1
+  currentHealth: 0
   id: 0
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 128
   partToRotate: {fileID: 8520085863453371886}
+  rotationSpeed: 0
+  towerProjectile: {fileID: 8410916685618646040, guid: 29118fcf1b07aa34691e54179f6dda90, type: 3}
   firePoint: {fileID: 8520085863453371886}
 --- !u!1 &6919895142145391670
 GameObject:

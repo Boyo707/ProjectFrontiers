@@ -73,6 +73,14 @@ public class TowerCreatedEvent : Event {
     }
 }
 
+public class TowerUpgradedEvent : Event {
+    public GameObject tower;
+
+    public TowerUpgradedEvent(object source, GameObject tower) : base(source) {
+        this.tower = tower;
+    }
+}
+
 public class TowerDestroyedEvent : Event {
     public GameObject tower;
     public TowerDestroyedEvent(object source, GameObject tower) : base(source) {
