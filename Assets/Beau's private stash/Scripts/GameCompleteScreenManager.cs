@@ -7,6 +7,8 @@ public class GameCompleteScreenManager : MonoBehaviour
     private VisualElement rootElement;
     private VisualElement exitButton;
     private VisualElement resumeButton;
+    public AudioSource menuAudio;
+    public AudioClip uiButtonSFX;
 
     public GameObject endScreenMenuObj;
 
@@ -33,6 +35,7 @@ public class GameCompleteScreenManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'Resume' button");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             Time.timeScale = 1.0f;
             endScreenMenuObj.SetActive(false);
         }));
@@ -41,6 +44,7 @@ public class GameCompleteScreenManager : MonoBehaviour
         {
             Debug.Log("Clicked! And sent to TitleScreen Scene");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             SceneManager.LoadScene("TitleScreen");
             endScreenMenuObj.SetActive(false);
         }));

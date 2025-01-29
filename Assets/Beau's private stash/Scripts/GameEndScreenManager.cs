@@ -7,6 +7,8 @@ public class GameEndScreenManager : MonoBehaviour
     private VisualElement rootElement;
     private VisualElement exitButton;
     private VisualElement restartButton;
+    public AudioSource menuAudio;
+    public AudioClip uiButtonSFX;
 
     public GameObject endScreenMenuObj;
 
@@ -33,6 +35,7 @@ public class GameEndScreenManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'Restart' button");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             Time.timeScale = 1.0f;
             SceneManager.LoadScene("Main");
             endScreenMenuObj.SetActive(false);
@@ -42,6 +45,7 @@ public class GameEndScreenManager : MonoBehaviour
         {
             Debug.Log("Clicked! And sent to TitleScreen Scene");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             SceneManager.LoadScene("TitleScreen");
             endScreenMenuObj.SetActive(false);
         }));

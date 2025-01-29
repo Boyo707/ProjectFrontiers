@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -9,6 +10,9 @@ public class TitleScreenEventManager : MonoBehaviour
     private VisualElement exitButton;
     //public GameObject titleScreenObj;
     //public GameObject dificultySelectObj;
+    public AudioSource menuAudio;
+    public AudioClip gameStartSFX;
+    public AudioClip uiButtonSFX;
 
     void OnEnable()
     {
@@ -31,6 +35,7 @@ public class TitleScreenEventManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'START GAME' button");
 
+            menuAudio.PlayOneShot(gameStartSFX);
             SceneManager.LoadScene("Main");
             //titleScreenObj.SetActive(false);
             //dificultySelectObj.SetActive(true);
@@ -40,6 +45,7 @@ public class TitleScreenEventManager : MonoBehaviour
         {
             Debug.Log("Clicked! And quit application");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             Application.Quit();
         }));
     }

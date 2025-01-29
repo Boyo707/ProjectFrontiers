@@ -8,6 +8,8 @@ public class PauseScreenMenuManager : MonoBehaviour
     private VisualElement resumeButton;
     private VisualElement exitButton;
     private VisualElement restartButton;
+    public AudioSource menuAudio;
+    public AudioClip uiButtonSFX;
 
     public GameObject pauseMenuObj;
 
@@ -35,6 +37,7 @@ public class PauseScreenMenuManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'Resume' button");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             Time.timeScale = 1.0f;
             pauseMenuObj.SetActive(false);
         }));
@@ -43,6 +46,7 @@ public class PauseScreenMenuManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'Restart' button");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             Time.timeScale = 1.0f;
             SceneManager.LoadScene("Main");
             pauseMenuObj.SetActive(false);
@@ -52,6 +56,7 @@ public class PauseScreenMenuManager : MonoBehaviour
         {
             Debug.Log("Clicked! And sent to TitleScreen Scene");
 
+            menuAudio.PlayOneShot(uiButtonSFX);
             SceneManager.LoadScene("TitleScreen");
             pauseMenuObj.SetActive(false);
         }));
