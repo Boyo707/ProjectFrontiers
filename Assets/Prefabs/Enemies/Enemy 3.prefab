@@ -130,7 +130,7 @@ MonoBehaviour:
     Range: 0
     Experience: 0
   targets: []
-  id: 3
+  id: 2
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 256

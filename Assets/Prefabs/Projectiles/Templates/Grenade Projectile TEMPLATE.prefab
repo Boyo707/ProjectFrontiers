@@ -233,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 7832386175594175600}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.932293, y: 27.91072, z: -9.6262045}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -256,6 +256,8 @@ MonoBehaviour:
   projectileTarget: {fileID: 0}
   projectileSpeed: 6
   lifeTime: 99
+  explosionChild: {fileID: 6861402009019605617}
+  explosionRadius: 3
   projectileCurve:
     serializedVersion: 2
     m_Curve:
@@ -280,8 +282,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  explosionChild: {fileID: 6861402009019605617}
-  explosionRadius: 3
 --- !u!135 &1933620857231478234
 SphereCollider:
   m_ObjectHideFlags: 0

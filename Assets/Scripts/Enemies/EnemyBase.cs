@@ -54,6 +54,7 @@ public abstract class EnemyBase : MonoBehaviour {
         } 
         else if (attackCooldown <= 0f) {
             Attack();
+            Debug.Log("attacked");
             attackCooldown = 1f / stats.FireRate;
         }
 
