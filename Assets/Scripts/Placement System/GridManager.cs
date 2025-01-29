@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 /// <summary>
 /// Manages the placement of towers on the grid.
@@ -10,6 +9,7 @@ public class GridManager : MonoBehaviour {
 
     public static GridManager instance;
     public List<GameObject> towersInGame;
+    //public bool towerInRange = false;
 
     // original tower data
     private List<Tower> towers;
@@ -166,14 +166,14 @@ public class GridManager : MonoBehaviour {
     /// </summary>
     /// <param name="e">The event that triggered the placement.</param>
     private void PlaceTower() {
-        if (IsPointerOverUI()) return;
+        //if (IsPointerOverUI()) return;
 
         Tower tower = towers[selectedTowerIndex];
 
         Vector3 mousePosition = GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-        if (!gridData.CanPlaceObjectAt(gridPosition, tower.Size)) {
+        if (!gridData.CanPlaceObjectAt(gridPosition, tower.Size)/* || !towerInRange*/) {
             Debug.Log("Invalid placement location!");
             return;
         }
@@ -223,7 +223,8 @@ public class GridManager : MonoBehaviour {
         Color c;
 
         if (previewObject != null) {
-            bool isValid = gridData.CanPlaceObjectAt(gridPosition, towers[selectedTowerIndex].Size);
+            bool isValid = true;
+            if (!gridData.CanPlaceObjectAt(gridPosition, towers[selectedTowerIndex].Size)/* || !towerInRange*/) isValid = false;
             c = isValid ? Color.white : Color.red;
 
             // Move preview
@@ -249,7 +250,7 @@ public class GridManager : MonoBehaviour {
     /// Checks if the pointer is over a UI element.
     /// </summary>
     /// <returns>True if the pointer is over a UI element, false otherwise.</returns>
-    public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
+    //public bool IsPointerOverUI() => EventSystem.current.IsPointerOverGameObject();
 
     private void OnDestroy() {
         EventBus<TowerDestroyedEvent>.OnEvent -= RemoveTowerAtLocation;

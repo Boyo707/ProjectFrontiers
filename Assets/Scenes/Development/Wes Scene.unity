@@ -775,6 +775,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 728236256}
   m_SourcePrefab: {fileID: 100100000, guid: e21d10c4b26fa4b46960458d8ea6b45a, type: 3}
+--- !u!1001 &1050546703
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279157216825245044, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537993389439893393, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
+      propertyPath: m_Name
+      value: Buff Tower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdc48382d7277b142b9f8a11eb1f1ec2, type: 3}
 --- !u!1 &1113870604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,7 +1475,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 009ae65d0f20b0943bf344f291161074, type: 2}
-  currency: 0
 --- !u!1 &1765899159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,3 +1631,4 @@ SceneRoots:
   - {fileID: 450885951}
   - {fileID: 1765899161}
   - {fileID: 1266339564}
+  - {fileID: 1050546703}
