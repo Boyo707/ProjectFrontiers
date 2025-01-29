@@ -254,9 +254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileTarget: {fileID: 0}
-  projectileTargetPosition: {x: 0, y: 0, z: 0}
   projectileSpeed: 8
   lifeTime: 99
+  origin: 0
   explosionChild: {fileID: 6861402009019605617}
   explosionRadius: 3
   projectileCurve:
@@ -265,20 +265,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 21.010681
-      outSlope: 21.010681
+      inSlope: 66.373436
+      outSlope: 66.373436
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.012522362
+      outWeight: 0.028622538
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: -21.194927
-      outSlope: -21.194927
+      inSlope: -41.839676
+      outSlope: -41.839676
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.010733485
+      inWeight: 0.016994655
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

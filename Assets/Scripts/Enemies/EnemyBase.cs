@@ -57,8 +57,11 @@ public abstract class EnemyBase : MonoBehaviour {
             MoveToTarget();
         } 
         else if (attackCooldown <= 0f) {
+            if (attackAudio != null)
+            {
+                AudioManager.instance.PlayOneShot(attackAudio, true);
+            }
             Attack();
-            AudioManager.instance.PlayOneShot(attackAudio, true);
             attackCooldown = 1f / stats.FireRate;
         }
 
@@ -102,7 +105,10 @@ public abstract class EnemyBase : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
-        AudioManager.instance.PlayOneShot(hitAudio, true);
+        if (hitAudio != null)
+        {
+            AudioManager.instance.PlayOneShot(hitAudio, true);
+        }
         if (currentHealth < 0) {
             EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this, id));
             Destroy(gameObject); 
