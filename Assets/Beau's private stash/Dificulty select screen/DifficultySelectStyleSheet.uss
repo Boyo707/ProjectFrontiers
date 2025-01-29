@@ -1,0 +1,174 @@
+.EasyBtnAnim {
+    background-color: rgb(204, 31, 31);
+    position: absolute;
+    top: 80%;
+    left: 65%;
+    width: 17%;
+    height: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.EasyBtnAnim:hover {
+    background-color: rgb(204, 31, 31);
+    position: absolute;
+    top: 80%;
+    left: 65%;
+    width: 17%;
+    height: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-width: 0;
+    margin-top: 0.3%;
+}
+
+.EasyBtnAnim:active {
+    background-color: rgb(204, 31, 31);
+    position: absolute;
+    top: 80%;
+    left: 65%;
+    width: 17%;
+    height: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-width: 0;
+    margin-top: 0.8%;
+}
+
+.NormalBtnAnim {
+    position: absolute;
+    top: 80%;
+    left: 41%;
+    width: 17%;
+    height: 10%;
+    max-height: 10%;
+    background-color: rgb(234, 170, 40);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.NormalBtnAnim:hover {
+    position: absolute;
+    top: 80%;
+    left: 41%;
+    width: 17%;
+    height: 10%;
+    max-height: 10%;
+    background-color: rgb(234, 170, 40);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    margin-top: 0.3%;
+}
+
+.NormalBtnAnim:active {
+    position: absolute;
+    top: 80%;
+    left: 41%;
+    width: 17%;
+    height: 10%;
+    max-height: 10%;
+    background-color: rgb(234, 170, 40);
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    margin-top: 0.8%;
+}
+
+.HardBtnAnim {
+    position: absolute;
+    top: 80%;
+    left: 17%;
+    width: 17%;
+    height: 10%;
+    max-height: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: rgb(27, 189, 50);
+}
+
+.HardBtnAnim:hover {
+    position: absolute;
+    top: 80%;
+    left: 17%;
+    width: 17%;
+    height: 10%;
+    max-height: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: rgb(27, 189, 50);
+    margin-top: 0.3%;
+}
+
+.HardBtnAnim:active {
+    position: absolute;
+    top: 80%;
+    left: 17%;
+    width: 17%;
+    height: 10%;
+    max-height: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: rgb(27, 189, 50);
+    margin-top: 0.8%;
+}
+
+.BackBtnAnim {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 11.5%;
+    height: 6%;
+    max-height: 6%;
+    background-color: rgb(242, 120, 30);
+    border-top-left-radius: 33px;
+    border-top-right-radius: 33px;
+    border-bottom-right-radius: 33px;
+    border-bottom-left-radius: 33px;
+}
+
+.BackBtnAnim:hover {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 11.5%;
+    height: 6%;
+    max-height: 6%;
+    background-color: rgb(242, 120, 30);
+    border-top-left-radius: 33px;
+    border-top-right-radius: 33px;
+    border-bottom-right-radius: 33px;
+    border-bottom-left-radius: 33px;
+    margin-top: 0.2%;
+}
+
+.BackBtnAnim:active {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 11.5%;
+    height: 6%;
+    max-height: 6%;
+    background-color: rgb(242, 120, 30);
+    border-top-left-radius: 33px;
+    border-top-right-radius: 33px;
+    border-bottom-right-radius: 33px;
+    border-bottom-left-radius: 33px;
+    margin-top: 0.45%;
+}

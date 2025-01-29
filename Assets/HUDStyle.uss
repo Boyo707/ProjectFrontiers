@@ -1,0 +1,216 @@
+.Canvas {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.Radar {
+    overflow: hidden;
+    top: -80px;
+    left: 3%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.Outer-Circle {
+    top: 100px;
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    border-color: rgb(0, 255, 246);
+    border-width: 4px;
+    border-radius: 50%;
+    background-color: rgba(34, 34, 34, 0.3);
+}
+
+.Outer-Circle:hover {
+    background-color: rgba(34, 34, 34, 0.8);
+}
+
+.Inner-Circle {
+    overflow: hidden;
+    top: 50px;
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    border-color: rgb(0, 255, 246);
+    border-width: 4px;
+    border-radius: 50% 50% 50% 50%;
+}
+
+.Square {
+    overflow: hidden;
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.Square-Small {
+    overflow: hidden;
+    top: -100px;
+    left: 50px;
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.Vertical-Line {
+    border-left-width: 4px;
+    border-color: rgb(0, 255, 246);
+}
+
+.Horizontal-Line {
+    border-bottom-width: 4px;
+    border-color: rgb(0, 255, 246);
+}
+
+.gradient {
+    width: 300px;
+    height: 200px;
+}
+
+.Tower-Menu {
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: rgb(0, 255, 246);
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.unity-progress-bar {
+    border-radius: 2px;
+}
+.unity-progress-bar__container {
+    position: absolute;
+    left: 10%;
+    max-width: 80%;
+    min-width: 80%;
+    min-height: 36px;
+    height: 36px;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+.unity-progress-bar__progress {
+    position: absolute;
+    background-color: rgb(0, 255, 246);
+    border-right-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    border-radius: 2px;
+}
+
+.unity-progress-bar__background {
+    border-color: rgb(0, 255, 246);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.unity-progress-bar__title-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background-color: rgba(0, 255, 246, 0.5);
+}
+
+.unity-progress-bar__title {
+    position: relative;
+    width: 10%;
+}
+
+.Stats {
+}
+
+.unity-button {
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+}
+
+.Mother-Ship-Display {
+    margin: 0;
+    padding: 0;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: rgb(0, 255, 246);
+    font-size: 20;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1;
+    color: rgba(0, 0, 0, 0);
+    -unity-text-outline-color: rgb(0, 255, 246);
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.Mother-Ship-Bar {
+    padding: 0;
+    position: absolute;
+    margin: 10%;
+    margin-top: 17.5%;
+    min-width: 80%;
+}
+
+.Mother-Ship-Text {
+    position: absolute;
+    margin: 10%;
+    margin-top: 2.5%;
+}
+
+.Shadow-Container {
+    min-height: 20px;
+    height: 2px;
+    background-color: rgb(0, 255, 246);
+}
+
+.Mother-Ship-Label-Inline {
+    top: 3px;
+    left: 5px;
+    font-size: 50%;
+    color: rgb(0, 255, 246);
+}
+
+.Mother-Ship-Bar {
+    width: 10%;
+}
+
+.TowerMenu-Title {
+    margin: 0;
+    padding: 0;
+    font-size: 40;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1;
+    color: rgb(0, 0, 0);
+    -unity-text-outline-color: rgb(0, 255, 246);
+}
+
+.Tower-Menu-SubTile {
+    color: rgba(0, 255, 246, 0.8);
+    font-size: 20;
+    -unity-font-style: bold;
+    -unity-text-outline-width: 1;
+    -unity-text-outline-color: rgba(0, 255, 246, 0.9);
+}
+
+.StatBarTitle {
+    color: rgba(0, 255, 246, 1);
+    font-size: 20;
+    -unity-font-style: bold;
+    /*-unity-text-outline-width: 1;*/
+    /*-unity-text-outline-color: rgba(0, 255, 246, 0.9);*/
+}
+
+.UpgradeButton {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: rgba(0, 255, 246, 1);
+    color: rgba(0, 255, 246, 1);
+}
+
+.Grayed-Out-Overlay {
+    background-color: rgba(46, 46, 46, 0.8);
+}
