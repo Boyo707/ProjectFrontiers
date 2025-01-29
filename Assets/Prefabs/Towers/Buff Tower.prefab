@@ -87,7 +87,7 @@ MonoBehaviour:
     FireRate: 1
     Range: 1
   currentHealth: 0
-  id: 2
+  id: 5
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 256
