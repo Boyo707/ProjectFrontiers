@@ -124,7 +124,7 @@ public abstract class TowerBase : MonoBehaviour {
         Debug.DrawLine(partToRotate.position, currentTarget.transform.position, isLookingAtTarget ? Color.green : Color.red);
     }
 
-    protected void FindNewTarget() {
+    protected virtual void FindNewTarget() {
         Collider[] colliders = Physics.OverlapSphere(transform.position, stats.Range, targetLayerMask);
 
         float shortestDistance = Mathf.Infinity;

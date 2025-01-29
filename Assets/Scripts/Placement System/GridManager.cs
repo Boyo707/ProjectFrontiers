@@ -26,6 +26,7 @@ public class GridManager : MonoBehaviour {
 
     [SerializeField] private Grid grid;
     private GridData gridData = new();
+    [SerializeField] private Transform enemyParent;
 
     [SerializeField] private GameObject gridVisualisation;
 
@@ -179,7 +180,7 @@ public class GridManager : MonoBehaviour {
         }
 
         // Instantiate tower
-        GameObject newTower = Instantiate(tower.Prefab);
+        GameObject newTower = Instantiate(tower.Prefab, enemyParent);
 
         // Move tower to position and add to towers in game
         newTower.transform.position = grid.CellToWorld(gridPosition);
