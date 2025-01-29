@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 030ec89d3c8726d4da70caf352d37778
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - partToRotate: {instanceID: 0}
+  - attackAudio: {fileID: 8300000, guid: f47f28f5b5e856d4ebafe451227dc986, type: 3}
+  - hitAudio: {fileID: 8300000, guid: ebded4510188ce241a13f7a2a412f16f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

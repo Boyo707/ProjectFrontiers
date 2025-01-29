@@ -17,6 +17,10 @@ public abstract class EnemyBase : MonoBehaviour {
     [SerializeField] protected LayerMask targetLayerMask;
     private readonly float rangeOffset = 2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip attackAudio;
+    [SerializeField] private AudioClip hitAudio;
+
     protected virtual void Start() {
         try {
             targets = GridManager.instance.towersInGame;
@@ -53,8 +57,11 @@ public abstract class EnemyBase : MonoBehaviour {
             MoveToTarget();
         } 
         else if (attackCooldown <= 0f) {
+            if (attackAudio != null)
+            {
+                AudioManager.instance.PlayOneShot(attackAudio, true);
+            }
             Attack();
-            Debug.Log("attacked");
             attackCooldown = 1f / stats.FireRate;
         }
 
@@ -97,8 +104,11 @@ public abstract class EnemyBase : MonoBehaviour {
     protected abstract void Attack();
 
     public void TakeDamage(int damage) {
-        currentHealth -= damage; 
-
+        currentHealth -= damage;
+        if (hitAudio != null)
+        {
+            AudioManager.instance.PlayOneShot(hitAudio, true);
+        }
         if (currentHealth < 0) {
             EventBus<EnemyKilledEvent>.Publish(new EnemyKilledEvent(this, id));
             Destroy(gameObject); 
