@@ -43,7 +43,7 @@ public class WaveSpawner : MonoBehaviour {
         enemies = GameManager.instance.database.Enemies;
         waves = GameManager.instance.database.Waves;
 
-        GetWaveData(waveIndex);
+        GetWaveData();
     }
 
     private void Update() {
@@ -55,7 +55,7 @@ public class WaveSpawner : MonoBehaviour {
             for (int i = 0; i < enemiesToSpawn; i++) {
                 if (enemyQueue.Count <= 0) {
                     waveIndex++;
-                    GetWaveData(waveIndex);
+                    GetWaveData();
                 }
 
                 int enemyId = enemyQueue.Dequeue();
@@ -66,15 +66,15 @@ public class WaveSpawner : MonoBehaviour {
         }
     }
 
-    private void GetWaveData(int index) {
-        if (index == waves.Count - 1) {
+    private void GetWaveData() {
+        if (waveIndex >= waves.Count) {
             Debug.Log("resetWaves event triggered");
 
             EventBus<ResetWavesEvent>.Publish(new ResetWavesEvent(this));
             waveIndex = 0;
         }
 
-        currentWave = waves[index];
+        currentWave = waves[waveIndex];
         spawnRate = currentWave.SpawnRate;
 
         List<int>  enemyList = new();

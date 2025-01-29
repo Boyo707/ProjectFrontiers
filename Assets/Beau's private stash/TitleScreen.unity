@@ -443,6 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleScreenObj: {fileID: 1103443014}
   difficultySelectObj: {fileID: 252347395}
+  difficultySetting: {fileID: 11400000, guid: 7f59935194dd6f84da427dd214de05c2, type: 2}
 --- !u!1 &1103443014
 GameObject:
   m_ObjectHideFlags: 0
