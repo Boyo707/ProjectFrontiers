@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class TowerBase : MonoBehaviour {
     private List<Tower> towers;
 
-    [SerializeField] protected TowerStats stats;
+    [SerializeField] public TowerStats stats;
     public TowerUpgradeLevels CurrentUpgrades = new();
 
     public int currentHealth;
@@ -12,10 +12,11 @@ public abstract class TowerBase : MonoBehaviour {
 
     protected GameObject currentTarget = null;
     protected bool isLookingAtTarget = false;
+    protected bool isBuffTower = false;
 
-    //private bool spawnProtection = true;
-    //private float spawnProtectionTimer = 3f;
-    //private float lifeTime = 0;
+    private bool spawnProtection = true;
+    private float spawnProtectionTimer = 3f;
+    private float lifeTime = 0;
 
     [Header("Unity Setup")]
     public int id = -1;
@@ -44,6 +45,9 @@ public abstract class TowerBase : MonoBehaviour {
     }
 
     protected virtual void Update() {
+        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+        lifeTime += Time.deltaTime;
+
         if (currentTarget == null || !IsTargetInRange(currentTarget)) {
             FindNewTarget();
         }
@@ -51,9 +55,16 @@ public abstract class TowerBase : MonoBehaviour {
         if (currentTarget != null) {
             RotateToTarget();
 
-            if (shootCooldown <= 0f && isLookingAtTarget) {
-                Shoot();
-                shootCooldown = 1f / stats.FireRate;
+            if (shootCooldown <= 0f) {
+                if (isBuffTower) {
+                    ApplyEffectToTowersInRange();
+                    shootCooldown = 1f / stats.FireRate;
+                }
+
+                if (isLookingAtTarget) {
+                    Shoot();
+                    shootCooldown = 1f / stats.FireRate;
+                }
             }
         }
 
@@ -61,13 +72,13 @@ public abstract class TowerBase : MonoBehaviour {
             shootCooldown -= Time.deltaTime;
         }
 
-        //if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
 
-        //lifeTime += Time.deltaTime;
+        lifeTime += Time.deltaTime;
     }
 
     public void TakeDamage(int amount) {
-        //if (spawnProtection) return;
+        if (spawnProtection) return;
 
         //Debug.Log("Tower Took DAmage");
         currentHealth -= amount;
@@ -80,6 +91,14 @@ public abstract class TowerBase : MonoBehaviour {
         }
     }
 
+    public void HealTower(int amount) {
+        //Debug.Log("Tower Took DAmage");
+        currentHealth += amount;
+
+        if (currentHealth > stats.Health) {
+            currentHealth = stats.Health;
+        }
+    }
     // Rotation with direct anglecheck instead of raycast
     protected void RotateToTarget() {
         Vector3 direction = (currentTarget.transform.position - partToRotate.position).normalized;
@@ -91,11 +110,21 @@ public abstract class TowerBase : MonoBehaviour {
         // Use Angle calculation 
         isLookingAtTarget = angleToTarget < 5f;
 
+        /* // Use Raycast 
+        Ray ray = new(partToRotate.position, partToRotate.forward);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, stats.Range, targetLayerMask)) {
+            isLookingAtTarget = hitInfo.collider.gameObject == currentTarget;
+        }
+        else {
+            isLookingAtTarget = false;
+        }
+
+        Debug.DrawRay(ray.origin, ray.direction * stats.Range, isLookingAtTarget ? Color.green : Color.red);
+        */
         Debug.DrawLine(partToRotate.position, currentTarget.transform.position, isLookingAtTarget ? Color.green : Color.red);
     }
 
     protected virtual void FindNewTarget() {
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, stats.Range, targetLayerMask);
 
         float shortestDistance = Mathf.Infinity;
@@ -122,6 +151,23 @@ public abstract class TowerBase : MonoBehaviour {
     }
 
     protected abstract void Shoot();
+
+    protected virtual void ApplyEffectToTowersInRange() {
+    }
+
+    protected List<TowerBase> GetTowersInRange() {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, stats.Range, targetLayerMask);
+        List<TowerBase> towersInRange = new();
+
+        foreach (Collider collider in colliders) {
+            TowerBase tower = collider.GetComponentInParent<TowerBase>();
+            if (tower != null && tower != this) {
+                towersInRange.Add(tower);
+            }
+        }
+
+        return towersInRange;
+    }
 
     protected virtual void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;

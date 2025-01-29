@@ -15,47 +15,25 @@ MonoBehaviour:
   Towers:
   - <Name>k__BackingField: Basic Tower
     <Id>k__BackingField: 0
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 4537993389439893393, guid: 6fccb01862cf5504a9c69068bf4a6ed6, type: 3}
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 4537993389439893393, guid: dbda8b44a0eb6254289a70bb6e9e2bd2, type: 3}
     <UISprite>k__BackingField: {fileID: 0}
     <Cost>k__BackingField: 100
     <Stats>k__BackingField:
-      Health: 9999
-      Damage: 2
+      Health: 50
+      Damage: 1
       FireRate: 1
       Range: 10
   - <Name>k__BackingField: Sniper Tower
     <Id>k__BackingField: 1
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 813228957064817812, guid: 1c359a524862136498440424f599515e, type: 3}
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 4537993389439893393, guid: 30c5fed91622c544aacf7d7323510d39, type: 3}
     <UISprite>k__BackingField: {fileID: 0}
     <Cost>k__BackingField: 0
     <Stats>k__BackingField:
-      Health: 99999
-      Damage: 7
-      FireRate: 0.5
-      Range: 25
-  - <Name>k__BackingField: Machine Gun Tower
-    <Id>k__BackingField: 2
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 813228957064817812, guid: 1c359a524862136498440424f599515e, type: 3}
-    <UISprite>k__BackingField: {fileID: 0}
-    <Cost>k__BackingField: 0
-    <Stats>k__BackingField:
-      Health: 9999
-      Damage: 1
-      FireRate: 3
-      Range: 20
-  - <Name>k__BackingField: Grenade Tower
-    <Id>k__BackingField: 3
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 4323325338960217110, guid: 9906cbd9c29fd4645bc1f97a91edd138, type: 3}
-    <UISprite>k__BackingField: {fileID: 0}
-    <Cost>k__BackingField: 0
-    <Stats>k__BackingField:
-      Health: 9999
+      Health: 3
       Damage: 5
-      FireRate: 0.2
+      FireRate: 0.5
       Range: 20
   TowerUpgrades:
   - <Id>k__BackingField: 0
@@ -67,72 +45,91 @@ MonoBehaviour:
       FireRate: 1
       Range: 1
   Enemies:
-  - <Name>k__BackingField: MelleeEnemyBasic
+  - <Name>k__BackingField: Basic_enemy
     <Id>k__BackingField: 0
-    <DifficultyValue>k__BackingField: 0
+    <DifficultyValue>k__BackingField: 1
     <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 89c920fe34eb4ff48ac945e6e8bae5c6, type: 3}
     <Stats>k__BackingField:
-      Health: 3
+      Health: 1
+      Damage: 1
+      Speed: 3
+      FireRate: 1
+      Range: 0.2
+      Experience: 1
+  - <Name>k__BackingField: Medium_enemy
+    <Id>k__BackingField: 1
+    <DifficultyValue>k__BackingField: 2
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 4a70cb1802ff0f34d93b08d8295efab8, type: 3}
+    <Stats>k__BackingField:
+      Health: 2
       Damage: 1
       Speed: 2
       FireRate: 1
       Range: 0.2
-      Experience: 1
-  - <Name>k__BackingField: ProjectileEnemy
-    <Id>k__BackingField: 1
-    <DifficultyValue>k__BackingField: 0
-    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 4a70cb1802ff0f34d93b08d8295efab8, type: 3}
-    <Stats>k__BackingField:
-      Health: 99999
-      Damage: 1
-      Speed: 1
-      FireRate: 1
-      Range: 10
-      Experience: 1
-  - <Name>k__BackingField: Enemy_03
+      Experience: 2
+  - <Name>k__BackingField: Tank_enemy
     <Id>k__BackingField: 2
-    <DifficultyValue>k__BackingField: 0
+    <DifficultyValue>k__BackingField: 3
     <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 0115900abe05a574fae808262fd37757, type: 3}
     <Stats>k__BackingField:
       Health: 2
-      Damage: 1
+      Damage: 3
       Speed: 1
       FireRate: 1
-      Range: 1
-      Experience: 1
-  - <Name>k__BackingField: Enemy_04
+      Range: 0.2
+      Experience: 3
+  - <Name>k__BackingField: Basic-Ranged_enemy
     <Id>k__BackingField: 3
-    <DifficultyValue>k__BackingField: 0
+    <DifficultyValue>k__BackingField: 4
     <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 555a95b3e7e321a4b8731f0b33d4e2c7, type: 3}
     <Stats>k__BackingField:
       Health: 1
       Damage: 1
       Speed: 2
+      FireRate: 3
+      Range: 2
+      Experience: 4
+  - <Name>k__BackingField: Medium-Ranged_enemy
+    <Id>k__BackingField: 4
+    <DifficultyValue>k__BackingField: 5
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: d3faf4f3e94d6af409451b4ff570c2ec, type: 3}
+    <Stats>k__BackingField:
+      Health: 2
+      Damage: 1
+      Speed: 1
+      FireRate: 2
+      Range: 3
+      Experience: 5
+  - <Name>k__BackingField: Tank-Ranged_enemy
+    <Id>k__BackingField: 5
+    <DifficultyValue>k__BackingField: 6
+    <Prefab>k__BackingField: {fileID: 3433239746264095387, guid: 555a95b3e7e321a4b8731f0b33d4e2c7, type: 3}
+    <Stats>k__BackingField:
+      Health: 2
+      Damage: 2
+      Speed: 1
       FireRate: 1
-      Range: 5
-      Experience: 1
+      Range: 3
+      Experience: 6
   Waves:
   - <Id>k__BackingField: 0
-    <SpawnRate>k__BackingField: 0.5
+    <SpawnRate>k__BackingField: 3
     <EnemiesToSpawn>k__BackingField:
     - id: 0
-      amount: 10
+      amount: 30
   - <Id>k__BackingField: 1
-    <SpawnRate>k__BackingField: 0.5
+    <SpawnRate>k__BackingField: 2.5
     <EnemiesToSpawn>k__BackingField:
+    - id: 0
+      amount: 20
     - id: 1
-      amount: 20
-    - id: 2
-      amount: 20
+      amount: 15
   - <Id>k__BackingField: 2
-    <SpawnRate>k__BackingField: 0.5
+    <SpawnRate>k__BackingField: 2.5
     <EnemiesToSpawn>k__BackingField:
+    - id: 0
+      amount: 15
+    - id: 1
+      amount: 10
     - id: 2
-      amount: 40
-    - id: 3
-      amount: 20
-  - <Id>k__BackingField: 2
-    <SpawnRate>k__BackingField: 0.5
-    <EnemiesToSpawn>k__BackingField:
-    - id: 3
-      amount: 50
+      amount: 5

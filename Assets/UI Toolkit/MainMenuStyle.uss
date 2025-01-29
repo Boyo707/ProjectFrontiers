@@ -1,0 +1,35 @@
+.header {
+    top: 10px;
+    left: 10px;
+    -unity-text-align: middle-left;
+    font-size: 20px;
+    max-width: initial;
+    max-height: initial;
+}
+
+.parent {
+    transform-origin: 10% 10%;
+    width: 7.5%;
+    height: 5%;
+    max-height: initial;
+    min-height: initial;
+    max-width: initial;
+    min-width: initial;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(119, 119, 119);
+    background-color: rgba(103, 103, 103, 0.37);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.parent:hover {
+    background-color: rgba(103, 103, 103, 1);
+}
