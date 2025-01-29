@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class TitleScreenEventManager : MonoBehaviour
@@ -6,8 +7,8 @@ public class TitleScreenEventManager : MonoBehaviour
     private VisualElement rootElement;
     private VisualElement startButton;
     private VisualElement exitButton;
-    public GameObject titleScreenObj;
-    public GameObject dificultySelectObj;
+    //public GameObject titleScreenObj;
+    //public GameObject dificultySelectObj;
 
     void OnEnable()
     {
@@ -17,11 +18,11 @@ public class TitleScreenEventManager : MonoBehaviour
         exitButton = rootElement.Q<VisualElement>("ExitGameBtn");
     }
 
-    void Awake()
-    {
-        titleScreenObj.SetActive(true);
-        dificultySelectObj.SetActive(false);
-    }
+    //void Awake()
+    //{
+    //    titleScreenObj.SetActive(true);
+    //    dificultySelectObj.SetActive(false);
+    //}
 
 
     private void Update()
@@ -30,8 +31,9 @@ public class TitleScreenEventManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'START GAME' button");
 
-            titleScreenObj.SetActive(false);
-            dificultySelectObj.SetActive(true);
+            SceneManager.LoadScene("Main");
+            //titleScreenObj.SetActive(false);
+            //dificultySelectObj.SetActive(true);
         }));
 
         exitButton.AddManipulator(new Clickable(evt =>
