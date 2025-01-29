@@ -1,0 +1,131 @@
+.ResumeBtnAnim {
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    max-height: 10%;
+    background-color: rgb(183, 22, 22);
+    border-top-left-radius: 55px;
+    border-top-right-radius: 55px;
+    border-bottom-right-radius: 55px;
+    border-bottom-left-radius: 55px;
+    top: 64%;
+    left: 40%;
+}
+
+.ResumeBtnAnim:hover {
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    max-height: 10%;
+    background-color: rgb(183, 22, 22);
+    border-top-left-radius: 55px;
+    border-top-right-radius: 55px;
+    border-bottom-right-radius: 55px;
+    border-bottom-left-radius: 55px;
+    top: 64%;
+    left: 40%;
+    margin-top: 0.3%;
+}
+
+.ResumeBtnAnim:active {
+    position: absolute;
+    width: 20%;
+    height: 10%;
+    max-height: 10%;
+    background-color: rgb(183, 22, 22);
+    border-top-left-radius: 55px;
+    border-top-right-radius: 55px;
+    border-bottom-right-radius: 55px;
+    border-bottom-left-radius: 55px;
+    top: 64%;
+    left: 40%;
+    margin-top: 0.8%;
+}
+
+.ExitGameBtnAnim {
+    position: absolute;
+    width: 15%;
+    height: 7%;
+    max-height: 7%;
+    top: 80%;
+    left: 32%;
+    background-color: rgb(34, 189, 36);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.ExitGameBtnAnim:hover {
+    position: absolute;
+    width: 15%;
+    height: 7%;
+    max-height: 7%;
+    top: 80%;
+    left: 32%;
+    background-color: rgb(34, 189, 36);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    margin-top: 0.2%;
+}
+
+.ExitGameBtnAnim:active {
+    position: absolute;
+    width: 15%;
+    height: 7%;
+    max-height: 7%;
+    top: 80%;
+    left: 32%;
+    background-color: rgb(34, 189, 36);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    margin-top: 0.55%;
+}
+
+.RestartBtnAnim {
+    position: absolute;
+    top: 80%;
+    left: 53%;
+    width: 15%;
+    height: 7%;
+    max-height: 7%;
+    background-color: rgb(223, 167, 22);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.RestartBtnAnim:hover {
+    position: absolute;
+    top: 80%;
+    left: 53%;
+    width: 15%;
+    height: 7%;
+    max-height: 7%;
+    background-color: rgb(223, 167, 22);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    margin-top: 0.2%;
+}
+
+.RestartBtnAnim:active {
+    position: absolute;
+    top: 80%;
+    left: 53%;
+    width: 15%;
+    height: 7%;
+    max-height: 7%;
+    background-color: rgb(223, 167, 22);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    margin-top: 0.5%;
+}
