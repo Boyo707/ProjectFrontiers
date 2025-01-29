@@ -4,8 +4,9 @@ using UnityEngine;
 public abstract class TowerBase : MonoBehaviour {
     private List<Tower> towers;
 
-    [SerializeField] public TowerStats stats;
-    public TowerUpgradeLevels CurrentUpgrades = new();
+    public TowerStats stats;
+    public TowerUpgradeLevels lastUpgrades;
+    public TowerUpgradeLevels currentUpgrades;
 
     public int currentHealth;
     protected float shootCooldown = 0f;
@@ -34,6 +35,20 @@ public abstract class TowerBase : MonoBehaviour {
                 FireRate = towers[id].Stats.FireRate,
                 Range = towers[id].Stats.Range // times square (if useing sqrMag)
             };
+
+            currentUpgrades = new TowerUpgradeLevels {
+                Health = 1,
+                Damage = 1,
+                FireRate = 1,
+                Range = 1
+            };
+
+            lastUpgrades = new TowerUpgradeLevels {
+                Health = 1,
+                Damage = 1,
+                FireRate = 1,
+                Range = 1
+            };
         }
         catch {
             Debug.LogError("error 404: Tower not found (Check Database or tower for id)");
@@ -45,7 +60,9 @@ public abstract class TowerBase : MonoBehaviour {
     }
 
     protected virtual void Update() {
-        if (lifeTime > spawnProtectionTimer) spawnProtection = false;
+        if (lifeTime > spawnProtectionTimer) {
+            spawnProtection = false;
+        }
         lifeTime += Time.deltaTime;
 
         if (currentTarget == null || !IsTargetInRange(currentTarget)) {
@@ -167,6 +184,24 @@ public abstract class TowerBase : MonoBehaviour {
         }
 
         return towersInRange;
+    }
+    public void UpdateStats() {
+        if (currentUpgrades.Health != lastUpgrades.Health) {
+            stats.Health += (currentUpgrades.Health - lastUpgrades.Health) * 10; // Example multiplier
+            lastUpgrades.Health = currentUpgrades.Health;
+        }
+        if (currentUpgrades.Damage != lastUpgrades.Damage) {
+            stats.Damage += (currentUpgrades.Damage - lastUpgrades.Damage) * 5; // Example multiplier
+            lastUpgrades.Damage = currentUpgrades.Damage;
+        }
+        if (currentUpgrades.FireRate != lastUpgrades.FireRate) {
+            stats.FireRate += (currentUpgrades.FireRate - lastUpgrades.FireRate) * 0.1f; // Example multiplier
+            lastUpgrades.FireRate = currentUpgrades.FireRate;
+        }
+        if (currentUpgrades.Range != lastUpgrades.Range) {
+            stats.Range += (currentUpgrades.Range - lastUpgrades.Range) * 1f; // Example multiplier
+            lastUpgrades.Range = currentUpgrades.Range;
+        }
     }
 
     protected virtual void OnDrawGizmosSelected() {

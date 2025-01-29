@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -14,6 +15,15 @@ public class GameManager : MonoBehaviour {
         instance = this;
     }
 
+    private void OnEnable() {
+        EventBus<EnemyKilledEvent>.OnEvent += GetEnemyValue;
+    }
+
+    private void GetEnemyValue(EnemyKilledEvent e) {
+        int value = (int)database.Enemies[e.enemyId].DifficultyValue;
+        AddCurrency(value);
+    }
+
     public int GetCurrency() {
         return currency;
     }
@@ -28,5 +38,9 @@ public class GameManager : MonoBehaviour {
 
     public void RemoveCurrency(int amount) {
         if (CanAfford(amount)) currency -= amount;
+    }
+
+    private void OnDestroy() {
+        EventBus<EnemyKilledEvent>.OnEvent -= GetEnemyValue;
     }
 }
