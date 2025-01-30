@@ -5,19 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="365be568-4799-4a6d-9e4f-c82db9beb8d3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/DefaultVolumeProfile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/DefaultVolumeProfile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/PanelSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/PanelSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectFrontiers/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectFrontiers/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Currency.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Currency.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Database.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Database.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HUDStyle.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HUDStyle.uss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SamScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SamScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/AddOrRemoveClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/AddOrRemoveClass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/NewMonoBehaviourScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/NewMonoBehaviourScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UpgradeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UpgradeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Placement System/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Placement System/GridManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Towers/TowerBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Towers/TowerBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Close.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Close.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Close.svg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Close.svg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Frame.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Frame.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Frame.svg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Frame.svg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/HUD.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/HUD.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Min.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Min.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Min.svg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Min.svg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Pause.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Pause.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Pause.svg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Pause.svg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Plus.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Plus.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/Plus.svg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/Plus.svg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/AddOrRemoveClass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/ChangeText.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Custom UI Scripts/UIHelpers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4b3569741df14432abb5f87dfb1101b01f9200/0c/265ab4da/EventCallbackFunctor`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4b3569741df14432abb5f87dfb1101b01f9200/0e/62698ee2/VisualElement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/84f0d810adef4e6c8deab33e4ae93f7c1dec00/42/d9a31419/Object.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ed969b0e627d471da4848289f9c322df46ae00/47/4330294b/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -29,6 +67,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "UI",
     "node.js.detected.package.eslint": "true",
@@ -36,10 +75,11 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.33f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Projects\CMGT\Projects\ProjectFrontiers -debugCodeOptimization" />
@@ -66,10 +106,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18280">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="18280" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -90,6 +130,9 @@
       <workItem from="1737470959641" duration="148000" />
       <workItem from="1737471175495" duration="143000" />
       <workItem from="1737476118929" duration="50546000" />
+      <workItem from="1737745183809" duration="3961000" />
+      <workItem from="1737971935700" duration="11310000" />
+      <workItem from="1738056328798" duration="75702000" />
     </task>
     <servers />
   </component>
@@ -103,8 +146,38 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4b3569741df14432abb5f87dfb1101b01f9200/0e/62698ee2/VisualElement.cs</url>
+          <line>2330</line>
+          <properties documentPath="C:\Users\slove\AppData\Roaming\JetBrains\Rider2024.2\resharper-host\DecompilerCache\decompiler\4b3569741df14432abb5f87dfb1101b01f9200\0e\62698ee2\VisualElement.cs" containingFunctionPresentation="Method 'AddToClassList'">
+            <startOffsets>
+              <option value="84916" />
+            </startOffsets>
+            <endOffsets>
+              <option value="84917" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -65,7 +65,7 @@ public class GridManager : MonoBehaviour {
     private void Update() {
         Vector3 mousePosition = GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-
+        
         // Update the preview
         UpdatePosition(gridPosition);
 
@@ -211,7 +211,7 @@ public class GridManager : MonoBehaviour {
         gridData.RemoveObjectAt(gridPosition);
         towersInGame.RemoveAt(towersInGame.FindIndex(t => t == tower));
         Destroy(tower);
-
+        StopPlacementMode();
         Debug.Log("Tower removed successfully!");
     }
 

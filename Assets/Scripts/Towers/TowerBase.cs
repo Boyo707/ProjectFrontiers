@@ -59,7 +59,6 @@ public abstract class TowerBase : MonoBehaviour {
             Destroy(this.gameObject);
             return;
         }
-
         currentHealth = stats.Health;
     }
 
