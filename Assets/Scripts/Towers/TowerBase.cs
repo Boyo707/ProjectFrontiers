@@ -6,7 +6,7 @@ public abstract class TowerBase : MonoBehaviour {
 
     public TowerStats stats;
     public TowerUpgradeLevels lastUpgrades;
-    public TowerUpgradeLevels currentUpgrades;
+    public TowerUpgradeLevels CurrentUpgrades;
 
     public int currentHealth;
     protected float shootCooldown = 0f;
@@ -40,7 +40,7 @@ public abstract class TowerBase : MonoBehaviour {
                 Range = towers[id].Stats.Range // times square (if useing sqrMag)
             };
 
-            currentUpgrades = new TowerUpgradeLevels {
+            CurrentUpgrades = new TowerUpgradeLevels {
                 Health = 1,
                 Damage = 1,
                 FireRate = 1,
@@ -198,21 +198,21 @@ public abstract class TowerBase : MonoBehaviour {
         return towersInRange;
     }
     public void UpdateStats() {
-        if (currentUpgrades.Health != lastUpgrades.Health) {
-            stats.Health += (currentUpgrades.Health - lastUpgrades.Health) * 10; // Example multiplier
-            lastUpgrades.Health = currentUpgrades.Health;
+        if (CurrentUpgrades.Health != lastUpgrades.Health) {
+            stats.Health += (CurrentUpgrades.Health - lastUpgrades.Health) * 10; // Example multiplier
+            lastUpgrades.Health = CurrentUpgrades.Health;
         }
-        if (currentUpgrades.Damage != lastUpgrades.Damage) {
-            stats.Damage += (currentUpgrades.Damage - lastUpgrades.Damage) * 5; // Example multiplier
-            lastUpgrades.Damage = currentUpgrades.Damage;
+        if (CurrentUpgrades.Damage != lastUpgrades.Damage) {
+            stats.Damage += (CurrentUpgrades.Damage - lastUpgrades.Damage) * 5; // Example multiplier
+            lastUpgrades.Damage = CurrentUpgrades.Damage;
         }
-        if (currentUpgrades.FireRate != lastUpgrades.FireRate) {
-            stats.FireRate += (currentUpgrades.FireRate - lastUpgrades.FireRate) * 0.1f; // Example multiplier
-            lastUpgrades.FireRate = currentUpgrades.FireRate;
+        if (CurrentUpgrades.FireRate != lastUpgrades.FireRate) {
+            stats.FireRate += (CurrentUpgrades.FireRate - lastUpgrades.FireRate) * 0.1f; // Example multiplier
+            lastUpgrades.FireRate = CurrentUpgrades.FireRate;
         }
-        if (currentUpgrades.Range != lastUpgrades.Range) {
-            stats.Range += (currentUpgrades.Range - lastUpgrades.Range) * 1f; // Example multiplier
-            lastUpgrades.Range = currentUpgrades.Range;
+        if (CurrentUpgrades.Range != lastUpgrades.Range) {
+            stats.Range += (CurrentUpgrades.Range - lastUpgrades.Range) * 1f; // Example multiplier
+            lastUpgrades.Range = CurrentUpgrades.Range;
         }
     }
 

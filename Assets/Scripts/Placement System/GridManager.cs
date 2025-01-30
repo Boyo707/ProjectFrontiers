@@ -24,8 +24,8 @@ public class GridManager : MonoBehaviour {
 
     private bool isPlacementMode = false;
 
-    [SerializeField] private Grid grid;
-    private GridData gridData = new();
+    [SerializeField] public Grid grid;
+    public GridData gridData = new();
     [SerializeField] private Transform enemyParent;
 
     [SerializeField] private GameObject gridVisualisation;
@@ -103,6 +103,8 @@ public class GridManager : MonoBehaviour {
         // Stop any existing placement
         StopPlacementMode();
 
+        if (GameManager.instance.CanAfford(25)) GameManager.instance.RemoveCurrency(25);
+        else return;
         // Activate grid visualization
         gridVisualisation.SetActive(true);
 

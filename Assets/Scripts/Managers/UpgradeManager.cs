@@ -435,9 +435,9 @@ public class UpgradeManager : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        DrawTitle();
-        DrawStatUpgrades();
-        DrawTowerUpgrades();
+        // DrawTitle();
+        // DrawStatUpgrades();
+        // DrawTowerUpgrades();
     }
 
     private void DrawTitle()
@@ -445,59 +445,59 @@ public class UpgradeManager : MonoBehaviour
         // panelTitelText.text = $"{GameManager.instance.database.Towers[currentTower.id].Name}";
     }
 
-    private void DrawStatUpgrades()
-    {
-        //Health
-        levelText[0].text = $"Level: {currentTower.CurrentUpgrades.Health}";
-        // levelSliders[0].value = (float)currentTower.CurrentUpgrades.Health/10;
+    // private void DrawStatUpgrades()
+    // {
+    //     //Health
+    //     levelText[0].text = $"Level: {currentTower.CurrentUpgrades.Health}";
+    //     // levelSliders[0].value = (float)currentTower.CurrentUpgrades.Health/10;
+    //
+    //     //Damage
+    //     levelText[1].text = $"Level: {currentTower.CurrentUpgrades.Damage}";
+    //     // levelSliders[1].value = (float)currentTower.CurrentUpgrades.Damage / 10;
+    //
+    //     //Firerate
+    //     levelText[2].text = $"Level: {currentTower.CurrentUpgrades.FireRate}";
+    //     // levelSliders[2].value = (float)currentTower.CurrentUpgrades.FireRate / 10;
+    //
+    //     //Range
+    //     levelText[3].text = $"Level: {currentTower.CurrentUpgrades.Range}";
+    //     // levelSliders[3].value = (float)currentTower.CurrentUpgrades.Range / 10;
+    // }
 
-        //Damage
-        levelText[1].text = $"Level: {currentTower.CurrentUpgrades.Damage}";
-        // levelSliders[1].value = (float)currentTower.CurrentUpgrades.Damage / 10;
-
-        //Firerate
-        levelText[2].text = $"Level: {currentTower.CurrentUpgrades.FireRate}";
-        // levelSliders[2].value = (float)currentTower.CurrentUpgrades.FireRate / 10;
-
-        //Range
-        levelText[3].text = $"Level: {currentTower.CurrentUpgrades.Range}";
-        // levelSliders[3].value = (float)currentTower.CurrentUpgrades.Range / 10;
-    }
-
-    public void UpgradeStat(int statIndex)
-    {
-        bool hasReachedMaxLevel = false;
-        if (currentTower.currentUpgrades.Health >= 10 ||
-            currentTower.currentUpgrades.Damage >= 10 ||
-            currentTower.currentUpgrades.FireRate >= 10 ||
-            currentTower.currentUpgrades.Range >= 10)
-        {
-            hasReachedMaxLevel = true;
-        }
-
-        switch (statIndex)
-        {
-            //HEALTH
-            case 0:
-                currentTower.currentUpgrades.Health = IncreaseLevel(currentTower.currentUpgrades.Health, hasReachedMaxLevel);
-                break;
-            //DAMAGE
-            case 1:
-                currentTower.currentUpgrades.Damage = IncreaseLevel(currentTower.currentUpgrades.Damage, hasReachedMaxLevel);
-                break;
-            //FIRERATE
-            case 2:
-                currentTower.currentUpgrades.FireRate = IncreaseLevel(currentTower.currentUpgrades.FireRate, hasReachedMaxLevel);
-                break;
-            //RANGE
-            case 3:
-                currentTower.currentUpgrades.Range = IncreaseLevel(currentTower.currentUpgrades.Range, hasReachedMaxLevel);
-                break;
-        }
-
-        DrawStatUpgrades();
-        DrawTowerUpgrades();
-    }
+    // public void UpgradeStat(int statIndex)
+    // {
+    //     bool hasReachedMaxLevel = false;
+    //     if (currentTower.currentUpgrades.Health >= 10 ||
+    //         currentTower.currentUpgrades.Damage >= 10 ||
+    //         currentTower.currentUpgrades.FireRate >= 10 ||
+    //         currentTower.currentUpgrades.Range >= 10)
+    //     {
+    //         hasReachedMaxLevel = true;
+    //     }
+    //
+    //     switch (statIndex)
+    //     {
+    //         //HEALTH
+    //         case 0:
+    //             currentTower.currentUpgrades.Health = IncreaseLevel(currentTower.currentUpgrades.Health, hasReachedMaxLevel);
+    //             break;
+    //         //DAMAGE
+    //         case 1:
+    //             currentTower.currentUpgrades.Damage = IncreaseLevel(currentTower.currentUpgrades.Damage, hasReachedMaxLevel);
+    //             break;
+    //         //FIRERATE
+    //         case 2:
+    //             currentTower.currentUpgrades.FireRate = IncreaseLevel(currentTower.currentUpgrades.FireRate, hasReachedMaxLevel);
+    //             break;
+    //         //RANGE
+    //         case 3:
+    //             currentTower.currentUpgrades.Range = IncreaseLevel(currentTower.currentUpgrades.Range, hasReachedMaxLevel);
+    //             break;
+    //     }
+    //
+    //     DrawStatUpgrades();
+    //     DrawTowerUpgrades();
+    // }
     private int IncreaseLevel(int currentLevel, bool max)
     {
         Debug.Log(currentLevel);
@@ -521,33 +521,33 @@ public class UpgradeManager : MonoBehaviour
         return currentLevel;
     }
 
-    public void DowngradeStat(int statIndex)
-    {
-        switch (statIndex)
-        {
-            //HEALTH
-            case 0:
-                currentTower.currentUpgrades.Health = DecreaseLevel(currentTower.currentUpgrades.Health);
-                break;
-            //DAMAGE
-            case 1:
-                currentTower.currentUpgrades.Damage = DecreaseLevel(currentTower.currentUpgrades.Damage);
-
-                break;
-            //FIRERATE
-            case 2:
-                currentTower.currentUpgrades.FireRate = DecreaseLevel(currentTower.currentUpgrades.FireRate);
-
-                break;
-            //RANGE
-            case 3:
-
-                currentTower.currentUpgrades.Range = DecreaseLevel(currentTower.currentUpgrades.Range);
-                break;
-        }
-        DrawStatUpgrades();
-        DrawTowerUpgrades();
-    }
+    // public void DowngradeStat(int statIndex)
+    // {
+    //     switch (statIndex)
+    //     {
+    //         //HEALTH
+    //         case 0:
+    //             currentTower.currentUpgrades.Health = DecreaseLevel(currentTower.currentUpgrades.Health);
+    //             break;
+    //         //DAMAGE
+    //         case 1:
+    //             currentTower.currentUpgrades.Damage = DecreaseLevel(currentTower.currentUpgrades.Damage);
+    //
+    //             break;
+    //         //FIRERATE
+    //         case 2:
+    //             currentTower.currentUpgrades.FireRate = DecreaseLevel(currentTower.currentUpgrades.FireRate);
+    //
+    //             break;
+    //         //RANGE
+    //         case 3:
+    //
+    //             currentTower.currentUpgrades.Range = DecreaseLevel(currentTower.currentUpgrades.Range);
+    //             break;
+    //     }
+    //     DrawStatUpgrades();
+    //     DrawTowerUpgrades();
+    // }
     private int DecreaseLevel(int currentLevel)
     {
         int newLevel = Mathf.Clamp(currentLevel - 1, 0, 10);
@@ -555,53 +555,53 @@ public class UpgradeManager : MonoBehaviour
         return newLevel;
     }
 
-    private void DrawTowerUpgrades()
-    {
-        for (int i = 0; i < GameManager.instance.database.TowerUpgrades.Count; i++)
-        {
-            int validChecks = 0;
-
-            TowerUpgrades databaseTowerUpgrades = GameManager.instance.database.TowerUpgrades[i];
-
-            if (currentTower.id != databaseTowerUpgrades.SelectedTower)
-            {
-                continue;
-            }
-
-            if(currentTower.currentUpgrades.Health >= databaseTowerUpgrades.StatsNeeded.Health)
-            {
-                validChecks++;
-                nextTowerId = databaseTowerUpgrades.NewTower;
-            }
-            if (currentTower.currentUpgrades.Damage >= databaseTowerUpgrades.StatsNeeded.Damage)
-            {
-                validChecks++;
-                nextTowerId = databaseTowerUpgrades.NewTower;
-            }
-            if (currentTower.currentUpgrades.FireRate >= databaseTowerUpgrades.StatsNeeded.FireRate)
-            {
-                validChecks++;
-                nextTowerId = databaseTowerUpgrades.NewTower;
-            }
-            if (currentTower.currentUpgrades.Range >= databaseTowerUpgrades.StatsNeeded.Range)
-            {
-                validChecks++;
-                nextTowerId = databaseTowerUpgrades.NewTower;
-            }
-
-            if (validChecks == 4)
-            {
-                // upgradeTowerPanel.SetActive(true);
-                // upgradeTowerPanel.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = $"{GameManager.instance.database.Towers[nextTowerId].Name}";
-            }
-            else
-            {
-                // upgradeTowerPanel.SetActive(false);
-            }
-        }
-
-        
-    }
+    // private void DrawTowerUpgrades()
+    // {
+    //     for (int i = 0; i < GameManager.instance.database.TowerUpgrades.Count; i++)
+    //     {
+    //         int validChecks = 0;
+    //
+    //         TowerUpgrades databaseTowerUpgrades = GameManager.instance.database.TowerUpgrades[i];
+    //
+    //         if (currentTower.id != databaseTowerUpgrades.SelectedTower)
+    //         {
+    //             continue;
+    //         }
+    //
+    //         if(currentTower.currentUpgrades.Health >= databaseTowerUpgrades.StatsNeeded.Health)
+    //         {
+    //             validChecks++;
+    //             nextTowerId = databaseTowerUpgrades.NewTower;
+    //         }
+    //         if (currentTower.currentUpgrades.Damage >= databaseTowerUpgrades.StatsNeeded.Damage)
+    //         {
+    //             validChecks++;
+    //             nextTowerId = databaseTowerUpgrades.NewTower;
+    //         }
+    //         if (currentTower.currentUpgrades.FireRate >= databaseTowerUpgrades.StatsNeeded.FireRate)
+    //         {
+    //             validChecks++;
+    //             nextTowerId = databaseTowerUpgrades.NewTower;
+    //         }
+    //         if (currentTower.currentUpgrades.Range >= databaseTowerUpgrades.StatsNeeded.Range)
+    //         {
+    //             validChecks++;
+    //             nextTowerId = databaseTowerUpgrades.NewTower;
+    //         }
+    //
+    //         if (validChecks == 4)
+    //         {
+    //             // upgradeTowerPanel.SetActive(true);
+    //             // upgradeTowerPanel.transform.GetChild(0).GetComponentInChildren<TMP_Text>().text = $"{GameManager.instance.database.Towers[nextTowerId].Name}";
+    //         }
+    //         else
+    //         {
+    //             // upgradeTowerPanel.SetActive(false);
+    //         }
+    //     }
+    //
+    //     
+    // }
     
     /*
     public void UpgradeTower()
