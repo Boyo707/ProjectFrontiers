@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -35,8 +36,9 @@ public class TitleScreenEventManager : MonoBehaviour
         {
             Debug.Log("Clicked! And selected 'START GAME' button");
 
+            StartCoroutine(WaitForStartAudio());
+
             menuAudio.PlayOneShot(gameStartSFX);
-            SceneManager.LoadScene("Main");
             //titleScreenObj.SetActive(false);
             //dificultySelectObj.SetActive(true);
         }));
@@ -45,8 +47,23 @@ public class TitleScreenEventManager : MonoBehaviour
         {
             Debug.Log("Clicked! And quit application");
 
+            StartCoroutine(WaitForUIAudio());
+
             menuAudio.PlayOneShot(uiButtonSFX);
-            Application.Quit();
         }));
+    }
+
+    IEnumerator WaitForStartAudio()
+    {
+        yield return new WaitForSeconds(gameStartSFX.length - 0.5f);
+        Debug.Log("Started Game");
+        SceneManager.LoadScene("Main");
+    }
+
+    IEnumerator WaitForUIAudio()
+    {
+        yield return new WaitForSeconds(uiButtonSFX.length);
+        Debug.Log("Exited Game");
+        Application.Quit();
     }
 }

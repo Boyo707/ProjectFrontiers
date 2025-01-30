@@ -510,8 +510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuAudio: {fileID: 1103443018}
-  gameStartSFX: {fileID: 8300000, guid: 492304d97efd4824c980ac9ed365b1da, type: 3}
-  uiButtonSFX: {fileID: 8300000, guid: 19bd76080c54c1245b0b2828123ac1ea, type: 3}
+  gameStartSFX: {fileID: 8300000, guid: 518fdc65f41a9e64a92344563b0ff37f, type: 3}
+  uiButtonSFX: {fileID: 8300000, guid: d7f13dfaf5d786642b0c7f767fcb20a4, type: 3}
 --- !u!82 &1103443018
 AudioSource:
   m_ObjectHideFlags: 0
