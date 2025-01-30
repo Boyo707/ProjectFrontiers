@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
+    [SerializeField] AudioClip explosionAudio;
+
     private float explosionRadius;
     
     private int damage;
@@ -15,7 +17,8 @@ public class Explosion : MonoBehaviour
     private void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
-        transform.GetChild(0).parent = null;    
+        transform.GetChild(0).parent = null;
+        AudioManager.instance.PlayOneShot(explosionAudio, true);
     }
     // Update is called once per frame
     void Update()

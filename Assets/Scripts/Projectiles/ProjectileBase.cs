@@ -95,7 +95,6 @@ public class ProjectileBase : MonoBehaviour
 
     public virtual void OnHit()
     {
-        Debug.Log(gameObject.name);
         Destroy(gameObject);
     }
 
