@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Currency
   m_EditorClassIdentifier: 
   StoredValue: 0
-  CashedValue: 0
+  CashedValue: 10

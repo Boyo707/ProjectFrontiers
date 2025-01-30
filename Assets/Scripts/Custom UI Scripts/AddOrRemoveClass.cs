@@ -20,6 +20,8 @@ public class AddOrRemoveClass : MonoBehaviour
     private Button rangeIncreaseButton;
     private Button rangeDecreaseButton;
 
+    private Button placeTowersButton;
+
     void OnEnable()
     {
         // Get the root element of the UI Document
@@ -39,7 +41,7 @@ public class AddOrRemoveClass : MonoBehaviour
         firerateDecreaseButton = rootElement.Q<Button>("FirerateDecreaseButton");
         rangeIncreaseButton = rootElement.Q<Button>("RangeIncreaseButton");
         rangeDecreaseButton = rootElement.Q<Button>("RangeDecreaseButton");
-
+        
         if (healthBar != null)
         {
             healthBar.value = 0; // Starting value (0% progress)

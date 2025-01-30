@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public ObjectDatabase database;
-    private int currency = 0;
+    private int currency = 100;
 
     private void Awake() {
         if (instance != null) {

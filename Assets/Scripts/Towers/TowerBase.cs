@@ -5,7 +5,7 @@ public abstract class TowerBase : MonoBehaviour {
     private List<Tower> towers;
 
     [SerializeField] protected TowerStats stats;
-    public TowerUpgradeLevels CurrentUpgrades = new();
+    public TowerUpgradeLevels CurrentUpgrades;
 
     public int currentHealth;
     protected float shootCooldown = 0f;
@@ -32,13 +32,19 @@ public abstract class TowerBase : MonoBehaviour {
                 FireRate = towers[id].Stats.FireRate,
                 Range = towers[id].Stats.Range // times square (if useing sqrMag)
             };
+            CurrentUpgrades = new TowerUpgradeLevels
+            {
+                Health = 1,
+                Damage = 1,
+                FireRate = 1,
+                Range = 1
+            };
         }
         catch {
             Debug.LogError("error 404: Tower not found (Check Database or tower for id)");
             Destroy(this.gameObject);
             return;
         }
-
         currentHealth = stats.Health;
     }
 
