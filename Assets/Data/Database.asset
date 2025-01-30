@@ -82,12 +82,12 @@ MonoBehaviour:
   TowerUpgrades:
   - <Id>k__BackingField: 0
     <SelectedTower>k__BackingField: 0
-    <NewTower>k__BackingField: 0
+    <NewTower>k__BackingField: 1
     <StatsNeeded>k__BackingField:
       Health: 0
-      Damage: 0
-      FireRate: 1
-      Range: 1
+      Damage: 10
+      FireRate: 0
+      Range: 0
   Enemies:
   - <Name>k__BackingField: Basic_enemy
     <Id>k__BackingField: 0

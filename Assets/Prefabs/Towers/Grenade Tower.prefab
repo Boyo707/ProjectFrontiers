@@ -83,7 +83,12 @@ MonoBehaviour:
     Damage: 0
     FireRate: 0
     Range: 0
-  CurrentUpgrades:
+  lastUpgrades:
+    Health: 1
+    Damage: 1
+    FireRate: 1
+    Range: 1
+  currentUpgrades:
     Health: 1
     Damage: 1
     FireRate: 1
@@ -95,7 +100,7 @@ MonoBehaviour:
     m_Bits: 128
   partToRotate: {fileID: 7915323233399574896}
   rotationSpeed: 40
-  attackAudio: {fileID: 8300000, guid: 07f0cb9bc4d169549a13a78f2fb27f06, type: 3}
+  attackAudio: {fileID: 8300000, guid: e112056d8913e0e4f8b76a88ca2d00ce, type: 3}
   hitAudio: {fileID: 8300000, guid: 4cb44fbc699c66b4bab89357eb318712, type: 3}
   towerProjectile: {fileID: 7832386175594175600, guid: 33a04363dad74064d96e949d1bb9158f, type: 3}
   firePoint: {fileID: 7915323233399574896}
