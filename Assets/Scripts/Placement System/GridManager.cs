@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class GridManager : MonoBehaviour {
     #region Definitions
-
+    [SerializeField] private GameObject homeTower;
     public static GridManager instance;
     public List<GameObject> towersInGame;
     //public bool towerInRange = false;
@@ -26,7 +26,7 @@ public class GridManager : MonoBehaviour {
 
     [SerializeField] public Grid grid;
     public GridData gridData = new();
-    [SerializeField] private Transform enemyParent;
+    [SerializeField] private Transform towerParent;
 
     [SerializeField] private GameObject gridVisualisation;
 
@@ -60,6 +60,25 @@ public class GridManager : MonoBehaviour {
         if (sceneCamera == null) {
             sceneCamera = Camera.main;
         }
+
+
+        Tower tower = towers[5];
+
+        Vector3Int homePosition = new(0,0,0);
+
+        // Move tower to position and add to towers in game
+        homeTower.transform.position = grid.CellToWorld(new Vector3Int(1,0,1));
+        towersInGame.Add(homeTower);
+
+        // Update grid data to mark the cells as occupied
+        gridData.AddObjectAt(
+            homePosition,
+            tower.Size,
+            tower.Id,
+            towersInGame.Count - 1
+        );
+
+        EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, homeTower));
     }
 
     private void Update() {
@@ -160,6 +179,10 @@ public class GridManager : MonoBehaviour {
 
         if (towerIndex >= 0 && towerIndex < towersInGame.Count) {
             GameObject selectedTower = towersInGame[towerIndex];
+            if (selectedTower == homeTower) {
+                return;
+            }
+
             EventBus<SelectTowerEvent>.Publish(new SelectTowerEvent(this, selectedTower));
         }
     }
@@ -182,7 +205,7 @@ public class GridManager : MonoBehaviour {
         }
 
         // Instantiate tower
-        GameObject newTower = Instantiate(tower.Prefab, enemyParent);
+        GameObject newTower = Instantiate(tower.Prefab, towerParent);
 
         // Move tower to position and add to towers in game
         newTower.transform.position = grid.CellToWorld(gridPosition);
@@ -206,6 +229,9 @@ public class GridManager : MonoBehaviour {
     /// <param name="e">The event that triggered the removal.</param>
     private void RemoveTowerAtLocation(TowerDestroyedEvent e) {
         GameObject tower = e.tower;
+        if (tower == homeTower) {
+            GameManager.instance.GameOver();
+        }
 
         Vector3Int gridPosition = grid.WorldToCell(tower.transform.position);
 

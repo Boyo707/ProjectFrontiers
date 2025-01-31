@@ -8,6 +8,18 @@ public class Event {
     }
 }
 
+# region Game Manager Events
+public class GameOverEvent : Event {
+    public GameOverEvent(object source) : base(source) {
+    }
+}
+public class VictoryEvent : Event {
+    public VictoryEvent(object source) : base(source) {
+    }
+}
+
+#endregion
+
 #region GridManager events
 public class PlaceTowerEvent : Event {
     public int towerId;

@@ -39,6 +39,14 @@ public class GameManager : MonoBehaviour {
     public void RemoveCurrency(int amount) {
         if (CanAfford(amount)) currency -= amount;
     }
+    public void GameOver() {
+        EventBus<GameOverEvent>.Publish(new GameOverEvent(this));
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+    }
+    public void Victory() {
+        Debug.Log("Victory");
+        EventBus<VictoryEvent>.Publish(new VictoryEvent(this));
+    }
 
     private void OnDestroy() {
         EventBus<EnemyKilledEvent>.OnEvent -= GetEnemyValue;
