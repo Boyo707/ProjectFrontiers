@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96b40dba58c0ac4a9479bdf9c2b8be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overlayHUDObj: {fileID: 0}
+  overlayHUDObj: {fileID: 86711155}
   pauseMenuObj: {fileID: 1073402473}
 --- !u!1 &304378690
 GameObject:
@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuObj: {fileID: 1073402473}
-  menuSource: {fileID: 0}
+  menuSource: {fileID: 567754147}
   menuButtonAudio: {fileID: 8300000, guid: 3ed4936f2ff6e8a4ab711fc969549fe2, type: 3}
 --- !u!114 &1073402476
 MonoBehaviour:

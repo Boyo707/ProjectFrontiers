@@ -57,6 +57,7 @@ public class PauseScreenMenuManager : MonoBehaviour
         {
             Debug.Log("Clicked! And sent to TitleScreen Scene");
 
+            SceneManager.LoadScene("Main_Menu");
             menuSource.PlayOneShot(menuButtonAudio);
             WaitForAudio();
             pauseMenuObj.SetActive(false);
