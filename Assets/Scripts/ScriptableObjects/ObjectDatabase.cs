@@ -51,7 +51,7 @@ public class TowerUpgrades {
     [field: SerializeField]
     public int NewTower { get; private set; }
     [field: SerializeField]
-    public TowerUpgradeLevels StatsNeeded { get; private set; }
+    public string stat { get; private set; } 
 }
 
 [Serializable]
