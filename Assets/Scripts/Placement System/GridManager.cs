@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 
 /// <summary>
 /// Manages the placement of towers on the grid.
@@ -18,6 +19,10 @@ public class GridManager : MonoBehaviour {
     [Header("Required GameObjects")]
     [SerializeField] private GameObject cellIndicator;
     private Renderer[] cellIndicatorRenderer;
+
+    [SerializeField]private GameObject towerIndicatorVisual;
+    private GameObject towerIndicator;
+    private Renderer[] towerIndicatorRenderer;
 
     private Camera sceneCamera;
     [SerializeField] private LayerMask placementLayerMask;
@@ -171,6 +176,9 @@ public class GridManager : MonoBehaviour {
         // Destroy preview object
         if (previewObject != null) Destroy(previewObject);
 
+        Destroy(towerIndicator);
+
+
         EventBus<ExitPlacementModeEvent>.Publish(new ExitPlacementModeEvent(this));
         isPlacementMode = false;
     }
@@ -181,9 +189,20 @@ public class GridManager : MonoBehaviour {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         GameObject tower = gridData.GetRepresentationIndex(gridPosition);
 
+        Destroy(towerIndicator);
+
         if (tower != null) {
             if (tower == homeTower) {
                 return;
+            }
+
+            towerIndicator = Instantiate(towerIndicatorVisual, tower.transform.position, Quaternion.identity);
+
+            towerIndicatorRenderer = towerIndicator.GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer renderer in towerIndicatorRenderer)
+            {
+                renderer.material.color = Color.blue;
             }
 
             EventBus<SelectTowerEvent>.Publish(new SelectTowerEvent(this, tower));
