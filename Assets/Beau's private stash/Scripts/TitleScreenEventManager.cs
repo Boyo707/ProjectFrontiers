@@ -23,7 +23,7 @@ public class TitleScreenEventManager : MonoBehaviour
         startButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("Clicked! And selected 'START GAME' button");
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Introduction");
         }));
 
         exitButton.AddManipulator(new Clickable(evt =>
