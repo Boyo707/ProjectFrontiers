@@ -1,11 +1,11 @@
-using System;
+
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public ObjectDatabase database;
-    private int currency = 100;
+    [SerializeField] private int currency = 1000;
 
     private void Awake() {
         if (instance != null) {
@@ -34,10 +34,14 @@ public class GameManager : MonoBehaviour {
 
     public void AddCurrency(int amount) {
         currency += amount;
+        EventBus<CurrencyChangeEvent>.Publish(new CurrencyChangeEvent(this, currency));
     }
 
     public void RemoveCurrency(int amount) {
-        if (CanAfford(amount)) currency -= amount;
+        if (CanAfford(amount)) {
+            currency -= amount;
+            EventBus<CurrencyChangeEvent>.Publish(new CurrencyChangeEvent(this, currency));
+        }
     }
     public void GameOver() {
         EventBus<GameOverEvent>.Publish(new GameOverEvent(this));
