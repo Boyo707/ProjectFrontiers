@@ -7,12 +7,12 @@ public class PlacementData {
     public List<Vector3Int> occupiedPositions;
 
     public int ID { get; private set; }
-    public int PlaceObjectIndex { get; private set; }
+    public GameObject PlaceObject { get; private set; }
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placeObjectIndex) {
+    public PlacementData(List<Vector3Int> occupiedPositions, int iD, GameObject placeObject) {
         this.occupiedPositions = occupiedPositions;
         ID = iD;
-        PlaceObjectIndex = placeObjectIndex;
+        PlaceObject = placeObject;
     }
 }
 
@@ -23,7 +23,7 @@ public class GridData
     public void AddObjectAt(Vector3Int gridPosition,
                             Vector2Int objectSize,
                             int ID,
-                            int placedObjectIndex)
+                            GameObject placedObjectIndex)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         PlacementData data = new (positionToOccupy, ID, placedObjectIndex);
@@ -63,13 +63,13 @@ public class GridData
         return true;
     }
 
-    public int GetRepresentationIndex(Vector3Int gridPosition)
+    public GameObject GetRepresentationIndex(Vector3Int gridPosition)
     {
         if(placedObjects.ContainsKey(gridPosition) == false)
         {
-            return -1;
+            return null;
         }
-        return placedObjects[gridPosition].PlaceObjectIndex;
+        return placedObjects[gridPosition].PlaceObject;
     }
 
     public void RemoveObjectAt(Vector3Int gridPosition)

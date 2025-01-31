@@ -81,7 +81,7 @@ public class GridManager : MonoBehaviour {
             homePosition,
             tower.Size,
             tower.Id,
-            towersInGame.Count - 1
+            homeTower
         );
 
         EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, homeTower));
@@ -179,15 +179,14 @@ public class GridManager : MonoBehaviour {
         // Get tower object from the grid mouse position
         Vector3 mousePosition = GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        int towerIndex = gridData.GetRepresentationIndex(gridPosition);
+        GameObject tower = gridData.GetRepresentationIndex(gridPosition);
 
-        if (towerIndex >= 0 && towerIndex < towersInGame.Count) {
-            GameObject selectedTower = towersInGame[towerIndex];
-            if (selectedTower == homeTower) {
+        if (tower != null) {
+            if (tower == homeTower) {
                 return;
             }
 
-            EventBus<SelectTowerEvent>.Publish(new SelectTowerEvent(this, selectedTower));
+            EventBus<SelectTowerEvent>.Publish(new SelectTowerEvent(this, tower));
         }
     }
 
@@ -222,7 +221,7 @@ public class GridManager : MonoBehaviour {
             gridPosition,
             tower.Size,
             tower.Id,
-            towersInGame.Count - 1
+            newTower
         );
 
         EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, newTower));
