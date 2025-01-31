@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -10,6 +11,8 @@ public class PauseScreenMenuManager : MonoBehaviour
     private VisualElement restartButton;
 
     public GameObject pauseMenuObj;
+    public AudioSource menuSource;
+    public AudioClip menuButtonAudio;
 
     void OnEnable()
     {
@@ -36,6 +39,7 @@ public class PauseScreenMenuManager : MonoBehaviour
             Debug.Log("Clicked! And selected 'Resume' button");
 
             Time.timeScale = 1.0f;
+            menuSource.PlayOneShot(menuButtonAudio);
             pauseMenuObj.SetActive(false);
         }));
 
@@ -45,6 +49,7 @@ public class PauseScreenMenuManager : MonoBehaviour
 
             Time.timeScale = 1.0f;
             SceneManager.LoadScene("Main");
+            menuSource.PlayOneShot(menuButtonAudio);
             pauseMenuObj.SetActive(false);
         }));
 
@@ -52,8 +57,15 @@ public class PauseScreenMenuManager : MonoBehaviour
         {
             Debug.Log("Clicked! And sent to TitleScreen Scene");
 
-            SceneManager.LoadScene("TitleScreen");
+            menuSource.PlayOneShot(menuButtonAudio);
+            WaitForAudio();
             pauseMenuObj.SetActive(false);
         }));
+
+        IEnumerator WaitForAudio()
+        {
+            yield return new WaitForSeconds(menuButtonAudio.length);
+            SceneManager.LoadScene("TitleScreen");
+        }
     }
 }

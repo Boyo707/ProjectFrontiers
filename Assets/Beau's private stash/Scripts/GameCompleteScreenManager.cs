@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -8,7 +9,9 @@ public class GameCompleteScreenManager : MonoBehaviour
     private VisualElement exitButton;
     private VisualElement resumeButton;
 
-    public GameObject endScreenMenuObj;
+    public AudioSource menuSource;
+    public AudioClip menuButtonAudio;
+    public AudioClip startGameAudio;
 
     void OnEnable()
     {
@@ -20,29 +23,35 @@ public class GameCompleteScreenManager : MonoBehaviour
 
     private void Update()
     {
-        if (endScreenMenuObj.activeSelf)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-        }
 
         resumeButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("Clicked! And selected 'Resume' button");
 
-            Time.timeScale = 1.0f;
-            endScreenMenuObj.SetActive(false);
+            menuSource.PlayOneShot(startGameAudio);
+            StartCoroutine(WaitForStartGameAudio());
         }));
 
         exitButton.AddManipulator(new Clickable(evt =>
         {
             Debug.Log("Clicked! And sent to TitleScreen Scene");
 
-            SceneManager.LoadScene("TitleScreen");
-            endScreenMenuObj.SetActive(false);
+            menuSource.PlayOneShot(menuButtonAudio);
+            StartCoroutine(WaitForUIButtonAudio());
         }));
+
+        IEnumerator WaitForStartGameAudio()
+        {
+            yield return new WaitForSeconds(startGameAudio.length - 2f);
+            SceneManager.LoadScene("Main");
+            Debug.Log("restarted");
+        }
+
+        IEnumerator WaitForUIButtonAudio()
+        {
+            yield return new WaitForSeconds(menuButtonAudio.length);
+            SceneManager.LoadScene("TitleScreen");
+            Debug.Log("Exited");
+        }
     }
 }

@@ -37,7 +37,7 @@ public class TitleScreenEventManager : MonoBehaviour
 
             menuSource.PlayOneShot(startGameAudio);
 
-            WaitForStartGameAudio();
+            StartCoroutine(WaitForStartGameAudio());
 
             //titleScreenObj.SetActive(false);
             //dificultySelectObj.SetActive(true);
@@ -49,13 +49,13 @@ public class TitleScreenEventManager : MonoBehaviour
 
             menuSource.PlayOneShot(menuButtonAudio);
 
-            WaitForUIAudio();
+            StartCoroutine(WaitForUIAudio());
         }));
     }
 
     IEnumerator WaitForStartGameAudio()
     {
-        yield return new WaitForSeconds(startGameAudio.length - 1f);
+        yield return new WaitForSeconds(startGameAudio.length - 2f);
         SceneManager.LoadScene("Main");
         Debug.Log("Started game");
     }

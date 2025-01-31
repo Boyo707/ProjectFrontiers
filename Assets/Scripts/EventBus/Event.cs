@@ -17,7 +17,12 @@ public class VictoryEvent : Event {
     public VictoryEvent(object source) : base(source) {
     }
 }
-
+public class PauseGameEvent : Event
+{
+    public PauseGameEvent(object source) : base(source)
+    {
+    }
+}
 #endregion
 
 #region GridManager events

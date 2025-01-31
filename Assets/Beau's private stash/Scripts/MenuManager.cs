@@ -8,7 +8,6 @@ public class MenuManager : MonoBehaviour
 
     public GameObject overlayHUDObj;
     public GameObject pauseMenuObj;
-    public GameObject placeTowerInteraction;
 
     void OnEnable()
     {
@@ -20,7 +19,6 @@ public class MenuManager : MonoBehaviour
     void Awake()
     {
         pauseMenuObj.SetActive(false);
-        placeTowerInteraction.SetActive(true);
     }
 
     private void Update()
@@ -29,16 +27,9 @@ public class MenuManager : MonoBehaviour
         {
             pauseButton.clicked += () =>
             {
-                Debug.Log("");
-                Time.timeScale = 1.0f;
                 pauseMenuObj.SetActive(true);
-                placeTowerInteraction.SetActive(false);
+                EventBus<PauseGameEvent>.Publish(new PauseGameEvent(this));
             };
-        }
-
-        if (!pauseMenuObj.activeSelf)
-        {
-            placeTowerInteraction.SetActive(true);
         }
     }
 }
