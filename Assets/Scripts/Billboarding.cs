@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Billboarding : MonoBehaviour
 {
+    [SerializeField] private Vector3 rotationOffset;
     //12 hours of work
     private void LateUpdate()
     {
@@ -11,9 +12,10 @@ public class Billboarding : MonoBehaviour
         {
             //transform.LookAt(Camera.main.transform, transform.parent.transform.forward);
         }
-        else
-        {
-        }
-        transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, 180, 0);
+
+        transform.rotation = Quaternion.Euler(
+            transform.localEulerAngles.x + rotationOffset.x,
+            180 + rotationOffset.y,
+            0 + rotationOffset.z);
     }
 }
