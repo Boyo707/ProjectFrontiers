@@ -17,12 +17,19 @@ public class VictoryEvent : Event {
     public VictoryEvent(object source) : base(source) {
     }
 }
-public class PauseGameEvent : Event
-{
-    public PauseGameEvent(object source) : base(source)
-    {
+
+public class PauseGameEvent : Event {
+    public PauseGameEvent(object source) : base(source) {
     }
 }
+public class CurrencyChangeEvent : Event {
+    public int currency;
+    public CurrencyChangeEvent(object source, int currency) : base(source) {
+        this.currency = currency;
+    }
+}
+
+
 #endregion
 
 #region GridManager events
