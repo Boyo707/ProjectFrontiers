@@ -203,7 +203,7 @@ public class GridManager : MonoBehaviour {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
         bool canBuy = GameManager.instance.CanAfford((int)tower.Cost);
-        if (!gridData.CanPlaceObjectAt(gridPosition, tower.Size) || !canBuy) {
+        if (!gridData.CanPlaceObjectAt(gridPosition, tower.Size) || !canBuy|| gridPosition.z >= 5) {
             Debug.Log("Invalid placement location!");
             return;
         }
@@ -259,7 +259,7 @@ public class GridManager : MonoBehaviour {
         if (previewObject != null) {
             bool isValid = true;
             bool canBuy = GameManager.instance.CanAfford((int)towers[selectedTowerIndex].Cost);
-            if (!gridData.CanPlaceObjectAt(gridPosition, towers[selectedTowerIndex].Size) || !canBuy) isValid = false;
+            if (!gridData.CanPlaceObjectAt(gridPosition, towers[selectedTowerIndex].Size) || !canBuy|| gridPosition.z >= 5) isValid = false;
             c = isValid ? Color.white : Color.red;
 
             // Move preview
