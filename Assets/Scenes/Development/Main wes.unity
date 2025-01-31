@@ -873,6 +873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   database: {fileID: 11400000, guid: 009ae65d0f20b0943bf344f291161074, type: 2}
+  currency: 200
 --- !u!1001 &885061934
 PrefabInstance:
   m_ObjectHideFlags: 0
