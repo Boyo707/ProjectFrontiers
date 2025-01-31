@@ -1,33 +1,32 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Assets.Scripts {
-    public class SpaceShipHealthStatus : MonoBehaviour {
-        [SerializeField] GameObject SpaceShip;
-        private float lastHealth;
-        private float currentHealth;
-        private float maxHealth;
-        private VisualElement rootElement;
+public class SpaceShipHealthStatus : MonoBehaviour {
+    [SerializeField] GameObject SpaceShip;
 
-        private ProgressBar healthUpgradeBar;
+    [SerializeField] private int lastHealth;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int maxHealth;
 
-        // Use this for initialization
-        void Start() {
-            var uiDocument = GetComponent<UIDocument>();
-            rootElement = uiDocument.rootVisualElement;
-            
-            currentHealth = SpaceShip.GetComponent<TowerBase>().currentHealth;
-            maxHealth = GameManager.instance.database.Towers[5].Stats.Health;
+    private VisualElement rootElement;
+    private ProgressBar healthUpgradeBar;
 
-            healthUpgradeBar = rootElement.Q<ProgressBar>("Mothership-HP");
-        }
+    // Use this for initialization
+    void Start() {
+        var uiDocument = GetComponent<UIDocument>();
+        rootElement = uiDocument.rootVisualElement;
 
-        void Update() {
-            if(lastHealth != currentHealth) {
-                lastHealth = currentHealth;
-                healthUpgradeBar.value = Mathf.Clamp(currentHealth, healthUpgradeBar.lowValue, maxHealth);
-                // healthUpgradeBar.value = (float)currentHealth / maxHealth;
-            }
+        currentHealth = SpaceShip.GetComponent<TowerBase>().currentHealth;
+        maxHealth = GameManager.instance.database.Towers[5].Stats.Health;
+
+        healthUpgradeBar = rootElement.Q<ProgressBar>("Mothership-HP");
+    }
+
+    void Update() {
+        currentHealth = SpaceShip.GetComponent<TowerBase>().currentHealth;
+        if (lastHealth != currentHealth) {
+            lastHealth = currentHealth;
+            healthUpgradeBar.value = Mathf.Clamp(currentHealth, 0, maxHealth);
         }
     }
 }

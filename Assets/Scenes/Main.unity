@@ -193,7 +193,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2892781506438853273, guid: 7c647c4b19f2af34a9ad6bc026ab3863, type: 3}
   m_PrefabInstance: {fileID: 135227064}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &86711162
+--- !u!114 &86711168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,10 +202,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 86711155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2449fa8df6cc364bb4ff044fc2a7883, type: 3}
+  m_Script: {fileID: 11500000, guid: 66129dc139f6d0942bccc1318e25b927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShip: {fileID: 1915821496}
 --- !u!1 &101379445
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +390,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4816527356837001594, guid: 7c647c4b19f2af34a9ad6bc026ab3863, type: 3}
+      propertyPath: SpaceShip
+      value: 
+      objectReference: {fileID: 1915821496}
     - target: {fileID: 8421275047055092989, guid: 7c647c4b19f2af34a9ad6bc026ab3863, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -401,7 +404,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8421275047055092989, guid: 7c647c4b19f2af34a9ad6bc026ab3863, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 86711162}
+      addedObject: {fileID: 86711168}
   m_SourcePrefab: {fileID: 100100000, guid: 7c647c4b19f2af34a9ad6bc026ab3863, type: 3}
 --- !u!1 &166406149
 GameObject:
@@ -1356,6 +1359,10 @@ PrefabInstance:
       propertyPath: enemyParent
       value: 
       objectReference: {fileID: 984123}
+    - target: {fileID: 4855574725186277090, guid: c1cc2e9bcfb87b04eac2b50d3e7d807a, type: 3}
+      propertyPath: towerIndicatorVisual
+      value: 
+      objectReference: {fileID: 2082113657796173043, guid: f3262ccc1e29c624db95a7ff6d027f4c, type: 3}
     - target: {fileID: 5968638000240276310, guid: c1cc2e9bcfb87b04eac2b50d3e7d807a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

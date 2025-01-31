@@ -97,7 +97,8 @@ public class UpgradeManager : MonoBehaviour {
         // show or hide on selection event
         towerMenu.style.translate =
                 new Translate((Length)(-0.3 * rootElement.resolvedStyle.width), 0); // Show menu
-            selectedTower = e.tower;
+        
+        selectedTower = e.tower;
         
         TowerBase tower = selectedTower.GetComponent<TowerBase>();
         string towerTitle = GameManager.instance.database.Towers[tower.id].Name;
@@ -354,6 +355,9 @@ public class UpgradeManager : MonoBehaviour {
             tower.Id,
             newTower
         );
+
+        towerMenu.style.translate =
+            new Translate((Length)(0.3 * rootElement.resolvedStyle.width), 0);
 
         EventBus<TowerCreatedEvent>.Publish(new TowerCreatedEvent(this, newTower));
     }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2475365818934928963}
   - component: {fileID: 6366723271495231015}
   - component: {fileID: 3793526422977779783}
+  - component: {fileID: 4816527356837001594}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -103,4 +104,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f134545ee8c84469f863a20d49a1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentXP: 0
+  selectedTower: {fileID: 0}
+--- !u!114 &4816527356837001594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421275047055092989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2449fa8df6cc364bb4ff044fc2a7883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpaceShip: {fileID: 0}
