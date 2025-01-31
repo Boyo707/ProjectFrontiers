@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     public ObjectDatabase database;
-    [SerializeField] private int currency = 1000;
+    [SerializeField] private int currency = 150;
 
     private void Awake() {
         if (instance != null) {
