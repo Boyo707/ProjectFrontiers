@@ -18,7 +18,7 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4537993389439893393, guid: 6fccb01862cf5504a9c69068bf4a6ed6, type: 3}
     <UISprite>k__BackingField: {fileID: 0}
-    <Cost>k__BackingField: 100
+    <Cost>k__BackingField: 10
     <Stats>k__BackingField:
       Health: 25
       Damage: 1
